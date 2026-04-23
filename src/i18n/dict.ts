@@ -82,6 +82,86 @@ const en: Dict = {
   // Footer
   footer_rights: "© 2026 · Open resource · CC BY-NC-SA",
   footer_tech: "EN · ES · FR · WCAG AA · mobile-first",
+
+  // Navigator page (chrome)
+  navigator_eyebrow: "FINANCING NAVIGATOR",
+  navigator_title: "Four questions. A clear starting point.",
+  navigator_subtitle:
+    "We won't give you a dashboard. We'll point you to the right pathways, templates and cases — then step out of your way.",
+  navigator_inputs: "YOUR INPUTS",
+  navigator_not_set: "Not set",
+  navigator_complete: "Complete",
+  navigator_step: "Step",
+  navigator_of: "of",
+  navigator_start_over: "Start over",
+  navigator_question: "QUESTION",
+  navigator_back: "Back",
+  navigator_next: "Next",
+  navigator_see_pathways: "See my pathways",
+  navigator_result_eyebrow: "YOUR STARTING POINT",
+  navigator_result_in: "in",
+  navigator_result_landscapes: "landscapes, facing",
+  navigator_result_pursuing: ", pursuing",
+  navigator_result_prefix: "A",
+  navigator_rec_pathways: "RECOMMENDED PATHWAYS",
+  navigator_3_of_12: "3 of 12",
+  navigator_start_here: "Start here",
+  navigator_similar: "SIMILAR CASES",
+  navigator_seen_work: "Seen it work here",
+  navigator_relevant: "RELEVANT TOOLS",
+  navigator_templates_path: "Templates for this path",
+  navigator_get: "Get",
+  navigator_open_lms: "Open matching LMS unit",
+  navigator_try_diff: "Try different answers",
+  fit_strong: "Strong fit",
+  fit_good: "Good fit",
+  fit_explore: "Explore",
+
+  // Toolkit page (chrome)
+  toolkit_eyebrow: "TOOLKIT · RESOURCES & LIBRARY",
+  toolkit_title: "Everything, ready to take.",
+  toolkit_subtitle:
+    "The Playbook, the LFA framework, ready-to-use templates, a plain-language glossary, and a map of landscapes where the approach is being applied.",
+  toolkit_map: "INTERACTIVE MAP",
+  toolkit_landscapes: "landscapes",
+  toolkit_read_case: "Read case",
+  toolkit_1pager: "1-pager",
+  toolkit_cases_eyebrow: "CASE STUDIES",
+  toolkit_cases_title: "Where the approach is being applied",
+  toolkit_narrator: "Narrator",
+  toolkit_open: "Open",
+  toolkit_library: "LIBRARY",
+  toolkit_library_title: "Downloadable documents",
+  toolkit_library_sub:
+    "All practical tools, versioned and dated. Everything here is made to be edited and used with partners.",
+  toolkit_search: "Search",
+  toolkit_download: "Download",
+  toolkit_no_match: "No documents match.",
+  filter_all: "All",
+  filter_playbook: "Playbook",
+  filter_framework: "Framework",
+  filter_templates: "Templates",
+  filter_glossary: "Glossary",
+
+  // Learning page (chrome)
+  learning_eyebrow: "START LEARNING",
+  learning_title: "The curriculum",
+  learning_subtitle:
+    "Twelve units across three lenses. Preview here — then continue in the LMS for progress tracking and certificates.",
+  learning_duration: "Duration",
+  learning_format: "Format",
+  learning_level: "Level",
+  learning_narrator: "Narrator",
+  learning_preview: "Preview",
+  learning_continue: "Continue in the LMS",
+  learning_continue_tail: "to track progress, take assessments and earn a certificate.",
+  learning_open_lms: "Open in LMS",
+
+  // Lenses temáticas (compartido entre páginas)
+  lens_greening: "Greening finance",
+  lens_financing: "Financing Green",
+  lens_food: "Food & Agriculture",
+  lens_food_short: "Food & agriculture",
 };
 
 const es: Dict = {
@@ -154,6 +234,86 @@ const es: Dict = {
 
   footer_rights: "© 2026 · Recurso abierto · CC BY-NC-SA",
   footer_tech: "EN · ES · FR · WCAG AA · mobile-first",
+
+  // Navigator
+  navigator_eyebrow: "NAVEGADOR DE FINANCIAMIENTO",
+  navigator_title: "Cuatro preguntas. Un punto de partida claro.",
+  navigator_subtitle:
+    "No te daremos un panel lleno de datos. Te orientamos hacia las rutas, plantillas y casos adecuados — y te dejamos avanzar.",
+  navigator_inputs: "TUS RESPUESTAS",
+  navigator_not_set: "Sin definir",
+  navigator_complete: "Completado",
+  navigator_step: "Paso",
+  navigator_of: "de",
+  navigator_start_over: "Empezar de nuevo",
+  navigator_question: "PREGUNTA",
+  navigator_back: "Atrás",
+  navigator_next: "Siguiente",
+  navigator_see_pathways: "Ver mis rutas",
+  navigator_result_eyebrow: "TU PUNTO DE PARTIDA",
+  navigator_result_in: "en paisajes",
+  navigator_result_landscapes: ", enfrentando",
+  navigator_result_pursuing: ", buscando",
+  navigator_result_prefix: "Un/una",
+  navigator_rec_pathways: "RUTAS RECOMENDADAS",
+  navigator_3_of_12: "3 de 12",
+  navigator_start_here: "Empieza por aquí",
+  navigator_similar: "CASOS SIMILARES",
+  navigator_seen_work: "Lo hemos visto funcionar aquí",
+  navigator_relevant: "HERRAMIENTAS RELEVANTES",
+  navigator_templates_path: "Plantillas para esta ruta",
+  navigator_get: "Descargar",
+  navigator_open_lms: "Abrir unidad del LMS correspondiente",
+  navigator_try_diff: "Probar otras respuestas",
+  fit_strong: "Encaje fuerte",
+  fit_good: "Buen encaje",
+  fit_explore: "Explorar",
+
+  // Toolkit
+  toolkit_eyebrow: "HERRAMIENTAS · RECURSOS Y BIBLIOTECA",
+  toolkit_title: "Todo, listo para usar.",
+  toolkit_subtitle:
+    "El Playbook, el marco LFA, plantillas listas para usar, un glosario en lenguaje sencillo y un mapa de paisajes donde se aplica el enfoque.",
+  toolkit_map: "MAPA INTERACTIVO",
+  toolkit_landscapes: "paisajes",
+  toolkit_read_case: "Leer caso",
+  toolkit_1pager: "Resumen de 1 página",
+  toolkit_cases_eyebrow: "CASOS DE ESTUDIO",
+  toolkit_cases_title: "Donde se está aplicando el enfoque",
+  toolkit_narrator: "Narrador/a",
+  toolkit_open: "Abrir",
+  toolkit_library: "BIBLIOTECA",
+  toolkit_library_title: "Documentos descargables",
+  toolkit_library_sub:
+    "Todas las herramientas prácticas, versionadas y fechadas. Todo está pensado para editarse y usarse con socios.",
+  toolkit_search: "Buscar",
+  toolkit_download: "Descargar",
+  toolkit_no_match: "No hay documentos que coincidan.",
+  filter_all: "Todos",
+  filter_playbook: "Playbook",
+  filter_framework: "Marco",
+  filter_templates: "Plantillas",
+  filter_glossary: "Glosario",
+
+  // Learning
+  learning_eyebrow: "EMPIEZA A APRENDER",
+  learning_title: "El currículo",
+  learning_subtitle:
+    "Doce unidades en tres lentes temáticas. Vista previa aquí — luego continúa en el LMS para seguir tu progreso y obtener certificados.",
+  learning_duration: "Duración",
+  learning_format: "Formato",
+  learning_level: "Nivel",
+  learning_narrator: "Narrador/a",
+  learning_preview: "Vista previa",
+  learning_continue: "Continúa en el LMS",
+  learning_continue_tail: "para seguir tu progreso, hacer evaluaciones y obtener un certificado.",
+  learning_open_lms: "Abrir en LMS",
+
+  // Lentes temáticas
+  lens_greening: "Finanzas verdes",
+  lens_financing: "Financiamiento verde",
+  lens_food: "Alimentación y agricultura",
+  lens_food_short: "Alimentación y agricultura",
 };
 
 const fr: Dict = {
@@ -226,6 +386,86 @@ const fr: Dict = {
 
   footer_rights: "© 2026 · Ressource ouverte · CC BY-NC-SA",
   footer_tech: "EN · ES · FR · WCAG AA · mobile-first",
+
+  // Navigator
+  navigator_eyebrow: "NAVIGATEUR DE FINANCEMENT",
+  navigator_title: "Quatre questions. Un point de départ clair.",
+  navigator_subtitle:
+    "Nous ne vous donnerons pas un tableau de bord. Nous vous orientons vers les bonnes voies, modèles et études de cas — puis nous vous laissons avancer.",
+  navigator_inputs: "VOS RÉPONSES",
+  navigator_not_set: "Non défini",
+  navigator_complete: "Terminé",
+  navigator_step: "Étape",
+  navigator_of: "sur",
+  navigator_start_over: "Recommencer",
+  navigator_question: "QUESTION",
+  navigator_back: "Retour",
+  navigator_next: "Suivant",
+  navigator_see_pathways: "Voir mes voies",
+  navigator_result_eyebrow: "VOTRE POINT DE DÉPART",
+  navigator_result_in: "dans des paysages",
+  navigator_result_landscapes: ", face à",
+  navigator_result_pursuing: ", recherchant",
+  navigator_result_prefix: "Un/une",
+  navigator_rec_pathways: "VOIES RECOMMANDÉES",
+  navigator_3_of_12: "3 sur 12",
+  navigator_start_here: "Commencez par ici",
+  navigator_similar: "CAS SIMILAIRES",
+  navigator_seen_work: "Nous l'avons vu fonctionner ici",
+  navigator_relevant: "OUTILS PERTINENTS",
+  navigator_templates_path: "Modèles pour cette voie",
+  navigator_get: "Obtenir",
+  navigator_open_lms: "Ouvrir l'unité LMS correspondante",
+  navigator_try_diff: "Essayer d'autres réponses",
+  fit_strong: "Très adapté",
+  fit_good: "Bon match",
+  fit_explore: "À explorer",
+
+  // Toolkit
+  toolkit_eyebrow: "OUTILS · RESSOURCES & BIBLIOTHÈQUE",
+  toolkit_title: "Tout, prêt à l'emploi.",
+  toolkit_subtitle:
+    "Le Playbook, le cadre LFA, des modèles prêts à l'emploi, un glossaire en langage clair et une carte des paysages où l'approche est appliquée.",
+  toolkit_map: "CARTE INTERACTIVE",
+  toolkit_landscapes: "paysages",
+  toolkit_read_case: "Lire l'étude",
+  toolkit_1pager: "Fiche 1 page",
+  toolkit_cases_eyebrow: "ÉTUDES DE CAS",
+  toolkit_cases_title: "Où l'approche est appliquée",
+  toolkit_narrator: "Narratrice",
+  toolkit_open: "Ouvrir",
+  toolkit_library: "BIBLIOTHÈQUE",
+  toolkit_library_title: "Documents téléchargeables",
+  toolkit_library_sub:
+    "Tous les outils pratiques, versionnés et datés. Tout est conçu pour être édité et utilisé avec des partenaires.",
+  toolkit_search: "Rechercher",
+  toolkit_download: "Télécharger",
+  toolkit_no_match: "Aucun document ne correspond.",
+  filter_all: "Tous",
+  filter_playbook: "Playbook",
+  filter_framework: "Cadre",
+  filter_templates: "Modèles",
+  filter_glossary: "Glossaire",
+
+  // Learning
+  learning_eyebrow: "COMMENCER À APPRENDRE",
+  learning_title: "Le programme",
+  learning_subtitle:
+    "Douze unités réparties sur trois axes. Aperçu ici — poursuivez dans le LMS pour le suivi et les certificats.",
+  learning_duration: "Durée",
+  learning_format: "Format",
+  learning_level: "Niveau",
+  learning_narrator: "Narratrice",
+  learning_preview: "Aperçu",
+  learning_continue: "Continuez dans le LMS",
+  learning_continue_tail: "pour suivre votre progression, passer les évaluations et obtenir un certificat.",
+  learning_open_lms: "Ouvrir dans le LMS",
+
+  // Axes thématiques
+  lens_greening: "Finance verte",
+  lens_financing: "Financement vert",
+  lens_food: "Alimentation & agriculture",
+  lens_food_short: "Alim. & agriculture",
 };
 
 const dicts: Record<Locale, Dict> = { en, es, fr };
@@ -236,4 +476,15 @@ export function getDict(locale: Locale): Dict {
 
 export function t(locale: Locale, key: string): string {
   return dicts[locale]?.[key] ?? en[key] ?? key;
+}
+
+/**
+ * Helper para localizar strings inline dentro de arrays de datos
+ * (p. ej. preguntas del Navigator, items de la biblioteca). Se usa
+ * con objetos literales como { en, es, fr }.
+ */
+export type Localized = Record<Locale, string>;
+
+export function L(locale: Locale, val: Localized): string {
+  return val[locale] ?? val.en;
 }
