@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Chat, Close } from "./Icons";
+import { Chat, Close, Send } from "./Icons";
 
 type Message = { who: "bot" | "user"; text: string };
 
@@ -118,9 +118,7 @@ export function Assistant() {
           aria-label="Message"
         />
         <button type="submit" aria-label="Send">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-            <path d="M3 11l18-8-8 18-2-8-8-2z" />
-          </svg>
+          <Send width={16} height={16} />
         </button>
       </form>
     </div>
