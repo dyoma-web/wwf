@@ -39,8 +39,11 @@ export function LeafletMap({
       />
       {pins.map((p) => {
         const isActive = p.id === active;
+        // key incluye isActive para forzar re-mount cuando cambia el pin activo:
+        // Leaflet no propaga el prop `permanent` del Tooltip a la instancia ya
+        // montada, así que hay que destruir y re-crear el marker+tooltip.
         return (
-          <Fragment key={p.id}>
+          <Fragment key={`${p.id}-${isActive ? "on" : "off"}`}>
             {isActive && (
               <CircleMarker
                 center={p.position}
