@@ -1,10 +1,20 @@
 # Sustainable Finance for Conservation — WWF LFA
 
+[![Live Demo](https://img.shields.io/badge/LIVE_DEMO-dyoma--web.github.io%2Fwwf-f07d00?style=for-the-badge&logo=githubpages&logoColor=white)](https://dyoma-web.github.io/wwf/)
+[![Deploy](https://github.com/dyoma-web/wwf/actions/workflows/deploy.yml/badge.svg)](https://github.com/dyoma-web/wwf/actions/workflows/deploy.yml)
+
+> 🌍 **Preview en vivo → [https://dyoma-web.github.io/wwf/](https://dyoma-web.github.io/wwf/)**
+> Se actualiza automáticamente en cada `git push` a `main` (≈ 2 min).
+
+---
+
 Plataforma web de acceso abierto para el programa **Landscape Finance Approach (LFA)** de WWF. Un único punto de entrada para aprender, explorar y aplicar finanzas sostenibles para la conservación, dirigido a profesionales de conservación, equipos financieros, tomadores de decisión e investigadores.
 
-- 🌐 **URL pública (GitHub Pages):** `https://dyoma-web.github.io/wwf/` *(se activa tras el primer deploy)*
-- 💻 **Preview local (WAMP):** `http://localhost/wwf/`
-- 🛠️ **Dev con hot reload:** `http://localhost:3000/`
+| Entorno | URL |
+|---|---|
+| 🌐 **GitHub Pages (producción)** | **https://dyoma-web.github.io/wwf/** |
+| 💻 Preview local (WAMP) | http://localhost/wwf/ |
+| 🛠️ Dev con hot reload | http://localhost:3000/ |
 
 ## Stack
 
