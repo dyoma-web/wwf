@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# design reference artifact (2MB rendered HTML, local-only)
+design-reference/rendered-reference.html

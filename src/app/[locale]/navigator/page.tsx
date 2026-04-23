@@ -11,12 +11,12 @@ export default async function NavigatorPage({
   if (!isLocale(locale)) notFound();
 
   return (
-    <div className="wrap py-16">
+    <div className="page wrap sec-sm">
       <div className="eyebrow">FINANCING NAVIGATOR</div>
-      <h1 className="h-display text-[clamp(30px,4vw,50px)] mt-2">
+      <h1 className="h-display" style={{ fontSize: "clamp(30px,4vw,50px)", margin: "8px 0 0" }}>
         {t(locale, "nav_finance")}
       </h1>
-      <p className="lede mt-3">
+      <p className="lede" style={{ marginTop: 10 }}>
         Four questions. A clear starting point. (Próxima iteración.)
       </p>
     </div>

@@ -21,7 +21,7 @@ export default async function LocaleLayout({
   return (
     <>
       <Header locale={locale} />
-      <main className="flex-1">{children}</main>
+      <main>{children}</main>
       <Footer locale={locale} />
       <Assistant />
     </>

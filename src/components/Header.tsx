@@ -37,50 +37,37 @@ export function Header({ locale }: Props) {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-[color:var(--color-line)]">
-      <div className="wrap flex items-center justify-between gap-5 h-[72px]">
-        <Link href={hrefFor("")} className="flex items-center gap-3 no-underline text-[color:var(--color-ink)]">
-          <div className="w-11 h-11 bg-black text-white grid place-items-center font-extrabold text-sm tracking-[0.05em] rounded-[2px]">
-            SFC
-          </div>
-          <div className="leading-none">
-            <div className="font-bold text-[14px] tracking-[0.08em]">
-              {t(locale, "brand_name")}
-            </div>
-            <div className="text-[10.5px] text-[color:var(--color-muted)] mt-[3px] tracking-[0.05em]">
-              {t(locale, "brand_sub")}
-            </div>
+    <header className="site-hd">
+      <div className="wrap site-hd-inner">
+        <Link className="brand" href={hrefFor("")}>
+          <div className="brand-mark">SFC</div>
+          <div>
+            <div className="brand-name">{t(locale, "brand_name")}</div>
+            <div className="brand-sub">{t(locale, "brand_sub")}</div>
           </div>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-[2px]">
+        <nav className="nav-main">
           {items.map((it) => (
             <Link
               key={it.id || "home"}
               href={hrefFor(it.id)}
-              className={`no-underline px-[0.9rem] py-[0.6rem] text-[13.5px] font-medium rounded-[2px] hover:text-[color:var(--color-orange)] ${
-                isActive(it.id)
-                  ? "text-[color:var(--color-orange)]"
-                  : "text-[color:var(--color-ink-2)]"
-              }`}
+              className={isActive(it.id) ? "active" : ""}
             >
               {it.label}
             </Link>
           ))}
         </nav>
 
-        <div className="flex items-center gap-[10px]">
+        <div className="hd-end">
           <LocaleSwitcher current={locale} pathNoLocale={pathNoLocale} />
-          <Link
-            href={`${hrefFor("")}#contact`}
-            className="hidden sm:inline-flex items-center gap-2 px-[0.85rem] py-[0.55rem] rounded-[4px] bg-[color:var(--color-orange)] text-white font-semibold text-[12.5px] border border-[color:var(--color-orange)] hover:bg-[color:var(--color-orange-ink)] hover:border-[color:var(--color-orange-ink)]"
-          >
+          <Link href={`${hrefFor("")}#contact`} className="btn orange sm">
             {t(locale, "nav_contact")}
           </Link>
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="md:hidden w-10 h-10 grid place-items-center border border-[color:var(--color-line)] bg-white rounded-[2px]"
+            className="menu-btn"
             aria-label="Menu"
             aria-expanded={open}
           >
@@ -90,18 +77,25 @@ export function Header({ locale }: Props) {
       </div>
 
       {open && (
-        <nav className="md:hidden border-t border-[color:var(--color-line)] bg-white">
-          <div className="wrap flex flex-col py-3">
+        <nav
+          style={{
+            borderTop: "1px solid var(--line)",
+            background: "#fff",
+          }}
+        >
+          <div className="wrap" style={{ display: "flex", flexDirection: "column", padding: "12px 24px" }}>
             {items.map((it) => (
               <Link
                 key={it.id || "home"}
                 href={hrefFor(it.id)}
                 onClick={() => setOpen(false)}
-                className={`py-3 text-[14px] font-medium ${
-                  isActive(it.id)
-                    ? "text-[color:var(--color-orange)]"
-                    : "text-[color:var(--color-ink-2)]"
-                }`}
+                style={{
+                  padding: "12px 0",
+                  fontSize: 14,
+                  fontWeight: 500,
+                  textDecoration: "none",
+                  color: isActive(it.id) ? "var(--orange)" : "var(--ink-2)",
+                }}
               >
                 {it.label}
               </Link>
@@ -121,25 +115,16 @@ function LocaleSwitcher({
   pathNoLocale: string;
 }) {
   return (
-    <div
-      role="tablist"
-      aria-label="Language"
-      className="flex items-center gap-[1px] border border-[color:var(--color-line)] rounded-[2px] overflow-hidden"
-    >
+    <div className="lang" role="tablist" aria-label="Language">
       {locales.map((l) => {
         const href = `/${l}${pathNoLocale === "/" ? "" : pathNoLocale}`;
-        const on = l === current;
         return (
           <Link
             key={l}
             href={href}
-            className={`px-[10px] py-[5px] text-[11.5px] font-semibold tracking-[0.06em] uppercase ${
-              on
-                ? "bg-[color:var(--color-ink)] text-white"
-                : "bg-white text-[color:var(--color-muted)] hover:text-[color:var(--color-ink)]"
-            }`}
-            aria-selected={on}
+            className={l === current ? "on" : ""}
             role="tab"
+            aria-selected={l === current}
           >
             {l}
           </Link>

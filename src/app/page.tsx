@@ -1,7 +1,7 @@
 import { locales } from "@/i18n/config";
 
-// Export estático → no hay middleware/proxy que redirija `/` al locale.
-// Esta página se pre-renderiza como HTML plano con un redirect por JS
+// Export estático → no hay proxy que redirija `/` al locale.
+// Esta página se pre-renderiza como HTML plano con redirect por JS
 // y botones de idioma como fallback para navegadores sin JavaScript.
 export default function RootPage() {
   const script = `(function(){
@@ -12,21 +12,24 @@ export default function RootPage() {
   })();`;
 
   return (
-    <div className="min-h-[60vh] grid place-items-center p-10">
-      <div className="max-w-sm w-full text-center">
-        <h1 className="h-display text-2xl mb-2">
+    <div
+      style={{
+        minHeight: "60vh",
+        display: "grid",
+        placeItems: "center",
+        padding: 40,
+      }}
+    >
+      <div style={{ maxWidth: 360, width: "100%", textAlign: "center" }}>
+        <h1 className="h-display" style={{ fontSize: 22, marginBottom: 8 }}>
           Sustainable Finance for Conservation
         </h1>
-        <p className="text-[color:var(--color-muted)] mb-6 text-sm">
+        <p style={{ color: "var(--muted)", marginBottom: 24, fontSize: 14 }}>
           Choose a language · Elige un idioma · Choisissez une langue
         </p>
-        <div className="flex gap-2 justify-center">
+        <div style={{ display: "flex", gap: 8, justifyContent: "center" }}>
           {locales.map((l) => (
-            <a
-              key={l}
-              href={`./${l}/`}
-              className="px-5 py-3 bg-[color:var(--color-ink)] text-white text-[13px] font-semibold tracking-[0.08em] rounded-[4px] no-underline hover:bg-[color:var(--color-orange)]"
-            >
+            <a key={l} href={`./${l}/`} className="btn">
               {l.toUpperCase()}
             </a>
           ))}

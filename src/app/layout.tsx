@@ -23,7 +23,6 @@ export const metadata: Metadata = {
   },
   description:
     "A single entry point to learn, explore and apply the Landscape Finance Approach.",
-  metadataBase: new URL("https://example.org"),
 };
 
 export default function RootLayout({
@@ -32,13 +31,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${notoSans.variable} ${jetbrainsMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col bg-white text-[color:var(--color-ink)]">
-        {children}
-      </body>
+    <html lang="en" className={`${notoSans.variable} ${jetbrainsMono.variable}`}>
+      <body>{children}</body>
     </html>
   );
 }

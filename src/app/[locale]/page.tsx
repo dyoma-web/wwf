@@ -1,9 +1,9 @@
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { isLocale } from "@/i18n/config";
 import { t } from "@/i18n/dict";
 import { Arrow, Book, Coin, Leaf, Pin, Phone, Mail, ChevronLeft, ChevronRight } from "@/components/Icons";
 import { ContactForm } from "@/components/ContactForm";
-import { notFound } from "next/navigation";
 
 export default async function Home({
   params,
@@ -14,76 +14,55 @@ export default async function Home({
   if (!isLocale(locale)) notFound();
 
   return (
-    <div>
+    <div className="page">
       {/* HERO */}
-      <section className="wrap py-6">
-        <div className="relative rounded-[8px] overflow-hidden bg-[color:var(--color-ink)]">
-          <div className="phx soil relative aspect-[16/7] min-h-[320px]">
-            <span className="cap">{t(locale, "hero_cap")}</span>
+      <section className="hero wrap">
+        <div className="hero-frame">
+          <div className="phx soil">
+            <HeroArt />
+            <div className="cap">{t(locale, "hero_cap")}</div>
           </div>
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full max-w-[540px] ml-6 md:ml-14 bg-black/40 backdrop-blur-sm p-6 md:p-8 rounded-[6px] text-white">
-              <div className="text-[13px] font-semibold text-[color:var(--color-orange)] mb-1.5">
-                {t(locale, "hero_eyebrow")}
-              </div>
-              <h1 className="h-display text-[clamp(28px,4vw,48px)] text-white">
-                {t(locale, "hero_title")}
-              </h1>
-              <p className="mt-3 text-[14.5px] leading-relaxed text-white/90">
-                {t(locale, "hero_sub")}
-              </p>
-              <div className="flex flex-wrap gap-2.5 mt-5">
-                <Link
-                  href={`/${locale}/learning`}
-                  className="inline-flex items-center gap-2 px-5 py-3 rounded-[4px] bg-[color:var(--color-orange)] text-white font-semibold text-[13.5px] border border-[color:var(--color-orange)] hover:bg-[color:var(--color-orange-ink)] hover:border-[color:var(--color-orange-ink)]"
-                >
-                  {t(locale, "hero_cta1")} <Arrow width={14} height={14} />
-                </Link>
-                <Link
-                  href={`/${locale}/navigator`}
-                  className="inline-flex items-center gap-2 px-5 py-3 rounded-[4px] bg-transparent text-white font-semibold text-[13.5px] border border-white hover:bg-white hover:text-[color:var(--color-ink)]"
-                >
-                  {t(locale, "hero_cta2")}
-                </Link>
-              </div>
+          <div className="hero-overlay-card">
+            <div className="kicker">{t(locale, "hero_eyebrow")}</div>
+            <h1>{t(locale, "hero_title")}</h1>
+            <p>{t(locale, "hero_sub")}</p>
+            <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+              <Link href={`/${locale}/learning`} className="btn orange">
+                {t(locale, "hero_cta1")} <Arrow width={14} height={14} />
+              </Link>
+              <Link href={`/${locale}/navigator`} className="btn ghost-light">
+                {t(locale, "hero_cta2")}
+              </Link>
             </div>
           </div>
-          <div className="absolute bottom-4 right-4 flex items-center gap-2">
-            <div className="flex items-center gap-1">
-              <span className="w-3 h-[3px] bg-white rounded-full" />
-              <span className="w-3 h-[3px] bg-white/40 rounded-full" />
-              <span className="w-3 h-[3px] bg-white/40 rounded-full" />
-            </div>
-            <div className="flex items-center gap-1 ml-3">
-              <button aria-label="Prev" className="w-7 h-7 grid place-items-center rounded-full bg-white/20 text-white hover:bg-white/30">
-                <ChevronLeft width={14} height={14} />
-              </button>
-              <button aria-label="Next" className="w-7 h-7 grid place-items-center rounded-full bg-white/20 text-white hover:bg-white/30">
-                <ChevronRight width={14} height={14} />
-              </button>
-            </div>
+          <div className="hero-dots">
+            <span className="on" />
+            <span />
+            <span />
+          </div>
+          <div className="hero-arrows">
+            <button aria-label="Prev">
+              <ChevronLeft width={14} height={14} />
+            </button>
+            <button aria-label="Next">
+              <ChevronRight width={14} height={14} />
+            </button>
           </div>
         </div>
       </section>
 
-      {/* BY OBJECTIVE */}
-      <section className="wrap py-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-          <div className="phx canopy relative aspect-[5/4] rounded-[6px]">
-            <span className="cap">HANDS HOLDING A SEEDLING EARTH [ placeholder ]</span>
+      {/* BY OBJECTIVE / two-col */}
+      <section className="wrap sec-sm">
+        <div className="two-col">
+          <div className="phx canopy">
+            <CanopyArt />
+            <div className="cap">HANDS HOLDING A SEEDLING EARTH [ placeholder ]</div>
           </div>
           <div>
             <div className="eyebrow">{t(locale, "about_eyebrow")}</div>
-            <h2 className="h-display text-[clamp(26px,3vw,40px)] mt-2">
-              {t(locale, "about_title")}
-            </h2>
-            <p className="mt-3 text-[color:var(--color-ink-2)] max-w-[55ch]">
-              {t(locale, "about_body")}
-            </p>
-            <Link
-              href={`/${locale}/navigator`}
-              className="mt-5 inline-flex items-center gap-2 px-5 py-3 rounded-[4px] bg-[color:var(--color-orange)] text-white font-semibold text-[13.5px] border border-[color:var(--color-orange)] hover:bg-[color:var(--color-orange-ink)] hover:border-[color:var(--color-orange-ink)]"
-            >
+            <h2 className="h-display">{t(locale, "about_title")}</h2>
+            <p>{t(locale, "about_body")}</p>
+            <Link href={`/${locale}/navigator`} className="btn orange">
               {t(locale, "about_cta")} <Arrow width={14} height={14} />
             </Link>
           </div>
@@ -91,111 +70,134 @@ export default async function Home({
       </section>
 
       {/* 3 TILES */}
-      <section className="wrap pb-10">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          {[
-            { href: `/${locale}/learning`, icon: <Book width={22} height={22} />, label: t(locale, "tile1") },
-            { href: `/${locale}/navigator`, icon: <Coin width={22} height={22} />, label: t(locale, "tile2") },
-            { href: `/${locale}/toolkit`, icon: <Leaf width={22} height={22} />, label: t(locale, "tile3") },
-          ].map((tile) => (
-            <Link
-              key={tile.label}
-              href={tile.href}
-              className="group flex items-center gap-3 p-5 bg-[color:var(--color-ink)] text-white rounded-[6px] hover:bg-black transition-colors"
-            >
-              <div className="w-10 h-10 grid place-items-center rounded-[4px] bg-white/10 text-[color:var(--color-orange)] group-hover:bg-[color:var(--color-orange)] group-hover:text-white transition-colors">
-                {tile.icon}
-              </div>
-              <div className="font-semibold text-[14px] flex-1">{tile.label}</div>
-              <Arrow width={16} height={16} />
-            </Link>
-          ))}
+      <section className="wrap sec-sm" style={{ paddingTop: 0 }}>
+        <div className="tiles">
+          <Link href={`/${locale}/learning`} className="tile">
+            <div className="ic">
+              <Book width={26} height={26} />
+            </div>
+            <div className="t">{t(locale, "tile1")}</div>
+          </Link>
+          <Link href={`/${locale}/navigator`} className="tile">
+            <div className="ic">
+              <Coin width={26} height={26} />
+            </div>
+            <div className="t">{t(locale, "tile2")}</div>
+          </Link>
+          <Link href={`/${locale}/toolkit`} className="tile">
+            <div className="ic">
+              <Leaf width={26} height={26} />
+            </div>
+            <div className="t">{t(locale, "tile3")}</div>
+          </Link>
         </div>
       </section>
 
       {/* STATS */}
-      <section className="wrap py-10">
-        <div className="mb-8">
-          <div className="eyebrow">{t(locale, "stats_eyebrow")}</div>
-          <h2 className="h-display text-[clamp(26px,3vw,40px)] mt-2">
-            {t(locale, "stats_t")}
-          </h2>
-          <p className="lede mt-2">{t(locale, "stats_sub")}</p>
+      <section className="wrap sec-sm">
+        <div className="sec-hd">
+          <div>
+            <div className="eyebrow">{t(locale, "stats_eyebrow")}</div>
+            <h2 className="h-display" style={{ fontSize: "clamp(26px,3vw,40px)" }}>
+              {t(locale, "stats_t")}
+            </h2>
+            <p className="lede">{t(locale, "stats_sub")}</p>
+          </div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <Stat n={t(locale, "stat1_n")} color="orange" text={t(locale, "stat1_t")} />
-          <Stat n={t(locale, "stat2_n")} color="green" text={t(locale, "stat2_t")} />
-          <Stat n={t(locale, "stat3_n")} color="teal" text={t(locale, "stat3_t")} />
-          <Stat n={t(locale, "stat4_n")} color="ink" text={t(locale, "stat4_t")} />
-        </div>
-      </section>
-
-      {/* RESOURCE LIBRARY */}
-      <section className="wrap py-10">
-        <div className="relative overflow-hidden rounded-[8px] bg-[color:var(--color-ink)] text-white">
-          <div className="phx canopy absolute inset-0 opacity-40" />
-          <div className="relative grid grid-cols-1 md:grid-cols-2 gap-8 p-8 md:p-12">
-            <div className="flex flex-col justify-between gap-6">
-              <div>
-                <div className="eyebrow">{t(locale, "lib_eyebrow")}</div>
-                <h2 className="h-display text-[clamp(32px,4vw,54px)] mt-2 leading-[1.05] text-white">
-                  {t(locale, "lib_title")}
-                </h2>
-              </div>
-              <p className="text-[#d8d5ca] text-[14px] max-w-[36ch]">
-                {t(locale, "lib_sub")}
-              </p>
-            </div>
-            <div className="flex flex-col gap-3">
-              {[
-                t(locale, "lib_pill1"),
-                t(locale, "lib_pill2"),
-                t(locale, "lib_pill3"),
-              ].map((label) => (
-                <Link
-                  key={label}
-                  href={`/${locale}/toolkit`}
-                  className="flex items-center gap-3 px-5 py-4 rounded-[6px] bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
-                >
-                  <span className="w-2 h-2 rounded-full bg-[color:var(--color-orange)]" />
-                  <span className="flex-1 font-semibold text-[13.5px]">{label}</span>
-                  <Arrow width={14} height={14} />
-                </Link>
-              ))}
-            </div>
+        <div className="stats">
+          <div className="stat">
+            <div className="n">{t(locale, "stat1_n")}</div>
+            <div className="t">{t(locale, "stat1_t")}</div>
+          </div>
+          <div className="stat">
+            <div className="n green">{t(locale, "stat2_n")}</div>
+            <div className="t">{t(locale, "stat2_t")}</div>
+          </div>
+          <div className="stat">
+            <div className="n teal">{t(locale, "stat3_n")}</div>
+            <div className="t">{t(locale, "stat3_t")}</div>
+          </div>
+          <div className="stat">
+            <div className="n ink">{t(locale, "stat4_n")}</div>
+            <div className="t">{t(locale, "stat4_t")}</div>
           </div>
         </div>
       </section>
 
-      {/* PEOPLE / GUIDES */}
-      <section className="wrap py-10">
-        <div className="mb-8">
-          <div className="eyebrow">{t(locale, "people_eyebrow")}</div>
-          <h2 className="h-display text-[clamp(26px,3vw,40px)] mt-2">
-            {t(locale, "people_t")}
-          </h2>
-          <p className="lede mt-2">{t(locale, "people_s")}</p>
+      {/* RESOURCE LIBRARY block */}
+      <section className="wrap sec-sm">
+        <div className="lib-block">
+          <div className="bg phx canopy">
+            <div className="cap">CANOPY / CROP FIELDS — TOP DOWN [ placeholder ]</div>
+          </div>
+          <div className="left">
+            <div>
+              <div className="eyebrow" style={{ color: "var(--orange)" }}>
+                {t(locale, "lib_eyebrow")}
+              </div>
+              <h2>
+                Resource
+                <br />
+                library
+              </h2>
+            </div>
+            <p style={{ color: "#d8d5ca", fontSize: 14, maxWidth: "36ch", margin: 0 }}>
+              {t(locale, "lib_sub")}
+            </p>
+          </div>
+          <div className="right">
+            <Link href={`/${locale}/toolkit`} className="lib-pill">
+              <span className="dot" />
+              <span className="t">{t(locale, "lib_pill1")}</span>
+              <span className="arr">
+                <Arrow width={14} height={14} />
+              </span>
+            </Link>
+            <Link href={`/${locale}/toolkit`} className="lib-pill">
+              <span className="dot" />
+              <span className="t">{t(locale, "lib_pill2")}</span>
+              <span className="arr">
+                <Arrow width={14} height={14} />
+              </span>
+            </Link>
+            <Link href={`/${locale}/toolkit`} className="lib-pill">
+              <span className="dot" />
+              <span className="t">{t(locale, "lib_pill3")}</span>
+              <span className="arr">
+                <Arrow width={14} height={14} />
+              </span>
+            </Link>
+          </div>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+      </section>
+
+      {/* PEOPLE */}
+      <section className="wrap sec-sm">
+        <div className="sec-hd">
+          <div>
+            <div className="eyebrow">{t(locale, "people_eyebrow")}</div>
+            <h2 className="h-display" style={{ fontSize: "clamp(26px,3vw,40px)" }}>
+              {t(locale, "people_t")}
+            </h2>
+            <p className="lede">{t(locale, "people_s")}</p>
+          </div>
+        </div>
+        <div className="personas">
           {[
-            { n: "Jane", r: "Generalist — LFA concepts", hue: "var(--color-forest-2)" },
-            { n: "Jessica", r: "Specialist — Financing Green", hue: "var(--color-teal)" },
-            { n: "Jaciele", r: "Narrator — the Cerrado", hue: "var(--color-orange)" },
-            { n: "Ylva", r: "Specialist — Food & Agriculture", hue: "var(--color-forest-2)" },
-            { n: "Divyaa", r: "Specialist — Greening Finance", hue: "var(--color-teal)" },
-            { n: "Santatra", r: "Narrator — Madagascar", hue: "var(--color-orange)" },
-          ].map((p) => (
-            <div key={p.n} className="flex flex-col items-center text-center gap-2">
-              <div
-                className="w-20 h-20 rounded-full grid place-items-center text-white font-bold text-lg"
-                style={{ background: p.hue }}
-                aria-hidden="true"
-              >
-                {p.n[0]}
+            { n: "Jane", r: "Generalist — LFA concepts", hue: "var(--forest-2)" },
+            { n: "Jessica", r: "Specialist — Financing Green", hue: "var(--teal)" },
+            { n: "Jaciele", r: "Narrator — the Cerrado", hue: "var(--orange)" },
+            { n: "Ylva", r: "Specialist — Food & Agriculture", hue: "var(--forest-2)" },
+            { n: "Divyaa", r: "Specialist — Greening Finance", hue: "var(--teal)" },
+            { n: "Santatra", r: "Narrator — Madagascar", hue: "var(--orange)" },
+          ].map((p, i) => (
+            <div className="persona" key={p.n}>
+              <div className="avatar">
+                <AvatarPH seed={i} hue={p.hue} />
               </div>
               <div>
-                <div className="font-semibold text-[13.5px]">{p.n}</div>
-                <div className="text-[11.5px] text-[color:var(--color-muted)]">{p.r}</div>
+                <div className="n">{p.n}</div>
+                <div className="r">{p.r}</div>
               </div>
             </div>
           ))}
@@ -203,27 +205,29 @@ export default async function Home({
       </section>
 
       {/* CONTACT */}
-      <section id="contact" className="wrap py-10 scroll-mt-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 bg-[color:var(--color-paper)] rounded-[8px] p-8 md:p-12">
+      <section className="wrap sec-sm" id="contact">
+        <div className="contact-block">
           <div>
             <div className="eyebrow">{t(locale, "contact_eyebrow")}</div>
-            <h3 className="h-display text-[clamp(24px,2.6vw,34px)] mt-2">
-              {t(locale, "contact_title")}
-            </h3>
-            <p className="mt-3 text-[color:var(--color-ink-2)] max-w-[50ch]">
-              {t(locale, "contact_body")}
-            </p>
-            <div className="mt-6 flex flex-col gap-2 text-[13.5px] text-[color:var(--color-ink-2)]">
-              <div className="flex items-center gap-2">
-                <span className="text-[color:var(--color-orange)]"><Pin width={16} height={16} /></span>
+            <h3>{t(locale, "contact_title")}</h3>
+            <p>{t(locale, "contact_body")}</p>
+            <div className="info">
+              <div className="info-row">
+                <span className="ic">
+                  <Pin width={16} height={16} />
+                </span>
                 {t(locale, "contact_loc")}
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-[color:var(--color-orange)]"><Phone width={16} height={16} /></span>
+              <div className="info-row">
+                <span className="ic">
+                  <Phone width={16} height={16} />
+                </span>
                 {t(locale, "contact_phone")}
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-[color:var(--color-orange)]"><Mail width={16} height={16} /></span>
+              <div className="info-row">
+                <span className="ic">
+                  <Mail width={16} height={16} />
+                </span>
                 {t(locale, "contact_mail")}
               </div>
             </div>
@@ -235,29 +239,93 @@ export default async function Home({
   );
 }
 
-function Stat({
-  n,
-  text,
-  color,
-}: {
-  n: string;
-  text: string;
-  color: "orange" | "green" | "teal" | "ink";
-}) {
-  const colorClass = {
-    orange: "text-[color:var(--color-orange)]",
-    green: "text-[color:var(--color-green)]",
-    teal: "text-[color:var(--color-teal)]",
-    ink: "text-[color:var(--color-ink)]",
-  }[color];
+/* -------- Decorative SVG art (portadas placeholder) -------- */
+
+function HeroArt() {
   return (
-    <div className="border-t border-[color:var(--color-line)] pt-4">
-      <div className={`text-[clamp(38px,4vw,56px)] font-bold leading-none ${colorClass}`}>
-        {n}
-      </div>
-      <div className="mt-3 text-[13.5px] text-[color:var(--color-ink-2)] leading-relaxed">
-        {text}
-      </div>
-    </div>
+    <svg
+      width="100%"
+      height="100%"
+      viewBox="0 0 1200 560"
+      preserveAspectRatio="xMidYMid slice"
+      style={{ position: "absolute", inset: 0, opacity: 0.35 }}
+      aria-hidden="true"
+    >
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#f2a85a" />
+          <stop offset=".6" stopColor="#d2712a" />
+          <stop offset="1" stopColor="#3c2510" />
+        </linearGradient>
+      </defs>
+      <rect width="1200" height="350" fill="url(#sky)" />
+      <circle cx="860" cy="180" r="70" fill="#ffcf8a" opacity=".9" />
+      {Array.from({ length: 14 }).map((_, i) => (
+        <path
+          key={i}
+          d={`M0 ${360 + i * 16} Q600 ${340 + i * 16} 1200 ${360 + i * 16}`}
+          stroke="#1a0d05"
+          strokeWidth="3"
+          fill="none"
+          opacity={0.4 + i * 0.03}
+        />
+      ))}
+      <path
+        d="M540 330 q10 -30 30 -30 q5 -20 20 -18 q15 -2 22 18 q18 2 22 30 l6 60 l-18 50 l-10 -4 l-6 -30 l-4 40 l-16 2 l-8 -48 l-10 40 l-14 -4 l-2 -50 z"
+        fill="#1a0d05"
+      />
+    </svg>
+  );
+}
+
+function CanopyArt() {
+  return (
+    <svg
+      width="100%"
+      height="100%"
+      viewBox="0 0 500 400"
+      preserveAspectRatio="xMidYMid slice"
+      style={{ position: "absolute", inset: 0, opacity: 0.4 }}
+      aria-hidden="true"
+    >
+      <defs>
+        <radialGradient id="hands" cx="50%" cy="50%" r="60%">
+          <stop offset="0" stopColor="#5a8a3a" />
+          <stop offset="1" stopColor="#12321a" />
+        </radialGradient>
+      </defs>
+      <rect width="500" height="400" fill="url(#hands)" />
+      <circle cx="250" cy="180" r="70" fill="#3a5a9a" opacity=".8" />
+      <circle cx="250" cy="180" r="70" fill="url(#hands)" opacity=".25" />
+      <path d="M250 120 q-20 20 -30 50 q20 10 60 0 q-10 -30 -30 -50" fill="#2f5a34" opacity=".8" />
+      <path
+        d="M90 260 q30 -40 80 -40 q40 0 80 30 q40 -30 80 -30 q50 0 80 40 q-50 60 -160 60 q-110 0 -160 -60z"
+        fill="#1a0d05"
+      />
+    </svg>
+  );
+}
+
+function AvatarPH({ seed, hue }: { seed: number; hue: string }) {
+  const angle = (seed * 37) % 360;
+  return (
+    <svg
+      width="100%"
+      height="100%"
+      viewBox="0 0 120 120"
+      preserveAspectRatio="xMidYMid slice"
+      aria-hidden="true"
+      style={{ display: "block" }}
+    >
+      <defs>
+        <linearGradient id={`av${seed}`} x1="0" y1="0" x2="1" y2="1" gradientTransform={`rotate(${angle} .5 .5)`}>
+          <stop offset="0" stopColor={hue} stopOpacity=".9" />
+          <stop offset="1" stopColor="#1d1d1b" />
+        </linearGradient>
+      </defs>
+      <rect width="120" height="120" fill={`url(#av${seed})`} />
+      <circle cx="60" cy="48" r="18" fill="#f4f2eb" opacity=".85" />
+      <path d="M20 120 Q60 70 100 120 Z" fill="#f4f2eb" opacity=".85" />
+    </svg>
   );
 }

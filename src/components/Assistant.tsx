@@ -36,7 +36,6 @@ export function Assistant() {
     setInput("");
     setBusy(true);
 
-    // Mock hasta que el backend del asistente exista
     setTimeout(() => {
       setMessages((m) => [
         ...m,
@@ -56,7 +55,7 @@ export function Assistant() {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Open assistant"
-        className="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-[color:var(--color-ink)] text-white grid place-items-center shadow-lg hover:bg-black z-40"
+        className="asst-bubble"
       >
         <Chat width={22} height={22} />
       </button>
@@ -64,58 +63,40 @@ export function Assistant() {
   }
 
   return (
-    <div
-      role="dialog"
-      aria-label="Virtual assistant"
-      className="fixed bottom-6 right-6 w-[340px] max-w-[calc(100vw-2rem)] bg-white border border-[color:var(--color-line)] rounded-md shadow-2xl z-40 flex flex-col overflow-hidden"
-    >
-      <div className="flex items-center gap-3 px-4 py-3 border-b border-[color:var(--color-line)] bg-[color:var(--color-paper)]">
-        <div className="w-8 h-8 rounded-full bg-[color:var(--color-ink)] text-white grid place-items-center font-bold text-sm">
-          G
-        </div>
-        <div className="flex-1">
-          <div className="text-[13px] font-semibold">Guide</div>
-          <div className="text-[11px] text-[color:var(--color-muted)] flex items-center gap-1">
-            <span className="inline-block w-2 h-2 bg-green-500 rounded-full" /> Always on · 24/7
+    <div role="dialog" aria-label="Virtual assistant" className="asst-panel">
+      <div className="asst-hd">
+        <div className="av">G</div>
+        <div>
+          <div className="t">Guide</div>
+          <div className="s">
+            <span className="dot-live" /> Always on · 24/7
           </div>
         </div>
         <button
           type="button"
           onClick={() => setOpen(false)}
           aria-label="Close"
-          className="w-8 h-8 grid place-items-center text-[color:var(--color-muted)] hover:text-[color:var(--color-ink)]"
+          className="asst-x"
         >
           <Close width={16} height={16} />
         </button>
       </div>
 
-      <div ref={bodyRef} className="flex-1 p-3 max-h-[360px] overflow-y-auto flex flex-col gap-2">
+      <div ref={bodyRef} className="asst-body">
         {messages.map((m, i) => (
-          <div
-            key={i}
-            className={`text-[13px] px-3 py-2 rounded-md max-w-[85%] ${
-              m.who === "user"
-                ? "self-end bg-[color:var(--color-ink)] text-white"
-                : "self-start bg-[color:var(--color-paper)] text-[color:var(--color-ink)]"
-            }`}
-          >
+          <div key={i} className={`asst-msg ${m.who}`}>
             {m.text}
           </div>
         ))}
         {busy && (
-          <div className="self-start text-[13px] px-3 py-2 rounded-md bg-[color:var(--color-paper)] opacity-70">
+          <div className="asst-msg bot" style={{ opacity: 0.7 }}>
             …thinking
           </div>
         )}
         {messages.length <= 1 && (
-          <div className="flex flex-wrap gap-2 mt-2">
+          <div className="asst-chip-row">
             {QUICK_CHIPS.map((c) => (
-              <button
-                key={c}
-                type="button"
-                onClick={() => send(c)}
-                className="text-[11.5px] px-2.5 py-1.5 rounded-full border border-[color:var(--color-line)] hover:bg-[color:var(--color-paper)]"
-              >
+              <button key={c} type="button" onClick={() => send(c)} className="asst-chip">
                 {c}
               </button>
             ))}
@@ -124,7 +105,7 @@ export function Assistant() {
       </div>
 
       <form
-        className="flex gap-2 p-3 border-t border-[color:var(--color-line)]"
+        className="asst-in"
         onSubmit={(e) => {
           e.preventDefault();
           send();
@@ -135,13 +116,11 @@ export function Assistant() {
           onChange={(e) => setInput(e.target.value)}
           placeholder="Ask anything…"
           aria-label="Message"
-          className="flex-1 px-3 py-2 text-[13px] border border-[color:var(--color-line)] rounded-md focus:outline-none focus:border-[color:var(--color-orange)]"
         />
-        <button
-          type="submit"
-          className="px-3 py-2 text-[13px] bg-[color:var(--color-orange)] text-white rounded-md hover:bg-[color:var(--color-orange-ink)]"
-        >
-          Send
+        <button type="submit" aria-label="Send">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+            <path d="M3 11l18-8-8 18-2-8-8-2z" />
+          </svg>
         </button>
       </form>
     </div>
