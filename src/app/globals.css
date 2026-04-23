@@ -1639,3 +1639,42 @@ hr.rule {
   outline: 2px solid var(--orange);
   outline-offset: 1px;
 }
+
+/* ==========================================================
+ * Leaflet — overrides para alinear con el tema oscuro del sitio
+ * ========================================================== */
+.leaflet-container {
+  font-family: var(--font-noto-sans), sans-serif;
+}
+.leaflet-tooltip {
+  background: rgba(29, 29, 27, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  padding: 8px 12px;
+  font-size: 12.5px;
+  border-radius: 3px;
+}
+.leaflet-tooltip-top::before {
+  border-top-color: rgba(29, 29, 27, 0.95);
+}
+.leaflet-control-attribution {
+  background: rgba(29, 29, 27, 0.8) !important;
+  color: #c7c4b8 !important;
+  font-size: 10px !important;
+}
+.leaflet-control-attribution a {
+  color: var(--orange) !important;
+}
+.leaflet-control-zoom a {
+  background: #1d1d1b !important;
+  color: #fff !important;
+  border-color: #3a3a36 !important;
+}
+.leaflet-control-zoom a:hover {
+  background: #2a2a27 !important;
+}
+.leaflet-bar {
+  border: 1px solid #3a3a36 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+}

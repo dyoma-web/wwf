@@ -1,46 +1,133 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import type { Locale } from "@/i18n/config";
 import { Arrow, Doc, Download, Pdf, Search, Xlsx } from "./Icons";
+
+const LeafletMap = dynamic(() => import("./LeafletMap").then((m) => m.LeafletMap), {
+  ssr: false,
+  loading: () => (
+    <div
+      style={{
+        width: "100%",
+        height: 420,
+        borderRadius: 4,
+        background: "#1d1d1b",
+        display: "grid",
+        placeItems: "center",
+        color: "#6b6a61",
+        fontSize: 12,
+      }}
+    >
+      Loading map…
+    </div>
+  ),
+});
 
 type Pin = {
   id: string;
   name: string;
-  coord: [number, number];
+  position: [number, number]; // [lat, lng]
   tag: string;
   brief: string;
   narrator: string;
   color: string;
 };
 
+// Paisajes WWF como puntos de ejemplo. Los primeros tres son los casos
+// principales con narrador; el resto son paisajes asociados del programa
+// para mostrar la cobertura global.
 const PINS: Pin[] = [
   {
     id: "madagascar",
     name: "Madagascar",
-    coord: [600, 310],
+    position: [-18.77, 46.87],
     tag: "Marine & terrestrial",
     brief: "Sovereign debt conversion supports MPA management and coastal livelihoods.",
     narrator: "Santatra",
-    color: "var(--teal)",
+    color: "#009191", // teal
   },
   {
     id: "cerrado",
     name: "Cerrado, Brazil",
-    coord: [340, 330],
+    position: [-12.5, -48.0],
     tag: "Food & agriculture",
     brief: "Blended finance shifts the soy-and-cattle frontier to regenerative practice.",
     narrator: "Jaciele",
-    color: "var(--orange)",
+    color: "#f07d00", // orange
   },
   {
     id: "kaza",
     name: "KAZA",
-    coord: [555, 350],
+    position: [-18.5, 24.5],
     tag: "Transboundary",
     brief: "Five-country conservation area piloting pooled financing and community dividends.",
     narrator: "Jane",
-    color: "var(--forest-2)",
+    color: "#2f5a34", // forest-2
+  },
+  {
+    id: "amazon",
+    name: "Amazon",
+    position: [-3.5, -62.0],
+    tag: "Forest restoration",
+    brief: "Landscape-scale restoration finance across indigenous territories and protected areas.",
+    narrator: "—",
+    color: "#2f5a34",
+  },
+  {
+    id: "coral-triangle",
+    name: "Coral Triangle",
+    position: [-3.0, 130.0],
+    tag: "Marine",
+    brief: "Outcome-based MPA financing in the world's most biodiverse marine region.",
+    narrator: "—",
+    color: "#009191",
+  },
+  {
+    id: "borneo",
+    name: "Borneo",
+    position: [1.0, 114.0],
+    tag: "Food & agriculture",
+    brief: "Sustainable palm oil and certified commodity finance to replace deforestation drivers.",
+    narrator: "—",
+    color: "#f07d00",
+  },
+  {
+    id: "mekong",
+    name: "Greater Mekong",
+    position: [17.5, 104.0],
+    tag: "Transboundary",
+    brief: "Basin-wide blended finance for hydropower re-optimisation and fisheries.",
+    narrator: "—",
+    color: "#2f5a34",
+  },
+  {
+    id: "himalayas",
+    name: "Eastern Himalayas",
+    position: [28.0, 88.0],
+    tag: "Mountain landscapes",
+    brief: "Water-tower financing: payments for ecosystem services downstream of glaciers.",
+    narrator: "—",
+    color: "#009191",
+  },
+  {
+    id: "galapagos",
+    name: "Galápagos",
+    position: [-0.95, -90.97],
+    tag: "Marine",
+    brief: "Debt-for-nature swap linked to expanded marine reserves.",
+    narrator: "—",
+    color: "#009191",
+  },
+  {
+    id: "congo",
+    name: "Congo Basin",
+    position: [-1.0, 22.0],
+    tag: "Forest / transboundary",
+    brief: "Carbon and biodiversity finance across six Central African nations.",
+    narrator: "—",
+    color: "#2f5a34",
   },
 ];
 
@@ -107,7 +194,7 @@ export function ToolkitClient({ locale: _locale }: { locale: Locale }) {
             </div>
             <div style={{ fontSize: 11.5, color: "#9b988b" }}>{PINS.length} landscapes</div>
           </div>
-          <WorldMap active={active} onPick={setActive} />
+          <LeafletMap pins={PINS} active={active} onPick={setActive} />
           <div style={{ display: "flex", gap: 6, marginTop: 12, flexWrap: "wrap" }}>
             {PINS.map((p) => (
               <button
@@ -156,7 +243,7 @@ export function ToolkitClient({ locale: _locale }: { locale: Locale }) {
         </div>
       </div>
       <div className="cases">
-        {PINS.map((p) => (
+        {PINS.filter((p) => p.narrator !== "—").map((p) => (
           <div className="case-card" key={p.id}>
             <div className="cover phx canopy" style={{ borderRadius: 0 }}>
               <div className="cap">{p.name.toUpperCase()}</div>
@@ -245,49 +332,3 @@ export function ToolkitClient({ locale: _locale }: { locale: Locale }) {
   );
 }
 
-function WorldMap({ active, onPick }: { active: string; onPick: (id: string) => void }) {
-  return (
-    <svg viewBox="0 0 1000 500" className="world" aria-label="World map of case studies">
-      <rect width="1000" height="500" fill="#2a2a27" />
-      <g stroke="#3a3a36" strokeWidth=".5" opacity=".7">
-        {Array.from({ length: 10 }).map((_, i) => (
-          <line key={"h" + i} x1="0" y1={50 * (i + 1)} x2="1000" y2={50 * (i + 1)} />
-        ))}
-        {Array.from({ length: 20 }).map((_, i) => (
-          <line key={"v" + i} x1={50 * (i + 1)} y1="0" x2={50 * (i + 1)} y2="500" />
-        ))}
-      </g>
-      <g fill="#1d1d1b" stroke="#4a4a44" strokeWidth="1">
-        <path d="M110,110 Q90,70 170,70 Q260,60 280,130 Q290,180 230,200 Q200,230 180,210 Q140,220 130,190 Q100,170 110,110 Z" />
-        <path d="M280,250 Q310,230 340,260 Q360,310 350,380 Q330,450 300,440 Q270,410 275,350 Q270,290 280,250 Z" />
-        <path d="M460,110 Q490,90 540,100 Q560,130 540,160 Q500,170 470,150 Q455,130 460,110 Z" />
-        <path d="M490,190 Q540,180 570,220 Q590,280 570,340 Q540,390 510,380 Q480,340 475,280 Q475,220 490,190 Z" />
-        <path d="M560,100 Q640,70 760,90 Q810,130 820,190 Q790,230 720,220 Q660,210 600,200 Q560,170 560,100 Z" />
-        <path d="M760,250 Q810,230 870,260 Q880,290 840,310 Q800,300 770,290 Z" />
-        <path d="M820,370 Q870,360 890,390 Q870,420 840,410 Q810,400 820,370 Z" />
-      </g>
-      {PINS.map((p) => {
-        const on = p.id === active;
-        return (
-          <g key={p.id} className="pin" onClick={() => onPick(p.id)} style={{ cursor: "pointer" }}>
-            <circle cx={p.coord[0]} cy={p.coord[1]} r={on ? 22 : 16} fill={p.color} opacity={on ? 0.25 : 0.18}>
-              {on && <animate attributeName="r" values="16;28;16" dur="2.2s" repeatCount="indefinite" />}
-            </circle>
-            <circle cx={p.coord[0]} cy={p.coord[1]} r={on ? 9 : 7} fill={p.color} stroke="#fff" strokeWidth="2" />
-            <text
-              x={p.coord[0] + 16}
-              y={p.coord[1] + 4}
-              fontSize="12"
-              fontFamily="Noto Sans"
-              fontWeight="600"
-              fill="#fff"
-              style={{ pointerEvents: "none" }}
-            >
-              {p.name}
-            </text>
-          </g>
-        );
-      })}
-    </svg>
-  );
-}
