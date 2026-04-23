@@ -184,39 +184,6 @@ export default async function Home({
         </div>
       </section>
 
-      {/* PEOPLE */}
-      <section className="wrap sec-sm">
-        <div className="sec-hd">
-          <div>
-            <div className="eyebrow">{t(locale, "people_eyebrow")}</div>
-            <h2 className="h-display" style={{ fontSize: "clamp(26px,3vw,40px)" }}>
-              {t(locale, "people_t")}
-            </h2>
-            <p className="lede">{t(locale, "people_s")}</p>
-          </div>
-        </div>
-        <div className="personas">
-          {[
-            { n: "Jane", r: "Generalist — LFA concepts", hue: "var(--forest-2)" },
-            { n: "Jessica", r: "Specialist — Financing Green", hue: "var(--teal)" },
-            { n: "Jaciele", r: "Narrator — the Cerrado", hue: "var(--orange)" },
-            { n: "Ylva", r: "Specialist — Food & Agriculture", hue: "var(--forest-2)" },
-            { n: "Divyaa", r: "Specialist — Greening Finance", hue: "var(--teal)" },
-            { n: "Santatra", r: "Narrator — Madagascar", hue: "var(--orange)" },
-          ].map((p, i) => (
-            <div className="persona" key={p.n}>
-              <div className="avatar">
-                <AvatarPH seed={i} hue={p.hue} />
-              </div>
-              <div>
-                <div className="n">{p.n}</div>
-                <div className="r">{p.r}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* CONTACT */}
       <section className="wrap sec-sm" id="contact">
         <div className="contact-block">
@@ -252,28 +219,3 @@ export default async function Home({
   );
 }
 
-/* -------- Placeholder SVG para avatares de personas -------- */
-
-function AvatarPH({ seed, hue }: { seed: number; hue: string }) {
-  const angle = (seed * 37) % 360;
-  return (
-    <svg
-      width="100%"
-      height="100%"
-      viewBox="0 0 120 120"
-      preserveAspectRatio="xMidYMid slice"
-      aria-hidden="true"
-      style={{ display: "block" }}
-    >
-      <defs>
-        <linearGradient id={`av${seed}`} x1="0" y1="0" x2="1" y2="1" gradientTransform={`rotate(${angle} .5 .5)`}>
-          <stop offset="0" stopColor={hue} stopOpacity=".9" />
-          <stop offset="1" stopColor="#1d1d1b" />
-        </linearGradient>
-      </defs>
-      <rect width="120" height="120" fill={`url(#av${seed})`} />
-      <circle cx="60" cy="48" r="18" fill="#f4f2eb" opacity=".85" />
-      <path d="M20 120 Q60 70 100 120 Z" fill="#f4f2eb" opacity=".85" />
-    </svg>
-  );
-}
