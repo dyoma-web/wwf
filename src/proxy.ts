@@ -10,7 +10,7 @@ function resolveLocale(request: NextRequest): string {
   return preferred ?? defaultLocale;
 }
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   const segments = pathname.split("/").filter(Boolean);
