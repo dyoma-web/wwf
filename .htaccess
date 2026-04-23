@@ -1,0 +1,21 @@
+# WAMP local preview — sirve el sitio estático generado por `npm run build`
+# (carpeta `out/`) bajo la URL http://localhost/wwf/ sin tener que modificar
+# la configuración de Apache.
+#
+# Requiere: mod_rewrite activo y AllowOverride All sobre c:\wamp_3\www\
+# (es el estado por defecto en WAMP).
+
+RewriteEngine On
+
+# Evita bucles: si la URL ya apunta a /wwf/out/, no volver a reescribir.
+RewriteCond %{REQUEST_URI} !^/wwf/out/
+
+# Raíz de /wwf/ → redirect root del export estático.
+RewriteRule ^$ out/index.html [L]
+
+# Cualquier otra ruta que no sea un archivo o directorio real en /wwf/,
+# se resuelve contra /wwf/out/.
+RewriteCond %{REQUEST_URI} !^/wwf/out/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ out/$1 [L]
