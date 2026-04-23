@@ -13,6 +13,11 @@ const nextConfig: NextConfig = {
   assetPrefix: basePath || undefined,
   trailingSlash: true,
   images: { unoptimized: true },
+  // Expone el basePath al cliente para prefijar manualmente src de imágenes
+  // del folder public/ (Next no lo hace automático para <Image>, ver docs).
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath,
+  },
 };
 
 export default nextConfig;

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/i18n/config";
 import { t } from "@/i18n/dict";
+import { asset } from "@/lib/asset";
 import { Facebook, Twitter, Instagram, YouTube, LinkedIn } from "./Icons";
 
 type Props = { locale: Locale };
@@ -14,7 +15,7 @@ export function Footer({ locale }: Props) {
           <Link className="brand" href={`/${locale}`}>
             <div className="brand-mark">
               <Image
-                src="/images/wwf-logo.png"
+                src={asset("/images/wwf-logo.png")}
                 alt="WWF"
                 width={44}
                 height={44}

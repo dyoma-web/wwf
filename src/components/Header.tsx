@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { locales, type Locale } from "@/i18n/config";
 import { t } from "@/i18n/dict";
+import { asset } from "@/lib/asset";
 import { Menu, Close } from "./Icons";
 
 type Props = { locale: Locale };
@@ -43,7 +44,7 @@ export function Header({ locale }: Props) {
         <Link className="brand" href={hrefFor("")}>
           <div className="brand-mark">
             <Image
-              src="/images/wwf-logo.png"
+              src={asset("/images/wwf-logo.png")}
               alt="WWF"
               width={44}
               height={44}

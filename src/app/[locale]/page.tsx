@@ -5,6 +5,7 @@ import { isLocale } from "@/i18n/config";
 import { t } from "@/i18n/dict";
 import { Arrow, Book, Coin, Leaf, Pin, Phone, Mail, ChevronLeft, ChevronRight } from "@/components/Icons";
 import { ContactForm } from "@/components/ContactForm";
+import { asset } from "@/lib/asset";
 
 export default async function Home({
   params,
@@ -21,7 +22,7 @@ export default async function Home({
         <div className="hero-frame">
           <div className="phx soil">
             <Image
-              src="/images/hero-farmer.jpg"
+              src={asset("/images/hero-farmer.jpg")}
               alt="Farmer walking at sunrise through a landscape of crops and mountains"
               fill
               priority
@@ -63,7 +64,7 @@ export default async function Home({
         <div className="two-col">
           <div className="phx canopy" style={{ position: "relative", overflow: "hidden" }}>
             <Image
-              src="/images/hands-earth.jpg"
+              src={asset("/images/hands-earth.jpg")}
               alt="Hands holding soil with a young plant and a globe motif"
               fill
               sizes="(max-width: 800px) 100vw, 500px"
