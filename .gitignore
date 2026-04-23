@@ -42,3 +42,6 @@ next-env.d.ts
 
 # design reference artifact (2MB rendered HTML, local-only)
 design-reference/rendered-reference.html
+
+# originales de imágenes (grandes) — las versiones optimizadas viven en public/images/
+image_referent/

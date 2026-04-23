@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/i18n/config";
 import { t } from "@/i18n/dict";
@@ -11,7 +12,15 @@ export function Footer({ locale }: Props) {
       <div className="wrap">
         <div className="foot-top">
           <Link className="brand" href={`/${locale}`}>
-            <div className="brand-mark">SFC</div>
+            <div className="brand-mark">
+              <Image
+                src="/images/wwf-logo.png"
+                alt="WWF"
+                width={44}
+                height={44}
+                style={{ objectFit: "contain" }}
+              />
+            </div>
             <div>
               <div className="brand-name">{t(locale, "brand_name")}</div>
               <div className="brand-sub">{t(locale, "brand_sub")}</div>

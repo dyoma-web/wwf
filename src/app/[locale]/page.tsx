@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { isLocale } from "@/i18n/config";
@@ -19,8 +20,14 @@ export default async function Home({
       <section className="hero wrap">
         <div className="hero-frame">
           <div className="phx soil">
-            <HeroArt />
-            <div className="cap">{t(locale, "hero_cap")}</div>
+            <Image
+              src="/images/hero-farmer.jpg"
+              alt="Farmer walking at sunrise through a landscape of crops and mountains"
+              fill
+              priority
+              sizes="(max-width: 1200px) 100vw, 1200px"
+              style={{ objectFit: "cover" }}
+            />
           </div>
           <div className="hero-overlay-card">
             <div className="kicker">{t(locale, "hero_eyebrow")}</div>
@@ -54,9 +61,14 @@ export default async function Home({
       {/* BY OBJECTIVE / two-col */}
       <section className="wrap sec-sm">
         <div className="two-col">
-          <div className="phx canopy">
-            <CanopyArt />
-            <div className="cap">HANDS HOLDING A SEEDLING EARTH [ placeholder ]</div>
+          <div className="phx canopy" style={{ position: "relative", overflow: "hidden" }}>
+            <Image
+              src="/images/hands-earth.jpg"
+              alt="Hands holding soil with a young plant and a globe motif"
+              fill
+              sizes="(max-width: 800px) 100vw, 500px"
+              style={{ objectFit: "cover" }}
+            />
           </div>
           <div>
             <div className="eyebrow">{t(locale, "about_eyebrow")}</div>
@@ -239,72 +251,7 @@ export default async function Home({
   );
 }
 
-/* -------- Decorative SVG art (portadas placeholder) -------- */
-
-function HeroArt() {
-  return (
-    <svg
-      width="100%"
-      height="100%"
-      viewBox="0 0 1200 560"
-      preserveAspectRatio="xMidYMid slice"
-      style={{ position: "absolute", inset: 0, opacity: 0.35 }}
-      aria-hidden="true"
-    >
-      <defs>
-        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#f2a85a" />
-          <stop offset=".6" stopColor="#d2712a" />
-          <stop offset="1" stopColor="#3c2510" />
-        </linearGradient>
-      </defs>
-      <rect width="1200" height="350" fill="url(#sky)" />
-      <circle cx="860" cy="180" r="70" fill="#ffcf8a" opacity=".9" />
-      {Array.from({ length: 14 }).map((_, i) => (
-        <path
-          key={i}
-          d={`M0 ${360 + i * 16} Q600 ${340 + i * 16} 1200 ${360 + i * 16}`}
-          stroke="#1a0d05"
-          strokeWidth="3"
-          fill="none"
-          opacity={0.4 + i * 0.03}
-        />
-      ))}
-      <path
-        d="M540 330 q10 -30 30 -30 q5 -20 20 -18 q15 -2 22 18 q18 2 22 30 l6 60 l-18 50 l-10 -4 l-6 -30 l-4 40 l-16 2 l-8 -48 l-10 40 l-14 -4 l-2 -50 z"
-        fill="#1a0d05"
-      />
-    </svg>
-  );
-}
-
-function CanopyArt() {
-  return (
-    <svg
-      width="100%"
-      height="100%"
-      viewBox="0 0 500 400"
-      preserveAspectRatio="xMidYMid slice"
-      style={{ position: "absolute", inset: 0, opacity: 0.4 }}
-      aria-hidden="true"
-    >
-      <defs>
-        <radialGradient id="hands" cx="50%" cy="50%" r="60%">
-          <stop offset="0" stopColor="#5a8a3a" />
-          <stop offset="1" stopColor="#12321a" />
-        </radialGradient>
-      </defs>
-      <rect width="500" height="400" fill="url(#hands)" />
-      <circle cx="250" cy="180" r="70" fill="#3a5a9a" opacity=".8" />
-      <circle cx="250" cy="180" r="70" fill="url(#hands)" opacity=".25" />
-      <path d="M250 120 q-20 20 -30 50 q20 10 60 0 q-10 -30 -30 -50" fill="#2f5a34" opacity=".8" />
-      <path
-        d="M90 260 q30 -40 80 -40 q40 0 80 30 q40 -30 80 -30 q50 0 80 40 q-50 60 -160 60 q-110 0 -160 -60z"
-        fill="#1a0d05"
-      />
-    </svg>
-  );
-}
+/* -------- Placeholder SVG para avatares de personas -------- */
 
 function AvatarPH({ seed, hue }: { seed: number; hue: string }) {
   const angle = (seed * 37) % 360;

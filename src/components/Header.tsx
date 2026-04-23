@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -40,7 +41,16 @@ export function Header({ locale }: Props) {
     <header className="site-hd">
       <div className="wrap site-hd-inner">
         <Link className="brand" href={hrefFor("")}>
-          <div className="brand-mark">SFC</div>
+          <div className="brand-mark">
+            <Image
+              src="/images/wwf-logo.png"
+              alt="WWF"
+              width={44}
+              height={44}
+              style={{ objectFit: "contain" }}
+              priority
+            />
+          </div>
           <div>
             <div className="brand-name">{t(locale, "brand_name")}</div>
             <div className="brand-sub">{t(locale, "brand_sub")}</div>
