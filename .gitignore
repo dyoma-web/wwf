@@ -44,7 +44,10 @@ next-env.d.ts
 design-reference/rendered-reference.html
 
 # originales de imágenes (grandes) — las versiones optimizadas viven en public/images/
-image_referent/
+# anclados a la raíz: en Windows el matcher es case-insensitive y "Images/"
+# matchearía también public/images/ sin el prefijo "/".
+/image_referent/
+/Images/
 
 # PDFs originales (~250 MB) — los enlaces de Drive ya están en src/data/documents.ts
 # Mantenemos local-only el Excel fuente y los PDFs.
