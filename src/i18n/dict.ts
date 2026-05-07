@@ -162,6 +162,105 @@ const en: Dict = {
   lens_financing: "Financing Green",
   lens_food: "Food & Agriculture",
   lens_food_short: "Food & agriculture",
+
+  // Navigator — preguntas reformuladas para el catálogo real de docs
+  q_role_label: "Your role",
+  q_role_q: "What is your role?",
+  q_role_hint: "We use this to surface the most useful resources for you.",
+  q_region_label: "Region of interest",
+  q_region_q: "Which region matters most to you?",
+  q_region_hint: "Global resources are always shown when you pick a specific region.",
+  q_topic_label: "Topic",
+  q_topic_q: "What do you want to dive into?",
+  q_topic_hint: "The four buckets the WWF programme is organised around.",
+  q_format_label: "Format",
+  q_format_q: "What format works best today?",
+  q_format_hint: "Skip if you don't have a preference — we score it lightly.",
+
+  // Audience labels (facets)
+  aud_investor: "Investor or fund manager",
+  aud_investor_s: "Banks, DFIs, foundations, fund managers",
+  aud_practitioner: "Conservation practitioner",
+  aud_practitioner_s: "Project developer, NGO field team, landscape manager",
+  aud_corporate: "Corporate / supply chain",
+  aud_corporate_s: "Sustainability, sourcing, scope-3 strategy",
+  aud_policymaker: "Policy maker",
+  aud_policymaker_s: "Government, regulator, agency",
+  aud_ngo_research: "NGO / researcher",
+  aud_ngo_research_s: "Internal team, academic, think tank",
+  aud_community: "Community / smallholder",
+  aud_community_short: "Community",
+  aud_ngo: "NGO",
+  aud_researcher: "Researcher",
+
+  // Region labels (facets)
+  region_global: "Global",
+  region_global_s: "Resources applicable anywhere",
+  region_africa: "Africa",
+  region_africa_s: "Sub-Saharan & coastal Africa",
+  region_asia: "Asia",
+  region_asia_s: "Southeast & South Asia",
+  region_latam: "Latin America",
+  region_latam_s: "South & Central America",
+  region_europe: "Europe",
+
+  // Topic labels (facets)
+  topic_basics: "Landscape Finance basics",
+  topic_basics_s: "Frameworks, intro guides",
+  topic_mechanisms: "Financial mechanisms & pipeline",
+  topic_mechanisms_s: "Instruments, case studies, deal structures",
+  topic_implementation: "Implementation & tools",
+  topic_implementation_s: "How to put it into practice",
+  topic_strategy: "Conservation strategy & mapping",
+  topic_strategy_s: "Defining boundaries, prioritisation",
+
+  // Document type labels (facets)
+  type_brief: "Brief",
+  type_brief_s: "1–2 pages, short read",
+  type_briefing_paper: "Briefing paper",
+  type_guide: "Guide",
+  type_guide_s: "Comprehensive how-to",
+  type_guidance_note: "Guidance note",
+  type_case_study: "Case study",
+  type_case_study_s: "Real-world example",
+  type_playbook: "Playbook",
+  type_playbook_s: "Step-by-step instrument",
+  type_report: "Report",
+  type_presentation: "Presentation",
+
+  // Finance bucket labels (facets) — used in doc cards
+  fin_debt: "Debt",
+  fin_equity: "Equity",
+  fin_grants: "Grants",
+  fin_blended: "Blended finance",
+  fin_outcome: "Outcome-based",
+  fin_pes: "PES",
+  fin_carbon: "Carbon",
+  fin_guarantees: "Guarantees",
+  fin_microfinance: "Microfinance",
+  fin_private: "Private investment",
+
+  // Navigator — results section
+  nav_result_count_pre: "Out of 27 resources in the library, ",
+  nav_result_count_post: " match your selection.",
+  nav_top_picks: "Top picks for you",
+  nav_browse_all: "Browse all matches in the Toolkit",
+  nav_no_results: "No exact matches.",
+  nav_no_results_hint: "Try widening your filters or browse the full library.",
+  nav_open_doc: "Open document",
+
+  // Toolkit — multi-facet filtering
+  toolkit_filter_topic: "Topic",
+  toolkit_filter_audience: "Audience",
+  toolkit_filter_region: "Region",
+  toolkit_filter_type: "Type",
+  toolkit_filter_clear: "Clear filters",
+  toolkit_filter_any: "Any",
+  toolkit_results_count: "documents",
+  toolkit_disclaimer:
+    "All documents open in Google Drive (external links). Links may break or become outdated. Catalogue last updated on",
+  toolkit_external: "External link",
+  toolkit_browse_library: "Browse library",
 };
 
 const es: Dict = {
@@ -314,6 +413,105 @@ const es: Dict = {
   lens_financing: "Financiamiento verde",
   lens_food: "Alimentación y agricultura",
   lens_food_short: "Alimentación y agricultura",
+
+  // Navigator — preguntas
+  q_role_label: "Tu rol",
+  q_role_q: "¿Cuál es tu rol?",
+  q_role_hint: "Lo usamos para destacar los recursos más útiles para ti.",
+  q_region_label: "Región de interés",
+  q_region_q: "¿Qué región te interesa más?",
+  q_region_hint: "Los recursos globales se muestran siempre, incluso al elegir una región.",
+  q_topic_label: "Tema",
+  q_topic_q: "¿En qué quieres profundizar?",
+  q_topic_hint: "Las cuatro categorías sobre las que se organiza el programa de WWF.",
+  q_format_label: "Formato",
+  q_format_q: "¿Qué formato te sirve hoy?",
+  q_format_hint: "Sáltalo si no tienes preferencia — pesa poco en el resultado.",
+
+  // Audiencias
+  aud_investor: "Inversor o gestor de fondos",
+  aud_investor_s: "Bancos, DFI, fundaciones, fondos",
+  aud_practitioner: "Profesional de conservación",
+  aud_practitioner_s: "Desarrollador de proyectos, equipo ONG, gestor de paisaje",
+  aud_corporate: "Corporativo / cadena de suministro",
+  aud_corporate_s: "Sostenibilidad, abastecimiento, estrategia scope 3",
+  aud_policymaker: "Formulador de políticas",
+  aud_policymaker_s: "Gobierno, regulador, agencia",
+  aud_ngo_research: "ONG / investigador",
+  aud_ngo_research_s: "Equipo interno, académico, think tank",
+  aud_community: "Comunidad / pequeño productor",
+  aud_community_short: "Comunidad",
+  aud_ngo: "ONG",
+  aud_researcher: "Investigador",
+
+  // Regiones
+  region_global: "Global",
+  region_global_s: "Recursos aplicables en cualquier lugar",
+  region_africa: "África",
+  region_africa_s: "África subsahariana y costera",
+  region_asia: "Asia",
+  region_asia_s: "Sur y sudeste asiático",
+  region_latam: "América Latina",
+  region_latam_s: "Sur y Centroamérica",
+  region_europe: "Europa",
+
+  // Temas
+  topic_basics: "Fundamentos de Finanzas del Paisaje",
+  topic_basics_s: "Marcos, guías introductorias",
+  topic_mechanisms: "Mecanismos financieros y pipeline",
+  topic_mechanisms_s: "Instrumentos, casos, estructuración",
+  topic_implementation: "Implementación y herramientas",
+  topic_implementation_s: "Cómo aplicarlo en la práctica",
+  topic_strategy: "Estrategia y mapeo de conservación",
+  topic_strategy_s: "Definición de límites, priorización",
+
+  // Tipos de documento
+  type_brief: "Resumen",
+  type_brief_s: "1–2 páginas, lectura corta",
+  type_briefing_paper: "Documento informativo",
+  type_guide: "Guía",
+  type_guide_s: "Manual completo",
+  type_guidance_note: "Nota de orientación",
+  type_case_study: "Caso de estudio",
+  type_case_study_s: "Ejemplo del mundo real",
+  type_playbook: "Playbook",
+  type_playbook_s: "Instrumento paso a paso",
+  type_report: "Informe",
+  type_presentation: "Presentación",
+
+  // Finanzas
+  fin_debt: "Deuda",
+  fin_equity: "Capital",
+  fin_grants: "Subvenciones",
+  fin_blended: "Finanzas mixtas",
+  fin_outcome: "Basado en resultados",
+  fin_pes: "PSE",
+  fin_carbon: "Carbono",
+  fin_guarantees: "Garantías",
+  fin_microfinance: "Microfinanzas",
+  fin_private: "Inversión privada",
+
+  // Navigator — resultados
+  nav_result_count_pre: "De los 27 recursos de la biblioteca, ",
+  nav_result_count_post: " coinciden con tu selección.",
+  nav_top_picks: "Mejores opciones para ti",
+  nav_browse_all: "Ver todos los resultados en la biblioteca",
+  nav_no_results: "No hay coincidencias exactas.",
+  nav_no_results_hint: "Prueba ampliando los filtros o explora la biblioteca completa.",
+  nav_open_doc: "Abrir documento",
+
+  // Toolkit — filtros
+  toolkit_filter_topic: "Tema",
+  toolkit_filter_audience: "Audiencia",
+  toolkit_filter_region: "Región",
+  toolkit_filter_type: "Tipo",
+  toolkit_filter_clear: "Limpiar filtros",
+  toolkit_filter_any: "Cualquiera",
+  toolkit_results_count: "documentos",
+  toolkit_disclaimer:
+    "Todos los documentos se abren en Google Drive (enlaces externos). Los enlaces pueden romperse o desactualizarse. Catálogo actualizado por última vez el",
+  toolkit_external: "Enlace externo",
+  toolkit_browse_library: "Ver biblioteca",
 };
 
 const fr: Dict = {
@@ -466,6 +664,105 @@ const fr: Dict = {
   lens_financing: "Financement vert",
   lens_food: "Alimentation & agriculture",
   lens_food_short: "Alim. & agriculture",
+
+  // Navigator — questions
+  q_role_label: "Votre rôle",
+  q_role_q: "Quel est votre rôle ?",
+  q_role_hint: "Cela nous aide à mettre en avant les ressources les plus utiles.",
+  q_region_label: "Région d'intérêt",
+  q_region_q: "Quelle région vous intéresse le plus ?",
+  q_region_hint: "Les ressources globales s'affichent toujours en complément.",
+  q_topic_label: "Thème",
+  q_topic_q: "Sur quoi voulez-vous approfondir ?",
+  q_topic_hint: "Les quatre piliers du programme WWF.",
+  q_format_label: "Format",
+  q_format_q: "Quel format vous convient aujourd'hui ?",
+  q_format_hint: "Passez si vous n'avez pas de préférence — il pèse peu.",
+
+  // Audiences
+  aud_investor: "Investisseur ou gestionnaire de fonds",
+  aud_investor_s: "Banques, IFD, fondations, fonds",
+  aud_practitioner: "Praticien de la conservation",
+  aud_practitioner_s: "Développeur de projet, équipe ONG, gestionnaire",
+  aud_corporate: "Entreprise / chaîne d'approvisionnement",
+  aud_corporate_s: "Durabilité, sourcing, stratégie scope 3",
+  aud_policymaker: "Décideur politique",
+  aud_policymaker_s: "Gouvernement, régulateur, agence",
+  aud_ngo_research: "ONG / chercheur",
+  aud_ngo_research_s: "Équipe interne, universitaire, think tank",
+  aud_community: "Communauté / petit producteur",
+  aud_community_short: "Communauté",
+  aud_ngo: "ONG",
+  aud_researcher: "Chercheur",
+
+  // Régions
+  region_global: "Global",
+  region_global_s: "Ressources applicables partout",
+  region_africa: "Afrique",
+  region_africa_s: "Afrique subsaharienne et côtière",
+  region_asia: "Asie",
+  region_asia_s: "Asie du Sud et du Sud-Est",
+  region_latam: "Amérique latine",
+  region_latam_s: "Amérique du Sud et centrale",
+  region_europe: "Europe",
+
+  // Thèmes
+  topic_basics: "Fondamentaux de la Finance Paysagère",
+  topic_basics_s: "Cadres, guides d'introduction",
+  topic_mechanisms: "Mécanismes financiers & pipeline",
+  topic_mechanisms_s: "Instruments, cas, structuration",
+  topic_implementation: "Mise en œuvre & outils",
+  topic_implementation_s: "Comment passer à la pratique",
+  topic_strategy: "Stratégie & cartographie de conservation",
+  topic_strategy_s: "Définir les limites, prioriser",
+
+  // Types de documents
+  type_brief: "Synthèse",
+  type_brief_s: "1–2 pages, lecture courte",
+  type_briefing_paper: "Note d'information",
+  type_guide: "Guide",
+  type_guide_s: "Manuel complet",
+  type_guidance_note: "Note d'orientation",
+  type_case_study: "Étude de cas",
+  type_case_study_s: "Exemple concret",
+  type_playbook: "Playbook",
+  type_playbook_s: "Instrument étape par étape",
+  type_report: "Rapport",
+  type_presentation: "Présentation",
+
+  // Finance
+  fin_debt: "Dette",
+  fin_equity: "Capital",
+  fin_grants: "Subventions",
+  fin_blended: "Finance mixte",
+  fin_outcome: "Axé sur les résultats",
+  fin_pes: "PSE",
+  fin_carbon: "Carbone",
+  fin_guarantees: "Garanties",
+  fin_microfinance: "Microfinance",
+  fin_private: "Investissement privé",
+
+  // Navigator — résultats
+  nav_result_count_pre: "Sur les 27 ressources de la bibliothèque, ",
+  nav_result_count_post: " correspondent à votre sélection.",
+  nav_top_picks: "Meilleurs choix pour vous",
+  nav_browse_all: "Voir toutes les correspondances dans la bibliothèque",
+  nav_no_results: "Aucune correspondance exacte.",
+  nav_no_results_hint: "Élargissez les filtres ou parcourez la bibliothèque complète.",
+  nav_open_doc: "Ouvrir le document",
+
+  // Toolkit — filtres
+  toolkit_filter_topic: "Thème",
+  toolkit_filter_audience: "Audience",
+  toolkit_filter_region: "Région",
+  toolkit_filter_type: "Type",
+  toolkit_filter_clear: "Réinitialiser",
+  toolkit_filter_any: "Tous",
+  toolkit_results_count: "documents",
+  toolkit_disclaimer:
+    "Tous les documents s'ouvrent dans Google Drive (liens externes). Les liens peuvent être rompus ou obsolètes. Catalogue mis à jour pour la dernière fois le",
+  toolkit_external: "Lien externe",
+  toolkit_browse_library: "Voir la bibliothèque",
 };
 
 const dicts: Record<Locale, Dict> = { en, es, fr };

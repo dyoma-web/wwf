@@ -1,8 +1,16 @@
 "use client";
 
+import Link from "next/link";
 import { useState, type ReactNode } from "react";
 import type { Locale } from "@/i18n/config";
-import { L, t, type Localized } from "@/i18n/dict";
+import { t } from "@/i18n/dict";
+import {
+  type Audience,
+  type DocTopic,
+  type DocType,
+  type Region,
+} from "@/data/documents";
+import { facetsToQuery, rankByAnswers, type Facets } from "@/lib/document-filter";
 import {
   Arrow,
   Bars,
@@ -10,239 +18,110 @@ import {
   Check,
   Coin,
   Compass,
-  Doc,
-  Download,
+  Doc as DocIc,
   Globe,
   Leaf,
-  Warning,
-  Wave,
+  Pdf,
+  Tools,
 } from "./Icons";
 
-type QuestionId = "role" | "landscape" | "challenge" | "solution";
+/* ----- estructura de las preguntas ----- */
+
+type QuestionId = "role" | "region" | "topic" | "format";
 
 type Option = {
   id: string;
-  t: Localized;
-  s: Localized;
+  labelKey: string;
+  subKey: string;
   ic: ReactNode;
+  /** Mapeo a las facetas usadas por el ranker. Cada respuesta puede
+   *  expandirse a múltiples valores en el filtro (p.ej. "ngo-research"
+   *  cubre tanto `ngo` como `researcher`). */
+  audiences?: Audience[];
+  region?: Region;
+  topic?: DocTopic;
+  type?: DocType;
 };
 
 type Question = {
   id: QuestionId;
-  label: Localized;
-  q: Localized;
-  hint: Localized;
+  labelKey: string;
+  qKey: string;
+  hintKey: string;
   options: Option[];
 };
 
 const QUESTIONS: Question[] = [
   {
     id: "role",
-    label: { en: "Your role", es: "Tu rol", fr: "Votre rôle" },
-    q: { en: "What is your role?", es: "¿Cuál es tu rol?", fr: "Quel est votre rôle ?" },
-    hint: {
-      en: "This tunes the language of the recommendations.",
-      es: "Esto ajusta el lenguaje de las recomendaciones.",
-      fr: "Cela ajuste le langage des recommandations.",
-    },
+    labelKey: "q_role_label",
+    qKey: "q_role_q",
+    hintKey: "q_role_hint",
     options: [
-      {
-        id: "conservation",
-        t: { en: "Conservation professional", es: "Profesional de conservación", fr: "Professionnel de la conservation" },
-        s: {
-          en: "NGO, field team, protected area manager",
-          es: "ONG, equipo de campo, gestor de áreas protegidas",
-          fr: "ONG, équipe de terrain, gestionnaire d'aires protégées",
-        },
-        ic: <Leaf />,
-      },
-      {
-        id: "finance",
-        t: { en: "Finance", es: "Finanzas", fr: "Finance" },
-        s: {
-          en: "Bank, investor, DFI, foundation",
-          es: "Banco, inversor, DFI, fundación",
-          fr: "Banque, investisseur, IFD, fondation",
-        },
-        ic: <Coin />,
-      },
-      {
-        id: "policy",
-        t: { en: "Policy maker", es: "Formulador de políticas", fr: "Décideur politique" },
-        s: {
-          en: "Government, regulator, agency",
-          es: "Gobierno, regulador, agencia",
-          fr: "Gouvernement, régulateur, agence",
-        },
-        ic: <Globe />,
-      },
-      {
-        id: "research",
-        t: { en: "Researcher", es: "Investigador/a", fr: "Chercheur/euse" },
-        s: {
-          en: "Academic, think tank, analyst",
-          es: "Académico, think tank, analista",
-          fr: "Universitaire, think tank, analyste",
-        },
-        ic: <Book />,
-      },
+      { id: "investor", labelKey: "aud_investor", subKey: "aud_investor_s", ic: <Coin />, audiences: ["investor"] },
+      { id: "practitioner", labelKey: "aud_practitioner", subKey: "aud_practitioner_s", ic: <Tools />, audiences: ["practitioner"] },
+      { id: "corporate", labelKey: "aud_corporate", subKey: "aud_corporate_s", ic: <Globe />, audiences: ["corporate"] },
+      { id: "policymaker", labelKey: "aud_policymaker", subKey: "aud_policymaker_s", ic: <Bars />, audiences: ["policymaker"] },
+      { id: "ngo-research", labelKey: "aud_ngo_research", subKey: "aud_ngo_research_s", ic: <Book />, audiences: ["ngo", "researcher"] },
     ],
   },
   {
-    id: "landscape",
-    label: { en: "Landscape type", es: "Tipo de paisaje", fr: "Type de paysage" },
-    q: {
-      en: "What type of landscape do you work in?",
-      es: "¿En qué tipo de paisaje trabajas?",
-      fr: "Dans quel type de paysage travaillez-vous ?",
-    },
-    hint: {
-      en: "Where your work happens on the ground.",
-      es: "Dónde sucede tu trabajo sobre el terreno.",
-      fr: "Où votre travail se déroule sur le terrain.",
-    },
+    id: "region",
+    labelKey: "q_region_label",
+    qKey: "q_region_q",
+    hintKey: "q_region_hint",
     options: [
-      {
-        id: "terrestrial",
-        t: { en: "Terrestrial", es: "Terrestre", fr: "Terrestre" },
-        s: {
-          en: "Forests, savannahs, drylands, mountains",
-          es: "Bosques, sabanas, tierras secas, montañas",
-          fr: "Forêts, savanes, zones arides, montagnes",
-        },
-        ic: <Leaf />,
-      },
-      {
-        id: "marine",
-        t: { en: "Marine", es: "Marino", fr: "Marin" },
-        s: {
-          en: "Coastal, nearshore, open ocean",
-          es: "Costero, litoral, océano abierto",
-          fr: "Côtier, littoral, haute mer",
-        },
-        ic: <Wave />,
-      },
-      {
-        id: "mixed",
-        t: { en: "Mixed", es: "Mixto", fr: "Mixte" },
-        s: {
-          en: "Land-sea interface, deltas, wetlands",
-          es: "Interfaz tierra-mar, deltas, humedales",
-          fr: "Interface terre-mer, deltas, zones humides",
-        },
-        ic: <Globe />,
-      },
+      { id: "global", labelKey: "region_global", subKey: "region_global_s", ic: <Globe />, region: "global" },
+      { id: "africa", labelKey: "region_africa", subKey: "region_africa_s", ic: <Leaf />, region: "africa" },
+      { id: "asia", labelKey: "region_asia", subKey: "region_asia_s", ic: <Compass />, region: "asia" },
+      { id: "latam", labelKey: "region_latam", subKey: "region_latam_s", ic: <Compass />, region: "latam" },
     ],
   },
   {
-    id: "challenge",
-    label: { en: "Main challenge", es: "Reto principal", fr: "Défi principal" },
-    q: {
-      en: "What is your main challenge?",
-      es: "¿Cuál es tu reto principal?",
-      fr: "Quel est votre principal défi ?",
-    },
-    hint: {
-      en: "The one that most blocks progress today.",
-      es: "El que más frena el progreso hoy.",
-      fr: "Celui qui freine le plus le progrès aujourd'hui.",
-    },
+    id: "topic",
+    labelKey: "q_topic_label",
+    qKey: "q_topic_q",
+    hintKey: "q_topic_hint",
     options: [
-      {
-        id: "gap",
-        t: { en: "Financing gap", es: "Brecha de financiamiento", fr: "Manque de financement" },
-        s: {
-          en: "Insufficient capital reaching the landscape",
-          es: "Capital insuficiente llegando al paisaje",
-          fr: "Insuffisance de capitaux atteignant le paysage",
-        },
-        ic: <Coin />,
-      },
-      {
-        id: "subsidies",
-        t: { en: "Harmful subsidies", es: "Subsidios perjudiciales", fr: "Subventions nuisibles" },
-        s: {
-          en: "Public money working against conservation",
-          es: "Dinero público trabajando contra la conservación",
-          fr: "Fonds publics allant contre la conservation",
-        },
-        ic: <Warning />,
-      },
-      {
-        id: "private",
-        t: {
-          en: "Lack of private investment",
-          es: "Falta de inversión privada",
-          fr: "Manque d'investissement privé",
-        },
-        s: {
-          en: "Risk, returns, or readiness barriers",
-          es: "Barreras de riesgo, retorno o preparación",
-          fr: "Barrières de risque, rendement ou préparation",
-        },
-        ic: <Bars />,
-      },
+      { id: "basics", labelKey: "topic_basics", subKey: "topic_basics_s", ic: <Book />, topic: "basics" },
+      { id: "mechanisms", labelKey: "topic_mechanisms", subKey: "topic_mechanisms_s", ic: <Coin />, topic: "mechanisms" },
+      { id: "implementation", labelKey: "topic_implementation", subKey: "topic_implementation_s", ic: <Tools />, topic: "implementation" },
+      { id: "strategy", labelKey: "topic_strategy", subKey: "topic_strategy_s", ic: <Compass />, topic: "strategy" },
     ],
   },
   {
-    id: "solution",
-    label: { en: "Solution", es: "Solución", fr: "Solution" },
-    q: {
-      en: "What conservation solution are you pursuing?",
-      es: "¿Qué solución de conservación buscas?",
-      fr: "Quelle solution de conservation recherchez-vous ?",
-    },
-    hint: {
-      en: "Roughly — you can refine later.",
-      es: "De forma aproximada — puedes refinar después.",
-      fr: "Grosso modo — vous pourrez affiner ensuite.",
-    },
+    id: "format",
+    labelKey: "q_format_label",
+    qKey: "q_format_q",
+    hintKey: "q_format_hint",
     options: [
-      {
-        id: "restoration",
-        t: { en: "Restoration", es: "Restauración", fr: "Restauration" },
-        s: {
-          en: "Reforestation, rewilding, regeneration",
-          es: "Reforestación, renaturalización, regeneración",
-          fr: "Reforestation, réensauvagement, régénération",
-        },
-        ic: <Leaf />,
-      },
-      {
-        id: "protected",
-        t: { en: "Protected areas", es: "Áreas protegidas", fr: "Aires protégées" },
-        s: {
-          en: "New, expanded, or better managed",
-          es: "Nuevas, ampliadas o mejor gestionadas",
-          fr: "Nouvelles, étendues ou mieux gérées",
-        },
-        ic: <Globe />,
-      },
-      {
-        id: "sus-ag",
-        t: { en: "Sustainable agriculture", es: "Agricultura sostenible", fr: "Agriculture durable" },
-        s: {
-          en: "Agroforestry, regenerative, certified",
-          es: "Agroforestería, regenerativa, certificada",
-          fr: "Agroforesterie, régénérative, certifiée",
-        },
-        ic: <Leaf />,
-      },
-      {
-        id: "other",
-        t: { en: "Something else", es: "Otra cosa", fr: "Autre chose" },
-        s: {
-          en: "We still suggest a starting point",
-          es: "Aun así te sugerimos un punto de partida",
-          fr: "Nous suggérerons quand même un point de départ",
-        },
-        ic: <Compass />,
-      },
+      { id: "brief", labelKey: "type_brief", subKey: "type_brief_s", ic: <DocIc />, type: "brief" },
+      { id: "guide", labelKey: "type_guide", subKey: "type_guide_s", ic: <Book />, type: "guide" },
+      { id: "case-study", labelKey: "type_case_study", subKey: "type_case_study_s", ic: <Pdf />, type: "case-study" },
+      { id: "playbook", labelKey: "type_playbook", subKey: "type_playbook_s", ic: <Tools />, type: "playbook" },
     ],
   },
 ];
 
 type Answers = Partial<Record<QuestionId, string>>;
+
+/** Convierte las respuestas del usuario al objeto Facets que usa el ranker. */
+function answersToFacets(answers: Answers): Facets {
+  const facets: Facets = {};
+  for (const q of QUESTIONS) {
+    const ans = answers[q.id];
+    if (!ans) continue;
+    const opt = q.options.find((o) => o.id === ans);
+    if (!opt) continue;
+    if (opt.audiences && opt.audiences.length === 1) facets.audience = opt.audiences[0];
+    if (opt.region) facets.region = opt.region;
+    if (opt.topic) facets.topic = opt.topic;
+    if (opt.type) facets.type = opt.type;
+  }
+  return facets;
+}
+
+/* ----- componente ----- */
 
 export function NavigatorClient({ locale }: { locale: Locale }) {
   const [step, setStep] = useState(0);
@@ -255,7 +134,7 @@ export function NavigatorClient({ locale }: { locale: Locale }) {
   const labelFor = (qid: QuestionId): string => {
     const q = QUESTIONS.find((q) => q.id === qid);
     const opt = q?.options.find((o) => o.id === answers[qid]);
-    return opt ? L(locale, opt.t) : "—";
+    return opt ? t(locale, opt.labelKey) : "—";
   };
   const next = () => (step < QUESTIONS.length - 1 ? setStep((s) => s + 1) : setDone(true));
   const prev = () => (done ? setDone(false) : setStep((s) => Math.max(0, s - 1)));
@@ -292,7 +171,7 @@ export function NavigatorClient({ locale }: { locale: Locale }) {
                     {i < step || done ? <Check width={12} height={12} /> : String(i + 1).padStart(2, "0")}
                   </div>
                   <div>
-                    <div className="lbl">{L(locale, qq.label)}</div>
+                    <div className="lbl">{t(locale, qq.labelKey)}</div>
                     <div className="val" style={{ color: answers[qq.id] ? "var(--ink)" : "var(--muted)" }}>
                       {answers[qq.id] ? labelFor(qq.id) : t(locale, "navigator_not_set")}
                     </div>
@@ -338,10 +217,10 @@ export function NavigatorClient({ locale }: { locale: Locale }) {
           <div className="qcard">
             <div className="q-meta">
               {t(locale, "navigator_question")} {step + 1} / {QUESTIONS.length} ·{" "}
-              {L(locale, cur.label).toUpperCase()}
+              {t(locale, cur.labelKey).toUpperCase()}
             </div>
-            <h2>{L(locale, cur.q)}</h2>
-            <p style={{ color: "var(--muted)", margin: "8px 0 0", fontSize: 14 }}>{L(locale, cur.hint)}</p>
+            <h2>{t(locale, cur.qKey)}</h2>
+            <p style={{ color: "var(--muted)", margin: "8px 0 0", fontSize: 14 }}>{t(locale, cur.hintKey)}</p>
             <div className="opts">
               {cur.options.map((o) => (
                 <button
@@ -351,8 +230,8 @@ export function NavigatorClient({ locale }: { locale: Locale }) {
                 >
                   <div className="ic">{o.ic}</div>
                   <div>
-                    <div className="t">{L(locale, o.t)}</div>
-                    <div className="s">{L(locale, o.s)}</div>
+                    <div className="t">{t(locale, o.labelKey)}</div>
+                    <div className="s">{t(locale, o.subKey)}</div>
                   </div>
                 </button>
               ))}
@@ -387,98 +266,7 @@ export function NavigatorClient({ locale }: { locale: Locale }) {
   );
 }
 
-type Pathway = { mk: string; color: string; t: Localized; s: Localized; fitKey: "fit_strong" | "fit_good" | "fit_explore" };
-
-const PATHS_POOL: Pathway[] = [
-  {
-    mk: "01",
-    color: "var(--forest-2)",
-    t: { en: "Blended finance for restoration", es: "Finanzas mixtas para restauración", fr: "Finance mixte pour la restauration" },
-    s: {
-      en: "Concessional + commercial capital stacked into a restoration fund.",
-      es: "Capital concesional y comercial apilado en un fondo de restauración.",
-      fr: "Capital concessionnel et commercial empilés dans un fonds de restauration.",
-    },
-    fitKey: "fit_strong",
-  },
-  {
-    mk: "02",
-    color: "var(--teal)",
-    t: { en: "Payments for ecosystem services", es: "Pagos por servicios ecosistémicos", fr: "Paiements pour services écosystémiques" },
-    s: {
-      en: "Buyers pay land stewards for measurable outcomes.",
-      es: "Los compradores pagan a los gestores del territorio por resultados medibles.",
-      fr: "Les acheteurs rémunèrent les gestionnaires de terres pour des résultats mesurables.",
-    },
-    fitKey: "fit_good",
-  },
-  {
-    mk: "03",
-    color: "var(--orange)",
-    t: { en: "Subsidy redirection", es: "Redirección de subsidios", fr: "Redirection des subventions" },
-    s: {
-      en: "Shift harmful agricultural subsidies towards regenerative practice.",
-      es: "Redirigir subsidios agrícolas perjudiciales hacia prácticas regenerativas.",
-      fr: "Réorienter les subventions agricoles nuisibles vers des pratiques régénératives.",
-    },
-    fitKey: "fit_explore",
-  },
-  {
-    mk: "04",
-    color: "var(--forest-2)",
-    t: { en: "Outcome-based MPA financing", es: "Financiamiento de AMP basado en resultados", fr: "Financement d'AMP axé sur les résultats" },
-    s: {
-      en: "Pay-for-performance tied to verified fish-stock or habitat metrics.",
-      es: "Pago por desempeño atado a métricas verificadas de stock pesquero o hábitat.",
-      fr: "Rémunération à la performance liée à des indicateurs vérifiés de stocks halieutiques ou d'habitat.",
-    },
-    fitKey: "fit_strong",
-  },
-  {
-    mk: "05",
-    color: "var(--teal)",
-    t: { en: "Green / biodiversity bonds", es: "Bonos verdes / de biodiversidad", fr: "Obligations vertes / de biodiversité" },
-    s: {
-      en: "Use-of-proceeds bonds issued by a public or sovereign entity.",
-      es: "Bonos de uso dirigido de fondos emitidos por una entidad pública o soberana.",
-      fr: "Obligations d'usage des fonds émises par une entité publique ou souveraine.",
-    },
-    fitKey: "fit_good",
-  },
-];
-
-const CASES = [
-  {
-    loc: "Cerrado, Brazil",
-    tag: { en: "Financing Green", es: "Financiamiento verde", fr: "Financement vert" },
-    narrator: "Jaciele",
-  },
-  {
-    loc: "Madagascar (MTB)",
-    tag: { en: "Greening Finance", es: "Finanzas verdes", fr: "Finance verte" },
-    narrator: "Santatra",
-  },
-  {
-    loc: "KAZA, Africa",
-    tag: { en: "Food & Agriculture", es: "Alimentación y agricultura", fr: "Alimentation & agriculture" },
-    narrator: "Jane",
-  },
-];
-
-const TEMPLATES = [
-  {
-    t: { en: "Readiness self-assessment", es: "Autoevaluación de preparación", fr: "Auto-évaluation de préparation" },
-    s: { en: "DOCX · 12 questions", es: "DOCX · 12 preguntas", fr: "DOCX · 12 questions" },
-  },
-  {
-    t: { en: "Theory of change canvas", es: "Lienzo de teoría del cambio", fr: "Canevas de théorie du changement" },
-    s: { en: "PDF · blank + example", es: "PDF · en blanco + ejemplo", fr: "PDF · vierge + exemple" },
-  },
-  {
-    t: { en: "MRV starter sheet", es: "Hoja inicial de MRV", fr: "Feuille de démarrage MRV" },
-    s: { en: "XLSX · measurement", es: "XLSX · medición", fr: "XLSX · mesure" },
-  },
-];
+/* ----- pantalla de resultados ----- */
 
 function Results({
   locale,
@@ -491,13 +279,10 @@ function Results({
   onRestart: () => void;
   labelFor: (qid: QuestionId) => string;
 }) {
-  const picks = (() => {
-    const p = PATHS_POOL;
-    if (answers.landscape === "marine") return [p[3], p[1], p[4]];
-    if (answers.solution === "restoration") return [p[0], p[1], p[4]];
-    if (answers.challenge === "subsidies") return [p[2], p[1], p[0]];
-    return [p[0], p[1], p[2]];
-  })();
+  const facets = answersToFacets(answers);
+  const ranked = rankByAnswers(facets);
+  const top = ranked.slice(0, 3);
+  const totalMatches = ranked.length;
 
   return (
     <div>
@@ -508,112 +293,76 @@ function Results({
           style={{ fontSize: "clamp(22px,2.4vw,32px)", margin: "8px 0 0", lineHeight: 1.2, letterSpacing: "-.01em" }}
         >
           {renderSentence(locale, {
-            role: labelFor("role").toLowerCase(),
-            landscape: labelFor("landscape").toLowerCase(),
-            challenge: labelFor("challenge").toLowerCase(),
-            solution: labelFor("solution").toLowerCase(),
+            role: labelFor("role"),
+            region: labelFor("region"),
+            topic: labelFor("topic"),
+            format: labelFor("format"),
           })}
         </h2>
+        <p style={{ color: "var(--muted)", marginTop: 12, fontSize: 13.5 }}>
+          {t(locale, "nav_result_count_pre")}
+          <strong style={{ color: "var(--ink)" }}>{totalMatches}</strong>
+          {t(locale, "nav_result_count_post")}
+        </p>
       </div>
 
-      <div className="results">
-        <div className="res-card dark">
+      {top.length > 0 ? (
+        <div className="res-card dark" style={{ marginBottom: 16 }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
             <div className="eyebrow" style={{ color: "var(--orange)" }}>
               {t(locale, "navigator_rec_pathways")}
             </div>
-            <span className="chip dark">{t(locale, "navigator_3_of_12")}</span>
+            <span className="chip dark">
+              {top.length} / {totalMatches}
+            </span>
           </div>
-          <h3 style={{ fontSize: 24, margin: "6px 0 10px", color: "#fff" }}>{t(locale, "navigator_start_here")}</h3>
+          <h3 style={{ fontSize: 24, margin: "6px 0 14px", color: "#fff" }}>{t(locale, "nav_top_picks")}</h3>
           <div>
-            {picks.map((p) => (
-              <div className="path" key={p.mk} style={{ borderBottomColor: "#3a3a36" }}>
-                <div className="mk" style={{ background: p.color }}>
-                  {p.mk}
+            {top.map((d, i) => (
+              <div className="path" key={d.id} style={{ borderBottomColor: "#3a3a36" }}>
+                <div className="mk" style={{ background: "var(--orange)" }}>
+                  {String(i + 1).padStart(2, "0")}
                 </div>
                 <div>
                   <div className="t" style={{ color: "#fff" }}>
-                    {L(locale, p.t)}
+                    {d.title}
                   </div>
                   <div className="s" style={{ color: "#c7c4b8" }}>
-                    {L(locale, p.s)}
+                    {d.description}
+                  </div>
+                  <div style={{ marginTop: 6, display: "flex", gap: 6, flexWrap: "wrap" }}>
+                    <span className="chip" style={{ background: "transparent", borderColor: "#3a3a36", color: "#c7c4b8" }}>
+                      {t(locale, `type_${d.type.replace(/-/g, "_")}`)}
+                    </span>
+                    <span className="chip" style={{ background: "transparent", borderColor: "#3a3a36", color: "#c7c4b8" }}>
+                      {t(locale, `topic_${d.topic}`)}
+                    </span>
                   </div>
                 </div>
-                <div className="fit">{t(locale, p.fitKey)}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-          <div className="res-card">
-            <div className="eyebrow">{t(locale, "navigator_similar")}</div>
-            <h3 style={{ fontSize: 18, margin: "6px 0 8px" }}>{t(locale, "navigator_seen_work")}</h3>
-            {CASES.map((c) => (
-              <div
-                key={c.loc}
-                style={{
-                  display: "flex",
-                  gap: 12,
-                  alignItems: "flex-start",
-                  padding: "10px 0",
-                  borderBottom: "1px solid var(--line-2)",
-                }}
-              >
-                <div className="phx canopy" style={{ width: 56, height: 56, borderRadius: 3, flex: "0 0 56px" }} />
-                <div style={{ flex: 1 }}>
-                  <div style={{ fontWeight: 600, fontSize: 14 }}>{c.loc}</div>
-                  <div style={{ fontSize: 12, color: "var(--muted)", marginTop: 3 }}>
-                    {L(locale, c.tag)} · {t(locale, "toolkit_narrator").toLowerCase()}: {c.narrator}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="res-card">
-            <div className="eyebrow">{t(locale, "navigator_relevant")}</div>
-            <h3 style={{ fontSize: 18, margin: "6px 0 8px" }}>{t(locale, "navigator_templates_path")}</h3>
-            {TEMPLATES.map((tp, i) => (
-              <div
-                key={i}
-                style={{
-                  display: "flex",
-                  gap: 12,
-                  alignItems: "center",
-                  padding: "10px 0",
-                  borderBottom: i < TEMPLATES.length - 1 ? "1px solid var(--line-2)" : "none",
-                }}
-              >
-                <div
-                  style={{
-                    width: 36,
-                    height: 36,
-                    borderRadius: 3,
-                    background: "var(--paper)",
-                    display: "grid",
-                    placeItems: "center",
-                    color: "var(--ink-2)",
-                  }}
+                <a
+                  href={d.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn sm orange"
+                  style={{ alignSelf: "flex-start", whiteSpace: "nowrap" }}
                 >
-                  <Doc />
-                </div>
-                <div style={{ flex: 1 }}>
-                  <div style={{ fontWeight: 600, fontSize: 14 }}>{L(locale, tp.t)}</div>
-                  <div style={{ fontSize: 11.5, color: "var(--muted)", marginTop: 2 }}>{L(locale, tp.s)}</div>
-                </div>
-                <button className="btn sm ghost" style={{ padding: ".4rem .7rem" }}>
-                  <Download /> {t(locale, "navigator_get")}
-                </button>
+                  {t(locale, "nav_open_doc")} <Arrow width={14} height={14} />
+                </a>
               </div>
             ))}
           </div>
         </div>
-      </div>
+      ) : (
+        <div className="res-card" style={{ marginBottom: 16, textAlign: "center", padding: 36 }}>
+          <h3 style={{ fontSize: 18, margin: "0 0 6px" }}>{t(locale, "nav_no_results")}</h3>
+          <p style={{ color: "var(--muted)", fontSize: 13.5, margin: 0 }}>{t(locale, "nav_no_results_hint")}</p>
+        </div>
+      )}
 
-      <div style={{ marginTop: 20, display: "flex", gap: 10, flexWrap: "wrap" }}>
-        <button className="btn orange">
-          {t(locale, "navigator_open_lms")} <Arrow width={14} height={14} />
-        </button>
+      <div style={{ marginTop: 12, display: "flex", gap: 10, flexWrap: "wrap" }}>
+        <Link href={`/${locale}/toolkit${facetsToQuery(facets)}`} className="btn orange">
+          {t(locale, "nav_browse_all")} <Arrow width={14} height={14} />
+        </Link>
         <button className="btn ghost" onClick={onRestart}>
           ↺ {t(locale, "navigator_try_diff")}
         </button>
@@ -624,31 +373,32 @@ function Results({
 
 function renderSentence(
   locale: Locale,
-  parts: { role: string; landscape: string; challenge: string; solution: string },
+  parts: { role: string; region: string; topic: string; format: string },
 ) {
   const strong = (s: string) => (
     <strong style={{ color: "var(--orange)", fontWeight: 700 }}>{s}</strong>
   );
-  const { role, landscape, challenge, solution } = parts;
+  const { role, region, topic, format } = parts;
   if (locale === "es") {
     return (
       <>
-        Un/una {strong(role)} en paisajes {strong(landscape)}, enfrentando {strong(challenge)}, buscando{" "}
-        {strong(solution)}.
+        {strong(role)} en {strong(region)}, interesado/a en {strong(topic.toLowerCase())}, prefiriendo{" "}
+        {strong(format.toLowerCase())}.
       </>
     );
   }
   if (locale === "fr") {
     return (
       <>
-        Un/une {strong(role)} dans des paysages {strong(landscape)}, face à {strong(challenge)}, recherchant{" "}
-        {strong(solution)}.
+        {strong(role)} en {strong(region)}, intéressé(e) par {strong(topic.toLowerCase())}, préférant{" "}
+        {strong(format.toLowerCase())}.
       </>
     );
   }
   return (
     <>
-      A {strong(role)} in {strong(landscape)} landscapes, facing {strong(challenge)}, pursuing {strong(solution)}.
+      {strong(role)} in {strong(region)}, interested in {strong(topic.toLowerCase())}, preferring{" "}
+      {strong(format.toLowerCase())}.
     </>
   );
 }

@@ -45,3 +45,7 @@ design-reference/rendered-reference.html
 
 # originales de imágenes (grandes) — las versiones optimizadas viven en public/images/
 image_referent/
+
+# PDFs originales (~250 MB) — los enlaces de Drive ya están en src/data/documents.ts
+# Mantenemos local-only el Excel fuente y los PDFs.
+Docs/
