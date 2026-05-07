@@ -8,6 +8,12 @@ const FRAME_COUNT = 26;
 const MORPH_START = 0.18;
 /** Breakpoint a partir del cual se activan ambilight y morph. */
 const DESKTOP_MIN = 900;
+/** Altura del stage al final del morph: frame (560) + 16px arriba + 16px abajo. */
+const FINAL_STAGE_H = 592;
+/** Distancia de scroll (px) que dura el morph + scrub. Wrapper se dimensiona para liberar el sticky justo al terminar. */
+const SCROLL_DIST = 720;
+/** Header height (debe coincidir con `top: 72px` en .hero-scrubber-stage). */
+const HEADER_OFFSET = 72;
 
 /** Interpolación lineal con clamp 0–1. */
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
@@ -100,12 +106,30 @@ export function HeroScrollScrubber({ children }: { children: ReactNode }) {
     lastFrameRef.current = idx;
   };
 
-  /* Resize de canvas con DPR + redibuja último frame. */
+  /* Resize de canvas con DPR + redibuja último frame + dimensiona wrapper. */
   useEffect(() => {
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       isDesktopRef.current = window.innerWidth >= DESKTOP_MIN;
       reducedMotionRef.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      // En desktop con motion, el wrapper arranca a viewport + SCROLL_DIST. El
+      // handler de scroll lo va contrayendo en cada frame (wrapper_h = stage_h +
+      // 72 + SCROLL_DIST), sincronizado con la contracción del stage, para que
+      // la sección siguiente suba en lockstep y no quede hueco visible.
+      const wrapper = wrapperRef.current;
+      const stage = stageRef.current;
+      if (wrapper) {
+        if (isDesktopRef.current && !reducedMotionRef.current) {
+          wrapper.style.height = `${window.innerHeight + SCROLL_DIST}px`;
+        } else {
+          wrapper.style.height = "";
+        }
+      }
+      // Reset --stage-h en mobile / reduced-motion para que CSS tome el control.
+      if (stage && (!isDesktopRef.current || reducedMotionRef.current)) {
+        stage.style.removeProperty("--stage-h");
+      }
 
       for (const canvas of [fgCanvasRef.current, ambCanvasRef.current]) {
         if (!canvas) continue;
@@ -133,7 +157,10 @@ export function HeroScrollScrubber({ children }: { children: ReactNode }) {
       if (!w || !stage) return;
 
       const rect = w.getBoundingClientRect();
-      const scrollableDist = w.offsetHeight - window.innerHeight;
+      const isDesktop = isDesktopRef.current && !reducedMotionRef.current;
+      // Desktop usa SCROLL_DIST fijo (coordinado con la altura del wrapper que
+      // ajusta resize()); mobile cae al cálculo basado en el wrapper CSS.
+      const scrollableDist = isDesktop ? SCROLL_DIST : w.offsetHeight - window.innerHeight;
       if (scrollableDist <= 0) return;
       const scrolled = -rect.top;
       const t = Math.max(0, Math.min(1, scrolled / scrollableDist));
@@ -143,24 +170,30 @@ export function HeroScrollScrubber({ children }: { children: ReactNode }) {
       if (frameIdx !== lastFrameRef.current) drawBoth(frameIdx);
 
       // En mobile / reduced-motion, no aplicamos morph ni ambilight.
-      if (!isDesktopRef.current || reducedMotionRef.current) return;
+      if (!isDesktop) return;
 
       // Morph progress: empieza en MORPH_START, termina en t=1, easeOut cubic
       const tMorphRaw = (t - MORPH_START) / (1 - MORPH_START);
       const tMorph = easeOut(Math.max(0, Math.min(1, tMorphRaw)));
 
-      // Estado expandido (tMorph=0): cubre el stage completo
+      // Altura inicial del stage = vh - header (matches CSS default).
+      // Usamos viewport en lugar de stage.offsetHeight porque el stage se está
+      // animando y leerlo daría el valor ya actualizado de la iteración previa.
+      const initialStageH = window.innerHeight - HEADER_OFFSET;
       const stageW = stage.offsetWidth;
-      const stageH = stage.offsetHeight;
 
       // Estado contenido (tMorph=1): box de 1200×560 centrado con border-radius
       const finalW = Math.min(1200, stageW) - 48;
       const finalH = 560;
-      const finalY = 28;
+      const finalY = 16;
       const finalRadius = 6;
 
+      // Stage shrink: de viewport completo a FINAL_STAGE_H (frame + breathing).
+      // Sin esto, queda un gran espacio vacío debajo del frame contraído.
+      const stageH = lerp(initialStageH, FINAL_STAGE_H, tMorph);
+
       const frameW = lerp(stageW, finalW, tMorph);
-      const frameH = lerp(stageH, finalH, tMorph);
+      const frameH = lerp(initialStageH, finalH, tMorph);
       const frameY = lerp(0, finalY, tMorph);
       const frameRadius = lerp(0, finalRadius, tMorph);
 
@@ -169,6 +202,7 @@ export function HeroScrollScrubber({ children }: { children: ReactNode }) {
       const ambScale = lerp(1.4, 1.0, tMorph);
       const ambOpacity = lerp(1.0, 0.0, tMorph);
 
+      stage.style.setProperty("--stage-h", `${stageH}px`);
       stage.style.setProperty("--frame-w", `${frameW}px`);
       stage.style.setProperty("--frame-h", `${frameH}px`);
       stage.style.setProperty("--frame-y", `${frameY}px`);
@@ -176,6 +210,11 @@ export function HeroScrollScrubber({ children }: { children: ReactNode }) {
       stage.style.setProperty("--amb-blur", `${ambBlur}px`);
       stage.style.setProperty("--amb-scale", ambScale.toFixed(3));
       stage.style.setProperty("--amb-opacity", ambOpacity.toFixed(3));
+
+      // Wrapper en lockstep con el stage: wrapper_h = stage_h + 72 + SCROLL_DIST.
+      // Mantiene la matemática del sticky correcta a cualquier viewport y hace
+      // que la siguiente sección suba mientras el frame se contrae.
+      w.style.height = `${stageH + HEADER_OFFSET + SCROLL_DIST}px`;
     };
 
     const onScroll = () => {

@@ -482,12 +482,16 @@ hr.rule {
  * ========================================================== */
 .hero-scrubber {
   position: relative;
-  height: 180vh;
+  /* SSR / pre-hydration: wrapper = stage_h_inicial + SCROLL_DIST (720px).
+     En desktop el JS contrae el wrapper dinámicamente (ver HeroScrollScrubber.tsx)
+     siguiendo la regla wrapper_h = stage_h + 72 + 720, de modo que la siguiente
+     sección "sube" en lockstep con el frame contraído y no queda hueco visible. */
+  height: calc(100vh + 720px);
 }
 .hero-scrubber-stage {
   position: sticky;
   top: 72px;
-  height: calc(100vh - 72px);
+  height: var(--stage-h, calc(100vh - 72px));
   overflow: hidden;
   /* Defaults = estado contenido (lo que ven mobile, reduced-motion y SSR). */
   --frame-w: min(1152px, calc(100vw - 48px));
@@ -576,6 +580,9 @@ hr.rule {
 }
 .sec-sm {
   padding: 48px 0;
+}
+.hero-scrubber + .sec-sm {
+  padding-top: 28px;
 }
 .sec.dark {
   background: var(--ink);
