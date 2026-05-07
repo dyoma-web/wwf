@@ -4,62 +4,75 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { asset } from "@/lib/asset";
 
 const FRAME_COUNT = 26;
-const SCRUB_HEIGHT_VH = 180;
-const HEADER_OFFSET = 72; // altura del Header sticky
+/** Punto en el progreso 0–1 a partir del cual arranca la contracción del frame. */
+const MORPH_START = 0.18;
+/** Breakpoint a partir del cual se activan ambilight y morph. */
+const DESKTOP_MIN = 900;
+
+/** Interpolación lineal con clamp 0–1. */
+const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+/** Ease-out cúbico para que la contracción termine suave. */
+const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
 
 /**
- * Hero con scroll-scrubbed animation: el wrapper exterior es alto
- * (180vh) y dentro un contenedor sticky pinta sobre `<canvas>` el
- * frame correspondiente al progreso de scroll. Aplica las mismas
- * clases del hero original (.hero, .hero-frame) para preservar el
- * espaciado, los CTAs flotantes y la estética del referente.
+ * Hero con tres efectos sincronizados al scroll:
+ *   1. Scrub de frames (canvas avanza/retrocede entre 26 imágenes)
+ *   2. Morph del frame: arranca a viewport completo, termina en su box
+ *      contenido (1200px × 560px con border-radius)
+ *   3. Halo Ambilight: el mismo frame escalado 1.4x y blurreado detrás,
+ *      desvaneciéndose a medida que el frame se contrae
+ *
+ * Mobile (<900px) y `prefers-reduced-motion: reduce` reciben una versión
+ * simple sin ambilight ni morph — solo el scrub de frames.
  */
 export function HeroScrollScrubber({ children }: { children: ReactNode }) {
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
+  const fgCanvasRef = useRef<HTMLCanvasElement>(null);
+  const ambCanvasRef = useRef<HTMLCanvasElement>(null);
   const imagesRef = useRef<HTMLImageElement[]>([]);
   const lastFrameRef = useRef<number>(-1);
   const tickingRef = useRef(false);
+  const isDesktopRef = useRef<boolean>(true);
+  const reducedMotionRef = useRef<boolean>(false);
+  const [progressPct, setProgressPct] = useState(0);
   const [ready, setReady] = useState(false);
-  const [progressPct, setProgressPct] = useState(0); // 0–100, para barra de carga
 
-  /* Carga progresiva de los 26 frames. Frame 0 con prioridad alta para LCP. */
+  /* Carga progresiva de los 26 frames. */
   useEffect(() => {
     let cancelled = false;
-    let loadedCount = 0;
+    let loaded = 0;
     const images: HTMLImageElement[] = [];
 
     for (let i = 0; i < FRAME_COUNT; i++) {
       const img = new Image();
-      // fetchPriority no está en el tipado base de HTMLImageElement aún
       (img as unknown as { fetchPriority: string }).fetchPriority = i === 0 ? "high" : "low";
       img.decoding = "async";
       img.src = asset(`/images/hero-frames/frame-${String(i + 1).padStart(3, "0")}.jpg`);
       img.onload = () => {
         if (cancelled) return;
-        loadedCount += 1;
-        setProgressPct(Math.round((loadedCount / FRAME_COUNT) * 100));
-        if (i === 0) drawFrame(0);
-        if (loadedCount === FRAME_COUNT) {
+        loaded += 1;
+        setProgressPct(Math.round((loaded / FRAME_COUNT) * 100));
+        if (i === 0) drawBoth(0);
+        if (loaded === FRAME_COUNT) {
           setReady(true);
-          drawFrame(0);
+          drawBoth(0);
         }
       };
       images.push(img);
     }
     imagesRef.current = images;
-
     return () => {
       cancelled = true;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  /* Pinta el frame `idx` con cover-fit (igual que object-fit:cover). */
-  const drawFrame = (idx: number) => {
-    const canvas = canvasRef.current;
+  /* drawImage con cover-fit en un canvas dado. */
+  const drawCanvas = (canvas: HTMLCanvasElement | null, idx: number) => {
+    if (!canvas) return;
     const img = imagesRef.current[idx];
-    if (!canvas || !img || !img.complete || img.naturalWidth === 0) return;
+    if (!img || !img.complete || img.naturalWidth === 0) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     const cw = canvas.width;
@@ -79,104 +92,126 @@ export function HeroScrollScrubber({ children }: { children: ReactNode }) {
       dy = (ch - dh) / 2;
     }
     ctx.drawImage(img, dx, dy, dw, dh);
+  };
+
+  const drawBoth = (idx: number) => {
+    drawCanvas(fgCanvasRef.current, idx);
+    if (isDesktopRef.current) drawCanvas(ambCanvasRef.current, idx);
     lastFrameRef.current = idx;
   };
 
-  /* Ajusta el tamaño del canvas a su contenedor con devicePixelRatio. */
+  /* Resize de canvas con DPR + redibuja último frame. */
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const rect = canvas.getBoundingClientRect();
-      canvas.width = Math.max(1, Math.floor(rect.width * dpr));
-      canvas.height = Math.max(1, Math.floor(rect.height * dpr));
-      // Repintar tras resize para no perder el frame actual
-      const last = lastFrameRef.current;
-      if (last >= 0) drawFrame(last);
-      else drawFrame(0);
+      isDesktopRef.current = window.innerWidth >= DESKTOP_MIN;
+      reducedMotionRef.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      for (const canvas of [fgCanvasRef.current, ambCanvasRef.current]) {
+        if (!canvas) continue;
+        const rect = canvas.getBoundingClientRect();
+        if (rect.width === 0 || rect.height === 0) continue;
+        canvas.width = Math.max(1, Math.floor(rect.width * dpr));
+        canvas.height = Math.max(1, Math.floor(rect.height * dpr));
+      }
+      const last = lastFrameRef.current >= 0 ? lastFrameRef.current : 0;
+      drawBoth(last);
     };
     resize();
     window.addEventListener("resize", resize);
     return () => window.removeEventListener("resize", resize);
   }, []);
 
-  /* Listener de scroll que calcula el frame según el progreso del wrapper. */
+  /* Scroll handler: actualiza frame index, morph y ambilight. */
   useEffect(() => {
     const wrapper = wrapperRef.current;
     if (!wrapper) return;
+
+    const update = () => {
+      const w = wrapperRef.current;
+      const stage = stageRef.current;
+      if (!w || !stage) return;
+
+      const rect = w.getBoundingClientRect();
+      const scrollableDist = w.offsetHeight - window.innerHeight;
+      if (scrollableDist <= 0) return;
+      const scrolled = -rect.top;
+      const t = Math.max(0, Math.min(1, scrolled / scrollableDist));
+
+      // Frame index: scrubbing cubre todo el progreso 0–1
+      const frameIdx = Math.min(FRAME_COUNT - 1, Math.floor(t * FRAME_COUNT));
+      if (frameIdx !== lastFrameRef.current) drawBoth(frameIdx);
+
+      // En mobile / reduced-motion, no aplicamos morph ni ambilight.
+      if (!isDesktopRef.current || reducedMotionRef.current) return;
+
+      // Morph progress: empieza en MORPH_START, termina en t=1, easeOut cubic
+      const tMorphRaw = (t - MORPH_START) / (1 - MORPH_START);
+      const tMorph = easeOut(Math.max(0, Math.min(1, tMorphRaw)));
+
+      // Estado expandido (tMorph=0): cubre el stage completo
+      const stageW = stage.offsetWidth;
+      const stageH = stage.offsetHeight;
+
+      // Estado contenido (tMorph=1): box de 1200×560 centrado con border-radius
+      const finalW = Math.min(1200, stageW) - 48;
+      const finalH = 560;
+      const finalY = 28;
+      const finalRadius = 6;
+
+      const frameW = lerp(stageW, finalW, tMorph);
+      const frameH = lerp(stageH, finalH, tMorph);
+      const frameY = lerp(0, finalY, tMorph);
+      const frameRadius = lerp(0, finalRadius, tMorph);
+
+      // Ambilight: fuerte al inicio, se desvanece con la contracción
+      const ambBlur = lerp(80, 0, tMorph);
+      const ambScale = lerp(1.4, 1.0, tMorph);
+      const ambOpacity = lerp(1.0, 0.0, tMorph);
+
+      stage.style.setProperty("--frame-w", `${frameW}px`);
+      stage.style.setProperty("--frame-h", `${frameH}px`);
+      stage.style.setProperty("--frame-y", `${frameY}px`);
+      stage.style.setProperty("--frame-radius", `${frameRadius}px`);
+      stage.style.setProperty("--amb-blur", `${ambBlur}px`);
+      stage.style.setProperty("--amb-scale", ambScale.toFixed(3));
+      stage.style.setProperty("--amb-opacity", ambOpacity.toFixed(3));
+    };
 
     const onScroll = () => {
       if (tickingRef.current) return;
       tickingRef.current = true;
       requestAnimationFrame(() => {
         tickingRef.current = false;
-        const w = wrapperRef.current;
-        if (!w) return;
-        const rect = w.getBoundingClientRect();
-        const scrollableDist = w.offsetHeight - window.innerHeight;
-        if (scrollableDist <= 0) return;
-        const scrolled = -rect.top;
-        const progress = Math.max(0, Math.min(1, scrolled / scrollableDist));
-        const frameIdx = Math.min(FRAME_COUNT - 1, Math.floor(progress * FRAME_COUNT));
-        if (frameIdx !== lastFrameRef.current) drawFrame(frameIdx);
+        update();
       });
     };
 
-    onScroll();
+    update();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", update);
+    };
   }, []);
 
   return (
-    <section className="hero wrap">
-      <div ref={wrapperRef} style={{ height: `${SCRUB_HEIGHT_VH}vh`, position: "relative" }}>
-        <div
-          className="hero-frame"
-          style={{
-            position: "sticky",
-            top: HEADER_OFFSET,
-            height: `min(560px, calc(100vh - ${HEADER_OFFSET}px - 24px))`,
-          }}
-        >
-          <div className="phx soil" style={{ position: "absolute", inset: 0, borderRadius: 6 }}>
-            <canvas
-              ref={canvasRef}
-              style={{
-                width: "100%",
-                height: "100%",
-                display: "block",
-                position: "absolute",
-                inset: 0,
-              }}
-              aria-label="Hiker on a green ridge with mountains and clouds"
-              role="img"
-            />
-            {!ready && (
-              <div
-                aria-hidden
-                style={{
-                  position: "absolute",
-                  left: 16,
-                  bottom: 16,
-                  height: 3,
-                  width: 120,
-                  background: "rgba(255,255,255,.2)",
-                  borderRadius: 2,
-                  overflow: "hidden",
-                }}
-              >
-                <div
-                  style={{
-                    height: "100%",
-                    width: `${progressPct}%`,
-                    background: "var(--orange)",
-                    transition: "width .2s ease",
-                  }}
-                />
-              </div>
-            )}
-          </div>
+    <section ref={wrapperRef} className="hero-scrubber">
+      <div ref={stageRef} className="hero-scrubber-stage">
+        <canvas ref={ambCanvasRef} className="hero-scrubber-amb" aria-hidden />
+        <div className="hero-scrubber-frame hero-frame">
+          <canvas
+            ref={fgCanvasRef}
+            className="hero-scrubber-fg"
+            aria-label="Hiker on a green ridge with mountains and dramatic clouds"
+            role="img"
+          />
+          {!ready && (
+            <div className="hero-scrubber-loader" aria-hidden>
+              <div style={{ width: `${progressPct}%` }} />
+            </div>
+          )}
           {children}
         </div>
       </div>
