@@ -5,7 +5,6 @@ import { isLocale } from "@/i18n/config";
 import { t } from "@/i18n/dict";
 import { Arrow, Book, Coin, Leaf, Pin, Phone, Mail, ChevronLeft, ChevronRight } from "@/components/Icons";
 import { ContactForm } from "@/components/ContactForm";
-import { HeroScrollScrubber } from "@/components/HeroScrollScrubber";
 import { asset } from "@/lib/asset";
 
 export default async function Home({
@@ -18,35 +17,45 @@ export default async function Home({
 
   return (
     <div className="page">
-      {/* HERO con scroll-scrubbed animation */}
-      <HeroScrollScrubber>
-        <div className="hero-overlay-card">
-          <div className="kicker">{t(locale, "hero_eyebrow")}</div>
-          <h1>{t(locale, "hero_title")}</h1>
-          <p>{t(locale, "hero_sub")}</p>
-          <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-            <Link href={`/${locale}/learning`} className="btn orange">
-              {t(locale, "hero_cta1")} <Arrow width={14} height={14} />
-            </Link>
-            <Link href={`/${locale}/navigator`} className="btn ghost-light">
-              {t(locale, "hero_cta2")}
-            </Link>
+      {/* HERO estático con farmer.jpg */}
+      <section className="wrap hero">
+        <div className="hero-frame">
+          <Image
+            src={asset("/images/farmer.jpg")}
+            alt="Farmer in the field"
+            fill
+            priority
+            sizes="(max-width: 800px) 100vw, 1200px"
+            style={{ objectFit: "cover" }}
+          />
+          <div className="hero-overlay-card">
+            <div className="kicker">{t(locale, "hero_eyebrow")}</div>
+            <h1>{t(locale, "hero_title")}</h1>
+            <p>{t(locale, "hero_sub")}</p>
+            <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+              <Link href={`/${locale}/learning`} className="btn orange">
+                {t(locale, "hero_cta1")} <Arrow width={14} height={14} />
+              </Link>
+              <Link href={`/${locale}/navigator`} className="btn ghost-light">
+                {t(locale, "hero_cta2")}
+              </Link>
+            </div>
+          </div>
+          <div className="hero-dots">
+            <span className="on" />
+            <span />
+            <span />
+          </div>
+          <div className="hero-arrows">
+            <button aria-label="Prev">
+              <ChevronLeft width={14} height={14} />
+            </button>
+            <button aria-label="Next">
+              <ChevronRight width={14} height={14} />
+            </button>
           </div>
         </div>
-        <div className="hero-dots">
-          <span className="on" />
-          <span />
-          <span />
-        </div>
-        <div className="hero-arrows">
-          <button aria-label="Prev">
-            <ChevronLeft width={14} height={14} />
-          </button>
-          <button aria-label="Next">
-            <ChevronRight width={14} height={14} />
-          </button>
-        </div>
-      </HeroScrollScrubber>
+      </section>
 
       {/* BY OBJECTIVE / two-col */}
       <section className="wrap sec-sm">
