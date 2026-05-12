@@ -87,7 +87,8 @@ export const Tools = (p: IconProps) => (
 export const Coin = (p: IconProps) => (
   <svg {...base({ strokeWidth: 1.4, ...p })}>
     <circle cx="12" cy="12" r="9" />
-    <path d="M12 7v10M9 9.5c0-1 1.2-2 3-2s3 1 3 2-1.2 1.5-3 2-3 1-3 2 1.2 2 3 2 3-1 3-2" />
+    <path d="M12 6.5v11" />
+    <path d="M15 9c0-1.1-1.3-2-3-2s-3 0.9-3 2 1.3 1.6 3 1.9 3 0.8 3 1.9-1.3 2-3 2-3-0.9-3-2" />
   </svg>
 );
 

@@ -49,6 +49,10 @@ design-reference/rendered-reference.html
 /image_referent/
 /Images/
 
+# Brand assets de WWF (logo, fuente, screenshots de guía) — local-only.
+# Las versiones publicadas viven en public/fonts/ y public/images/.
+/Brand/
+
 # PDFs originales (~250 MB) — los enlaces de Drive ya están en src/data/documents.ts
 # Mantenemos local-only el Excel fuente y los PDFs.
 Docs/

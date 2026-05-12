@@ -261,6 +261,12 @@ const en: Dict = {
     "All documents open in Google Drive (external links). Links may break or become outdated. Catalogue last updated on",
   toolkit_external: "External link",
   toolkit_browse_library: "Browse library",
+
+  // About this site (DRAFT — pending brand team review)
+  about_site_eyebrow: "ABOUT THIS SITE",
+  about_site_title: "Where this microsite sits",
+  about_site_body:
+    "Sustainable Finance for Conservation is a WWF microsite that connects conservation practitioners, finance teams and policy makers with the funding pathways that match their landscape work. It sits within WWF's Conservation Finance programme and consolidates learning units, ready-to-use templates and real landscape cases into one entry point. [DRAFT — placeholder copy, pending review for accuracy on ownership, scope and the specific problem statement.]",
 };
 
 const es: Dict = {
@@ -512,6 +518,12 @@ const es: Dict = {
     "Todos los documentos se abren en Google Drive (enlaces externos). Los enlaces pueden romperse o desactualizarse. Catálogo actualizado por última vez el",
   toolkit_external: "Enlace externo",
   toolkit_browse_library: "Ver biblioteca",
+
+  // Acerca de este sitio (BORRADOR — pendiente de revisión del equipo de marca)
+  about_site_eyebrow: "ACERCA DE ESTE SITIO",
+  about_site_title: "Dónde se ubica este micrositio",
+  about_site_body:
+    "Finanzas Sostenibles para la Conservación es un micrositio de WWF que conecta a profesionales de la conservación, equipos financieros y tomadores de decisión con las rutas de financiamiento que corresponden a su trabajo en el paisaje. Forma parte del programa de Finanzas para la Conservación de WWF y reúne unidades de aprendizaje, plantillas listas para usar y casos reales de paisajes en un solo punto de entrada. [BORRADOR — copy provisional, pendiente de revisión para confirmar la propiedad, el alcance y el planteamiento específico del problema.]",
 };
 
 const fr: Dict = {
@@ -763,6 +775,12 @@ const fr: Dict = {
     "Tous les documents s'ouvrent dans Google Drive (liens externes). Les liens peuvent être rompus ou obsolètes. Catalogue mis à jour pour la dernière fois le",
   toolkit_external: "Lien externe",
   toolkit_browse_library: "Voir la bibliothèque",
+
+  // À propos de ce site (BROUILLON — en attente de révision par l'équipe de marque)
+  about_site_eyebrow: "À PROPOS DE CE SITE",
+  about_site_title: "Où se situe ce microsite",
+  about_site_body:
+    "Finance Durable pour la Conservation est un microsite WWF qui met en relation les professionnels de la conservation, les équipes financières et les décideurs avec les voies de financement adaptées à leur travail paysager. Il fait partie du programme Finance pour la Conservation de WWF et rassemble en un seul point d'entrée des unités d'apprentissage, des modèles prêts à l'emploi et des cas paysagers réels. [BROUILLON — texte provisoire, en attente de révision pour confirmer la propriété, la portée et l'énoncé spécifique du problème.]",
 };
 
 const dicts: Record<Locale, Dict> = { en, es, fr };

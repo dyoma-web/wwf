@@ -1,14 +1,25 @@
 @import "tailwindcss";
 
 /*
- * Sustainable Finance for Conservation — sistema de estilos
- * Portado del referente de diseño: design-reference/project/styles.css
+ * Sustainable Finance for Conservation â€” sistema de estilos
+ * Portado del referente de diseÃ±o: design-reference/project/styles.css
  * Se mantienen los nombres de clase originales (.hero, .tiles, .stats,
  * .lib-block, .contact-block, etc.) para preservar espaciados y
  * proporciones exactas del prototipo.
  */
 
+/* WWF Font (oficial de marca) â€” usar en headers y tagline, siempre en caps.
+   Archivo en public/fonts/WWF.otf. */
+@font-face {
+  font-family: "WWF";
+  src: url("/fonts/WWF.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
+  --font-wwf: "WWF", "Impact", "Oswald", sans-serif;
   --ink: #1d1d1b;
   --ink-2: #2a2a27;
   --muted: #6b6a61;
@@ -27,8 +38,8 @@
   --teal: #009191;
   --accent: var(--orange);
   --accent-ink: var(--orange-ink);
-  --radius: 6px;
-  --radius-lg: 10px;
+  --radius: 0;
+  --radius-lg: 0;
 }
 
 * {
@@ -81,11 +92,12 @@ hr.rule {
 }
 
 .h-display {
-  font-family: var(--font-noto-sans), "Noto Sans", sans-serif;
-  font-weight: 700;
+  font-family: var(--font-wwf);
+  font-weight: 400;
   line-height: 1.05;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.01em;
   color: inherit;
+  text-transform: uppercase;
 }
 .h1 {
   font-size: clamp(38px, 5vw, 62px);
@@ -109,14 +121,16 @@ hr.rule {
   align-items: center;
   gap: 0.5rem;
   padding: 0.8rem 1.25rem;
-  border-radius: 4px;
+  border-radius: 0;
   border: 1px solid var(--ink);
   background: var(--ink);
   color: #fff;
-  font-weight: 600;
-  font-size: 13.5px;
+  font-family: var(--font-wwf);
+  font-weight: 400;
+  font-size: 14px;
   transition: transform 0.12s ease, background 0.12s, border-color 0.12s;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   text-decoration: none;
 }
 .btn:hover {
@@ -170,7 +184,7 @@ hr.rule {
   align-items: center;
   gap: 0.4rem;
   padding: 0.3rem 0.65rem;
-  border-radius: 4px;
+  border-radius: 0;
   border: 1px solid var(--line);
   font-size: 12px;
   background: #fff;
@@ -185,7 +199,7 @@ hr.rule {
 .swatch {
   width: 8px;
   height: 8px;
-  border-radius: 2px;
+  border-radius: 0;
   display: inline-block;
 }
 
@@ -219,30 +233,36 @@ hr.rule {
 .brand {
   display: flex;
   align-items: center;
-  gap: 0.7rem;
+  /* Clearance space del logo WWF: la guÃ­a pide separaciÃ³n equivalente al alto
+     del sÃ­mbolo del panda entre el logo y cualquier copy. ~18-22px funciona. */
+  gap: 22px;
   text-decoration: none;
   color: var(--ink);
 }
 .brand-mark {
-  width: 44px;
-  height: 44px;
+  width: 60px;
+  height: 60px;
   display: grid;
   place-items: center;
-  border-radius: 2px;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  flex-shrink: 0;
 }
 .brand-name {
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.08em;
-  line-height: 1;
+  font-family: var(--font-wwf);
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  line-height: 1.05;
+  text-transform: uppercase;
 }
 .brand-sub {
-  font-size: 10.5px;
+  font-family: var(--font-wwf);
+  font-size: 12px;
   color: var(--muted);
-  margin-top: 3px;
-  letter-spacing: 0.05em;
+  margin-top: 4px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 .nav-main {
   display: flex;
@@ -255,7 +275,7 @@ hr.rule {
   font-size: 13.5px;
   color: var(--ink-2);
   font-weight: 500;
-  border-radius: 2px;
+  border-radius: 0;
 }
 .nav-main a:hover {
   color: var(--orange);
@@ -273,7 +293,7 @@ hr.rule {
   align-items: center;
   gap: 1px;
   border: 1px solid var(--line);
-  border-radius: 2px;
+  border-radius: 0;
   overflow: hidden;
 }
 .lang a,
@@ -304,10 +324,10 @@ hr.rule {
   place-items: center;
   border: 1px solid var(--line);
   background: #fff;
-  border-radius: 2px;
+  border-radius: 0;
 }
 
-/* Responsive: oculta nav desktop en pantallas pequeñas, muestra hamburguesa */
+/* Responsive: oculta nav desktop en pantallas pequeÃ±as, muestra hamburguesa */
 @media (max-width: 900px) {
   .nav-main {
     display: none;
@@ -325,7 +345,7 @@ hr.rule {
 /* photo blocks */
 .photo {
   position: relative;
-  border-radius: 6px;
+  border-radius: 0;
   overflow: hidden;
   background: #2a2a27;
 }
@@ -341,11 +361,11 @@ hr.rule {
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.55) 100%);
 }
 
-/* "placeholder" photos — striped gradient + mono caption */
+/* "placeholder" photos â€” striped gradient + mono caption */
 .phx {
   position: relative;
   overflow: hidden;
-  border-radius: 6px;
+  border-radius: 0;
   background: repeating-linear-gradient(120deg, rgba(255, 255, 255, 0.04) 0 8px, transparent 8px 20px),
     linear-gradient(160deg, var(--forest-2), var(--forest));
   color: #f4f2eb;
@@ -384,14 +404,14 @@ hr.rule {
 }
 .hero-frame {
   position: relative;
-  border-radius: 6px;
+  border-radius: 0;
   overflow: hidden;
   height: 560px;
 }
 .hero-frame .phx {
   position: absolute;
   inset: 0;
-  border-radius: 6px;
+  border-radius: 0;
 }
 .hero-overlay-card {
   position: absolute;
@@ -402,7 +422,7 @@ hr.rule {
   color: #fff;
   padding: 36px 34px;
   max-width: 420px;
-  border-radius: 4px;
+  border-radius: 0;
 }
 .hero-overlay-card .kicker {
   color: var(--orange);
@@ -411,12 +431,13 @@ hr.rule {
   margin-bottom: 8px;
 }
 .hero-overlay-card h1 {
-  font-family: var(--font-noto-sans), "Noto Sans", sans-serif;
+  font-family: var(--font-wwf);
   font-size: 34px;
   line-height: 1.1;
-  font-weight: 700;
+  font-weight: 400;
   margin: 0;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
 }
 .hero-overlay-card p {
   color: #d8d5ca;
@@ -436,7 +457,7 @@ hr.rule {
   width: 28px;
   height: 3px;
   background: rgba(255, 255, 255, 0.4);
-  border-radius: 2px;
+  border-radius: 0;
 }
 .hero-dots span.on {
   background: #fff;
@@ -478,14 +499,14 @@ hr.rule {
 }
 
 /* ==========================================================
- * Hero scroll-scrubber — scrub de frames + morph + ambilight
+ * Hero scroll-scrubber â€” scrub de frames + morph + ambilight
  * ========================================================== */
 .hero-scrubber {
   position: relative;
   /* SSR / pre-hydration: wrapper = stage_h_inicial + SCROLL_DIST (720px).
-     En desktop el JS contrae el wrapper dinámicamente (ver HeroScrollScrubber.tsx)
+     En desktop el JS contrae el wrapper dinÃ¡micamente (ver HeroScrollScrubber.tsx)
      siguiendo la regla wrapper_h = stage_h + 72 + 720, de modo que la siguiente
-     sección "sube" en lockstep con el frame contraído y no queda hueco visible. */
+     secciÃ³n "sube" en lockstep con el frame contraÃ­do y no queda hueco visible. */
   height: calc(100vh + 720px);
 }
 .hero-scrubber-stage {
@@ -540,7 +561,7 @@ hr.rule {
   height: 3px;
   width: 120px;
   background: rgba(255, 255, 255, 0.18);
-  border-radius: 2px;
+  border-radius: 0;
   overflow: hidden;
   z-index: 3;
 }
@@ -550,7 +571,7 @@ hr.rule {
   transition: width 0.2s ease;
 }
 
-/* Mobile: sin ambilight, sin morph, frame en tamaño contenido. */
+/* Mobile: sin ambilight, sin morph, frame en tamaÃ±o contenido. */
 @media (max-width: 900px) {
   .hero-scrubber {
     height: 150vh;
@@ -567,7 +588,7 @@ hr.rule {
   }
 }
 
-/* prefers-reduced-motion: ocultar halo, frame estático en su box. */
+/* prefers-reduced-motion: ocultar halo, frame estÃ¡tico en su box. */
 @media (prefers-reduced-motion: reduce) {
   .hero-scrubber-amb {
     display: none;
@@ -613,7 +634,7 @@ hr.rule {
 }
 .two-col .phx {
   aspect-ratio: 5 / 4;
-  border-radius: 4px;
+  border-radius: 0;
 }
 .two-col h2 {
   margin: 8px 0 14px;
@@ -645,7 +666,7 @@ hr.rule {
 .tile {
   background: var(--ink);
   color: #fff;
-  border-radius: 4px;
+  border-radius: 0;
   padding: 40px 24px;
   display: flex;
   flex-direction: column;
@@ -675,7 +696,7 @@ hr.rule {
 /* Resource library block */
 .lib-block {
   position: relative;
-  border-radius: 6px;
+  border-radius: 0;
   overflow: hidden;
   min-height: 400px;
   display: grid;
@@ -721,7 +742,7 @@ hr.rule {
   gap: 14px;
   background: #fff;
   padding: 16px 20px;
-  border-radius: 4px;
+  border-radius: 0;
   cursor: pointer;
   transition: transform 0.15s;
   border: 0;
@@ -762,7 +783,7 @@ hr.rule {
 .contact-block {
   background: var(--ink);
   color: #fff;
-  border-radius: 6px;
+  border-radius: 0;
   padding: 56px 48px;
   display: grid;
   grid-template-columns: 1fr 1.4fr;
@@ -971,7 +992,7 @@ hr.rule {
 .persona {
   background: #fff;
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: 0;
   padding: 14px;
   display: flex;
   flex-direction: column;
@@ -980,7 +1001,7 @@ hr.rule {
 .persona .avatar {
   width: 100%;
   aspect-ratio: 1 / 1;
-  border-radius: 2px;
+  border-radius: 0;
   background: var(--paper-2);
   position: relative;
   overflow: hidden;
@@ -1002,7 +1023,7 @@ hr.rule {
   gap: 1px;
   background: var(--line);
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: 0;
   overflow: hidden;
 }
 @media (max-width: 900px) {
@@ -1066,7 +1087,7 @@ hr.rule {
   height: min(560px, calc(100vh - 80px));
   background: #fff;
   border: 1px solid var(--line);
-  border-radius: 6px;
+  border-radius: 0;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
@@ -1115,7 +1136,7 @@ hr.rule {
   background: transparent;
   color: #c7c4b8;
   padding: 6px;
-  border-radius: 2px;
+  border-radius: 0;
 }
 .asst-x:hover {
   background: var(--dark-2);
@@ -1133,7 +1154,7 @@ hr.rule {
 .asst-msg {
   max-width: 80%;
   padding: 10px 14px;
-  border-radius: 4px;
+  border-radius: 0;
   font-size: 13.5px;
   line-height: 1.45;
 }
@@ -1157,7 +1178,7 @@ hr.rule {
   font-size: 12px;
   padding: 6px 10px;
   border: 1px solid var(--line);
-  border-radius: 2px;
+  border-radius: 0;
   background: #fff;
   cursor: pointer;
 }
@@ -1176,7 +1197,7 @@ hr.rule {
 .asst-in input {
   flex: 1;
   border: 1px solid var(--line);
-  border-radius: 2px;
+  border-radius: 0;
   padding: 10px 12px;
   font: inherit;
   font-size: 14px;
@@ -1190,7 +1211,7 @@ hr.rule {
   border: 0;
   background: var(--orange);
   color: #fff;
-  border-radius: 2px;
+  border-radius: 0;
   width: 40px;
   height: 40px;
   display: grid;
@@ -1205,7 +1226,7 @@ hr.rule {
 }
 
 /* ==========================================================
- * LEARNING — curriculum con sidebar + detalle de unidad
+ * LEARNING â€” curriculum con sidebar + detalle de unidad
  * ========================================================== */
 .curriculum {
   display: grid;
@@ -1226,7 +1247,7 @@ hr.rule {
   align-self: start;
   background: #fff;
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: 0;
   overflow: hidden;
 }
 .curr-list button {
@@ -1272,7 +1293,7 @@ hr.rule {
 .unit {
   background: #fff;
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: 0;
   overflow: hidden;
 }
 .unit-hd {
@@ -1321,7 +1342,7 @@ hr.rule {
   gap: 16px;
   align-items: center;
   padding: 14px 16px;
-  border-radius: 4px;
+  border-radius: 0;
 }
 .unit-lessons .row:hover {
   background: var(--paper);
@@ -1376,7 +1397,7 @@ hr.rule {
 }
 
 /* ==========================================================
- * NAVIGATOR — Q&A de 4 pasos + panel de resultados
+ * NAVIGATOR â€” Q&A de 4 pasos + panel de resultados
  * ========================================================== */
 .nav-wrap {
   display: grid;
@@ -1396,7 +1417,7 @@ hr.rule {
   background: #fff;
   border: 1px solid var(--line);
   padding: 24px;
-  border-radius: 4px;
+  border-radius: 0;
 }
 .nav-steps {
   display: flex;
@@ -1451,7 +1472,7 @@ hr.rule {
 .qcard {
   background: #fff;
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: 0;
   padding: 40px;
   min-height: 440px;
   display: flex;
@@ -1482,7 +1503,7 @@ hr.rule {
 }
 .opt {
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: 0;
   padding: 18px;
   background: #fff;
   text-align: left;
@@ -1504,7 +1525,7 @@ hr.rule {
 .opt .ic {
   width: 40px;
   height: 40px;
-  border-radius: 4px;
+  border-radius: 0;
   background: var(--paper);
   display: grid;
   place-items: center;
@@ -1535,7 +1556,7 @@ hr.rule {
 }
 .bar {
   height: 3px;
-  border-radius: 3px;
+  border-radius: 0;
   background: var(--line-2);
   overflow: hidden;
   margin-top: 12px;
@@ -1560,7 +1581,7 @@ hr.rule {
 .res-card {
   background: #fff;
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: 0;
   padding: 28px;
 }
 .res-card.dark {
@@ -1582,7 +1603,7 @@ hr.rule {
 .path .mk {
   width: 34px;
   height: 34px;
-  border-radius: 2px;
+  border-radius: 0;
   display: grid;
   place-items: center;
   color: #fff;
@@ -1609,12 +1630,12 @@ hr.rule {
 }
 
 /* ==========================================================
- * TOOLKIT — mapa + casos + biblioteca
+ * TOOLKIT â€” mapa + casos + biblioteca
  * ========================================================== */
 .map-wrap {
   background: var(--ink);
   color: #fff;
-  border-radius: 4px;
+  border-radius: 0;
   padding: 24px;
   position: relative;
   overflow: hidden;
@@ -1627,12 +1648,12 @@ hr.rule {
   height: auto;
   display: block;
   background: #2a2a27;
-  border-radius: 4px;
+  border-radius: 0;
 }
 .case-card {
   background: #fff;
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: 0;
   overflow: hidden;
 }
 .case-card .cover {
@@ -1684,13 +1705,13 @@ hr.rule {
   align-items: center;
   padding: 16px 18px;
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: 0;
   background: #fff;
 }
 .lib-item .ic {
   width: 48px;
   height: 58px;
-  border-radius: 2px;
+  border-radius: 0;
   background: var(--paper);
   display: grid;
   place-items: center;
@@ -1708,7 +1729,7 @@ hr.rule {
 }
 
 /* ==========================================================
- * Toolkit / Navigator — utilidades compartidas
+ * Toolkit / Navigator â€” utilidades compartidas
  * ========================================================== */
 .chip .swatch {
   margin-right: 0;
@@ -1729,7 +1750,7 @@ hr.rule {
 .search-input input {
   padding: 9px 14px 9px 34px;
   border: 1px solid var(--line);
-  border-radius: 3px;
+  border-radius: 0;
   background: #fff;
   font: inherit;
   font-size: 13.5px;
@@ -1741,7 +1762,7 @@ hr.rule {
 }
 
 /* ==========================================================
- * Leaflet — overrides para alinear con el tema oscuro del sitio
+ * Leaflet â€” overrides para alinear con el tema oscuro del sitio
  * ========================================================== */
 .leaflet-container {
   font-family: var(--font-noto-sans), sans-serif;
@@ -1753,7 +1774,7 @@ hr.rule {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
   padding: 8px 12px;
   font-size: 12.5px;
-  border-radius: 3px;
+  border-radius: 0;
 }
 .leaflet-tooltip-top::before {
   border-top-color: rgba(29, 29, 27, 0.95);

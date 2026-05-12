@@ -57,6 +57,21 @@ export default async function Home({
         </div>
       </section>
 
+      {/* ABOUT THIS SITE — explica qué es el sitio, dónde se ubica dentro
+          de WWF, quién lo opera y a quién sirve. Copy en borrador, pendiente
+          de revisión por el equipo de marca. */}
+      <section className="wrap sec-sm" style={{ paddingBottom: 0 }}>
+        <div style={{ maxWidth: 820, margin: "0 auto", textAlign: "center" }}>
+          <div className="eyebrow">{t(locale, "about_site_eyebrow")}</div>
+          <h2 className="h-display h2" style={{ marginTop: 6, marginBottom: 14 }}>
+            {t(locale, "about_site_title")}
+          </h2>
+          <p className="lede" style={{ marginInline: "auto" }}>
+            {t(locale, "about_site_body")}
+          </p>
+        </div>
+      </section>
+
       {/* BY OBJECTIVE / two-col */}
       <section className="wrap sec-sm">
         <div className="two-col">

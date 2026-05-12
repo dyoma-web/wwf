@@ -26,7 +26,7 @@ const LeafletMap = dynamic(() => import("./LeafletMap").then((m) => m.LeafletMap
       style={{
         width: "100%",
         height: 420,
-        borderRadius: 4,
+        borderRadius: 0,
         background: "#1d1d1b",
         display: "grid",
         placeItems: "center",
@@ -34,7 +34,7 @@ const LeafletMap = dynamic(() => import("./LeafletMap").then((m) => m.LeafletMap
         fontSize: 12,
       }}
     >
-      Loading map…
+      Loading mapâ€¦
     </div>
   ),
 });
@@ -173,7 +173,7 @@ function ToolkitInner({ locale }: { locale: Locale }) {
             <div style={{ padding: "22px 24px", display: "flex", flexDirection: "column", flex: 1 }}>
               <div className="eyebrow" style={{ color: REGION_COLORS[activePin.regions[0]] }}>
                 {t(locale, `region_${activePin.regions[0]}`).toUpperCase()}
-                {" · "}
+                {" Â· "}
                 {t(locale, `topic_${activePin.topic}`).toUpperCase()}
               </div>
               <h3 style={{ fontSize: 22, fontWeight: 700, margin: "6px 0 6px", letterSpacing: "-.01em" }}>
@@ -219,7 +219,7 @@ function ToolkitInner({ locale }: { locale: Locale }) {
               <div className="body">
                 <div className="eyebrow" style={{ color, fontSize: 11.5, letterSpacing: ".04em" }}>
                   {t(locale, `type_${d.type.replace(/-/g, "_")}`).toUpperCase()}
-                  {" · "}
+                  {" Â· "}
                   {t(locale, `topic_${d.topic}`).toUpperCase()}
                 </div>
                 <h4>{d.title}</h4>
@@ -282,7 +282,7 @@ function ToolkitInner({ locale }: { locale: Locale }) {
           padding: "16px 20px",
           background: "var(--paper)",
           border: "1px solid var(--line)",
-          borderRadius: 4,
+          borderRadius: 0,
         }}
       >
         <FacetSelect
@@ -391,7 +391,7 @@ function FacetSelect({
         style={{
           padding: "7px 28px 7px 10px",
           border: "1px solid var(--line)",
-          borderRadius: 3,
+          borderRadius: 0,
           background: "#fff",
           font: "inherit",
           fontSize: 13,
@@ -434,7 +434,7 @@ function DocCard({ doc, locale }: { doc: Doc; locale: Locale }) {
         alignItems: "flex-start",
         padding: "18px 20px",
         border: "1px solid var(--line)",
-        borderRadius: 4,
+        borderRadius: 0,
         background: "#fff",
         textDecoration: "none",
         color: "inherit",
@@ -447,7 +447,7 @@ function DocCard({ doc, locale }: { doc: Doc; locale: Locale }) {
         style={{
           width: 48,
           height: 58,
-          borderRadius: 2,
+          borderRadius: 0,
           background: "var(--paper)",
           display: "grid",
           placeItems: "center",
@@ -484,7 +484,7 @@ function DocCard({ doc, locale }: { doc: Doc; locale: Locale }) {
         >
           <span style={{ fontSize: 11, color: "var(--muted)" }}>{doc.fileName}</span>
           <span style={{ fontSize: 12, fontWeight: 600, color: "var(--orange)", whiteSpace: "nowrap" }}>
-            {t(locale, "nav_open_doc")} →
+            {t(locale, "nav_open_doc")} â†’
           </span>
         </div>
       </div>

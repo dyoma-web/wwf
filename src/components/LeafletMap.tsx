@@ -29,7 +29,7 @@ export function LeafletMap({
       maxZoom={7}
       scrollWheelZoom={false}
       worldCopyJump
-      style={{ width: "100%", height: 420, borderRadius: 4, background: "#1d1d1b" }}
+      style={{ width: "100%", height: 420, borderRadius: 0, background: "#1d1d1b" }}
       attributionControl
     >
       <TileLayer
@@ -41,7 +41,7 @@ export function LeafletMap({
         const isActive = p.id === active;
         // key incluye isActive para forzar re-mount cuando cambia el pin activo:
         // Leaflet no propaga el prop `permanent` del Tooltip a la instancia ya
-        // montada, así que hay que destruir y re-crear el marker+tooltip.
+        // montada, asÃ­ que hay que destruir y re-crear el marker+tooltip.
         return (
           <Fragment key={`${p.id}-${isActive ? "on" : "off"}`}>
             {isActive && (

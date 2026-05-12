@@ -15,11 +15,11 @@ export function Footer({ locale }: Props) {
           <Link className="brand" href={`/${locale}`}>
             <div className="brand-mark">
               <Image
-                src={asset("/images/wwf-logo.png")}
+                src={asset("/images/wwf-logo-full.png")}
                 alt="WWF"
-                width={44}
-                height={44}
-                style={{ objectFit: "contain" }}
+                width={60}
+                height={60}
+                style={{ objectFit: "contain", width: "auto", height: "60px" }}
               />
             </div>
             <div>
