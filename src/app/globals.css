@@ -219,7 +219,10 @@ hr.rule {
 .site-hd {
   position: sticky;
   top: 0;
-  z-index: 50;
+  /* Leaflet usa z-indexes internos altos (tiles 200, popups 700, controles 800).
+     Subimos a 1000 para asegurar que el header siempre quede encima del mapa
+     incluso cuando el stacking context interno falla por algún motivo. */
+  z-index: 1000;
   background: #fff;
   border-bottom: 1px solid var(--line);
 }
@@ -1639,6 +1642,9 @@ hr.rule {
   padding: 24px;
   position: relative;
   overflow: hidden;
+  /* Aísla los z-indexes internos de Leaflet (tiles, popups, controles) en su
+     propio stacking context para que no compitan con el header sticky. */
+  isolation: isolate;
 }
 .map-wrap .eyebrow.muted {
   color: #9b988b;
