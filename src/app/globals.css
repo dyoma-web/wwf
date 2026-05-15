@@ -1805,3 +1805,225 @@ hr.rule {
   border: 1px solid #3a3a36 !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
 }
+
+/* ==========================================================
+ * Proposal Builder
+ * ========================================================== */
+.pb-shell {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 36px;
+  align-items: start;
+  padding-top: 32px;
+  padding-bottom: 72px;
+}
+@media (max-width: 900px) {
+  .pb-shell {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.pb-stepper {
+  position: sticky;
+  top: 88px;
+  background: var(--paper);
+  padding: 22px 18px;
+  border: 1px solid var(--line);
+}
+@media (max-width: 900px) {
+  .pb-stepper {
+    position: static;
+  }
+}
+.pb-stepper-head {
+  margin-bottom: 18px;
+}
+.pb-progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 600;
+}
+.pb-progress-bar {
+  flex: 1;
+  height: 4px;
+  background: var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.pb-progress-bar > div {
+  height: 100%;
+  background: var(--orange);
+  transition: width 0.25s ease;
+}
+.pb-stepper-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 2px;
+}
+.pb-step-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  color: var(--muted);
+  border-left: 2px solid transparent;
+  transition: background 0.12s, color 0.12s;
+}
+.pb-step-btn:hover {
+  background: rgba(0, 0, 0, 0.03);
+  color: var(--ink);
+}
+.pb-step-btn.active {
+  background: #fff;
+  color: var(--ink);
+  border-left-color: var(--orange);
+  font-weight: 600;
+}
+.pb-step-btn.done {
+  color: var(--ink-2);
+}
+.pb-step-num {
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  background: var(--line);
+  font-size: 11.5px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.pb-step-btn.active .pb-step-num {
+  background: var(--orange);
+  color: #fff;
+}
+.pb-step-btn.done .pb-step-num {
+  background: var(--ink);
+  color: #fff;
+}
+.pb-step-name {
+  font-size: 13.5px;
+}
+.pb-stepper-foot {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.pb-save-state {
+  font-size: 11.5px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.pb-body {
+  min-width: 0;
+}
+.pb-step-head {
+  margin-bottom: 24px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+.pb-step-content {
+  min-height: 200px;
+}
+.pb-step-refs {
+  margin-top: 36px;
+  padding: 18px;
+  background: var(--paper);
+  border-left: 3px solid var(--orange);
+}
+.pb-refs-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 4px;
+}
+.pb-refs-list li a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  color: var(--ink-2);
+  font-size: 13px;
+  border-bottom: 1px solid transparent;
+}
+.pb-refs-list li a:hover {
+  color: var(--orange);
+}
+.pb-ref-title {
+  flex: 1;
+}
+
+.pb-step-foot {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+/* Inputs del builder */
+.pb-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  background: #fff;
+  font: inherit;
+  font-size: 14px;
+  color: var(--ink);
+  border-radius: 0;
+  transition: border-color 0.12s;
+}
+.pb-input:focus {
+  outline: 2px solid var(--orange);
+  outline-offset: 1px;
+  border-color: var(--orange);
+}
+textarea.pb-input {
+  resize: vertical;
+  font-family: inherit;
+  line-height: 1.55;
+}
+.pb-input-borderless {
+  border: 0;
+  padding: 6px 8px;
+  font-size: 13px;
+}
+.pb-input-borderless:focus {
+  outline: 1px solid var(--orange);
+  outline-offset: 0;
+}
+
+/* Resumen del review */
+.pb-summary {
+  padding: 20px 22px;
+  background: var(--paper);
+  border-left: 4px solid var(--orange);
+}
+.pb-summary h3 {
+  font-family: var(--font-wwf);
+  font-weight: 400;
+  font-size: 22px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 0 0 6px;
+  line-height: 1.2;
+}
+.pb-summary-meta {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 2px;
+}
