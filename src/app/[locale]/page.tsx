@@ -104,7 +104,9 @@ export default async function Home({
             </div>
             <div className="t">{t(locale, "tile1")}</div>
           </Link>
-          <Link href={`/${locale}/navigator`} className="tile">
+          {/* tile2 apunta temporalmente al placeholder /constructor/ mientras
+              WWF autoriza publicar el Proposal Builder (vive en /proposal-builder/). */}
+          <Link href={`/${locale}/constructor`} className="tile">
             <div className="ic">
               <Coin width={26} height={26} />
             </div>

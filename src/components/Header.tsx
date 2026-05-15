@@ -30,7 +30,9 @@ export function Header({ locale }: Props) {
     { id: "learning", label: t(locale, "nav_learn") },
     { id: "navigator", label: t(locale, "nav_finance") },
     { id: "toolkit", label: t(locale, "nav_toolkit") },
-    { id: "proposal-builder", label: t(locale, "nav_builder") },
+    // El Proposal Builder vive en /proposal-builder/ pero está oculto del nav
+    // hasta que WWF autorice publicarlo. La ruta /constructor/ muestra un
+    // placeholder "Próximamente" enlazado solo desde el tile 2 de la home.
   ];
 
   const hrefFor = (id: string) => `/${locale}${id ? `/${id}` : ""}`;

@@ -509,6 +509,14 @@ const en: Dict = {
   pb_pdf_name: "Name",
   pb_pdf_role: "Role",
   pb_pdf_engagement: "Engagement",
+
+  // Constructor — coming soon placeholder
+  coming_eyebrow: "COMING SOON",
+  coming_title: "A guided builder for proposals and financing — landing here soon",
+  coming_body:
+    "We're preparing a hands-on workspace that helps you structure a project idea, build a budget, map stakeholders and download a polished proposal ready to take to funders. It's almost ready — check back soon.",
+  coming_cta_toolkit: "Browse the resource library",
+  coming_cta_learning: "Start learning",
 };
 
 const es: Dict = {
@@ -1005,6 +1013,14 @@ const es: Dict = {
   pb_pdf_name: "Nombre",
   pb_pdf_role: "Rol",
   pb_pdf_engagement: "Involucramiento",
+
+  // Constructor — placeholder próximamente
+  coming_eyebrow: "PRÓXIMAMENTE",
+  coming_title: "Un constructor guiado para propuestas y financiamiento — aterriza pronto aquí",
+  coming_body:
+    "Estamos preparando un espacio de trabajo guiado que te ayuda a estructurar una idea de proyecto, armar el presupuesto, mapear a los actores y descargar una propuesta pulida lista para presentar a financiadores. Está a punto — vuelve pronto.",
+  coming_cta_toolkit: "Explorar la biblioteca de recursos",
+  coming_cta_learning: "Empezar a aprender",
 };
 
 const fr: Dict = {
@@ -1489,6 +1505,14 @@ const fr: Dict = {
   pb_pdf_name: "Nom",
   pb_pdf_role: "Rôle",
   pb_pdf_engagement: "Engagement",
+
+  // Constructeur — placeholder bientôt
+  coming_eyebrow: "BIENTÔT",
+  coming_title: "Un constructeur guidé pour propositions et financement — atterrit bientôt ici",
+  coming_body:
+    "Nous préparons un espace de travail guidé qui vous aide à structurer une idée de projet, construire le budget, cartographier les parties prenantes et télécharger une proposition soignée prête à présenter aux financeurs. C'est presque prêt — revenez bientôt.",
+  coming_cta_toolkit: "Explorer la bibliothèque",
+  coming_cta_learning: "Commencer à apprendre",
 };
 
 const dicts: Record<Locale, Dict> = { en, es, fr };
