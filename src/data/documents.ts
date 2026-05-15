@@ -10,7 +10,7 @@
  * mismos `id` para no romper enlaces compartidos al Toolkit.
  */
 
-export const DOCS_LAST_UPDATED = "2026-05-06";
+export const DOCS_LAST_UPDATED = "2026-05-15";
 
 export type DocType =
   | "case-study"
@@ -473,6 +473,79 @@ export const DOCS: Doc[] = [
     financeTypes: ["debt", "equity", "grants"],
     tags: ["organic honey", "sustainable beekeeping", "miombo woodland", "MoMo4C"],
     map: { position: [-15.4, 28.3], label: "Wuchi Wami (Zambia)" },
+  },
+
+  /* === Food & Agriculture: agrifood systems, NDCs y prácticas (2024-2026) === */
+
+  {
+    id: "agrifood-systems-primer",
+    title: "Nature-Positive Agrifood Systems Toolkit — Primer",
+    fileName: "Agri-food-Systems-Toolkit-Primer.pdf",
+    description:
+      "Primer introductorio sobre el Nature-Positive Agrifood Systems Toolkit, avanzando acción climática y de biodiversidad en agricultura y sistemas alimentarios. Explica por qué los sistemas agroalimentarios son palanca clave para mitigación, adaptación y restauración de biodiversidad.",
+    url: "https://drive.google.com/file/d/1QGqqtKXLJoAj3IJIAl4kLuCPO8YNj9vX/view?usp=sharing",
+    type: "guide",
+    topic: "basics",
+    audiences: ["practitioner", "policymaker", "ngo", "researcher"],
+    regions: ["global"],
+    financeTypes: [],
+    tags: ["agrifood systems", "nature-positive", "climate action", "biodiversity", "food systems transformation"],
+  },
+  {
+    id: "sfs-5th-conference-outcome",
+    title: "Outcome Document — 5th Global Conference, One Planet SFS Programme",
+    fileName: "Final Outcome Document_5th Global Conference SFS Programme.pdf",
+    description:
+      "Documento final de la 5ª Conferencia Global del One Planet Network's Sustainable Food Systems (SFS) Programme. Reúne conclusiones sobre cómo superar las barreras a la transformación de los sistemas alimentarios mediante políticas coherentes y soluciones sensibles a la equidad para combatir hambre, pérdida de biodiversidad y crisis climática.",
+    url: "https://drive.google.com/file/d/18iNVrSKkg4KTXv4fBdUagC_ARuc-zj-Y/view?usp=sharing",
+    type: "report",
+    topic: "strategy",
+    audiences: ["policymaker", "ngo", "researcher"],
+    regions: ["global"],
+    financeTypes: [],
+    tags: ["food systems transformation", "policy coherence", "SFS programme", "One Planet Network", "equity"],
+  },
+  {
+    id: "food-forward-ndcs",
+    title: "Food Forward NDCs — Climate Solutions in Food Systems",
+    fileName: "Food_Forward_NDCs.pdf",
+    description:
+      "Evaluación de las Contribuciones Determinadas a Nivel Nacional (NDCs 3.0) para la transformación de la agricultura y los sistemas alimentarios. Identifica brechas, oportunidades y prioridades para integrar la mitigación y adaptación de sistemas alimentarios en las NDCs. Producido por WWF Food Practice y Climate Focus.",
+    url: "https://drive.google.com/file/d/1TLi_QQcUvwe3KHX8rxWalZrJTG5rLcTs/view?usp=sharing",
+    type: "report",
+    topic: "strategy",
+    audiences: ["policymaker", "ngo", "researcher", "practitioner"],
+    regions: ["global"],
+    financeTypes: ["grants", "private-investment"],
+    tags: ["NDCs", "climate policy", "food systems", "WWF Food Practice", "Climate Focus", "mitigation", "adaptation"],
+  },
+  {
+    id: "toolkit-national-action-cbw-agrifood",
+    title: "Toolkit for National Action on Climate, Biodiversity & Water in Agrifood Systems",
+    fileName: "Toolkit-for-National-Action-on-Climate-Biodiversity-and-Water-in-Agriculture-and-Food-Systems.pdf",
+    description:
+      "Toolkit de WWF, FAO y NDC Partnership que recoge buenas prácticas, iniciativas y herramientas para transformar los sistemas alimentarios a través de NDCs, Planes Nacionales de Adaptación (NAPs) y Estrategias Nacionales de Biodiversidad (NBSAPs). Pensado para gobiernos y socios técnicos.",
+    url: "https://drive.google.com/file/d/1my189x5gum_arOgGOD2_vrpQ_ho1acrZ/view?usp=sharing",
+    type: "guide",
+    topic: "implementation",
+    audiences: ["policymaker", "practitioner", "ngo"],
+    regions: ["global"],
+    financeTypes: [],
+    tags: ["NDCs", "NAPs", "NBSAPs", "food system transformation", "climate", "biodiversity", "water", "FAO", "NDC Partnership"],
+  },
+  {
+    id: "food-forward-rice-cultivation",
+    title: "Food Forward — Implementing Sustainable Rice Cultivation Practices",
+    fileName: "food-forward-implementing-sustainable-rice-cultivation-practices-603.pdf",
+    description:
+      "Brief práctico sobre la implementación de prácticas sostenibles de cultivo de arroz. Aborda sistemas de arroz inundado y arroz de siembra directa (DSR), su impacto en biodiversidad, emisiones de metano y uso de agua, con énfasis en paisajes asiáticos donde el arroz es cultivo base.",
+    url: "https://drive.google.com/file/d/1r58tVhQ9Pu8r_xMvLdk9Eg1r4QBxwp6-/view?usp=sharing",
+    type: "brief",
+    topic: "implementation",
+    audiences: ["practitioner", "policymaker", "community", "ngo"],
+    regions: ["global", "asia"],
+    financeTypes: [],
+    tags: ["sustainable rice", "DSR", "wet rice systems", "methane reduction", "water management", "biodiversity", "Asia"],
   },
 ];
 
