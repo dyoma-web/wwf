@@ -30,12 +30,12 @@ const en: Dict = {
   discover_body:
     "Welcome to your strategic hub for the Landscape Finance Approach (LFA). Master the tools, toolkits, and case studies designed to unlock and scale sustainable capital where nature and communities need it most.",
 
-  // About / By objective
-  about_eyebrow: "ABOUT US",
-  about_title: "By objective",
+  // By objective → Master the Framework (slide 3, bloque C del deck WWF)
+  about_eyebrow: "LEARNING PATH",
+  about_title: "Master the Landscape Finance Framework",
   about_body:
-    "Whether you are working on restoration, protected areas, or regenerative food systems, this platform reorganises everything by what you are trying to achieve — not by institutional silos. Pick your objective and we show you the modules, pathways, templates and cases that map to it.",
-  about_cta: "Show me",
+    "Accelerate your expertise through five strategic phases. From core concepts and program design to screening financial solutions, project pitching, and analysing real-world case studies — this course equips you to work for nature and people by sourcing capital effectively.",
+  about_cta: "Explore the curriculum",
 
   // Tiles
   tile1: "Start learning",
@@ -569,11 +569,11 @@ const es: Dict = {
   discover_body:
     "Te damos la bienvenida a tu centro estratégico para el Enfoque de Finanzas del Paisaje (LFA). Domina las herramientas, los kits y los casos de estudio diseñados para desbloquear y escalar capital sostenible donde la naturaleza y las comunidades más lo necesitan.",
 
-  about_eyebrow: "ACERCA DE",
-  about_title: "Por objetivo",
+  about_eyebrow: "RUTA DE APRENDIZAJE",
+  about_title: "Domina el marco de Finanzas del Paisaje",
   about_body:
-    "Ya sea que trabajes en restauración, áreas protegidas o sistemas alimentarios regenerativos, esta plataforma reorganiza todo por lo que quieres lograr — no por silos institucionales. Elige tu objetivo y te mostramos los módulos, rutas, plantillas y casos que le corresponden.",
-  about_cta: "Ver más",
+    "Acelera tu experiencia a través de cinco fases estratégicas. Desde los conceptos básicos y el diseño del programa hasta la selección de soluciones financieras, la presentación de proyectos y el análisis de casos reales — este curso te prepara para trabajar por la naturaleza y las personas movilizando capital de forma efectiva.",
+  about_cta: "Ver el currículo",
 
   tile1: "Empezar a aprender",
   tile2: "Opciones financieras",
@@ -1098,11 +1098,11 @@ const fr: Dict = {
   discover_body:
     "Bienvenue dans votre pôle stratégique pour l'approche Finance Paysagère (LFA). Maîtrisez les outils, les boîtes à outils et les études de cas conçus pour débloquer et déployer des capitaux durables là où la nature et les communautés en ont le plus besoin.",
 
-  about_eyebrow: "À PROPOS",
-  about_title: "Par objectif",
+  about_eyebrow: "PARCOURS D'APPRENTISSAGE",
+  about_title: "Maîtrisez le cadre de la Finance Paysagère",
   about_body:
-    "Que vous travailliez sur la restauration, les aires protégées ou les systèmes alimentaires régénératifs, cette plateforme réorganise tout par ce que vous cherchez à accomplir — pas par silos institutionnels.",
-  about_cta: "Voir plus",
+    "Développez votre expertise à travers cinq phases stratégiques. Des concepts fondamentaux et la conception de programme à la sélection des solutions financières, la présentation de projets et l'analyse de cas réels — ce cours vous prépare à œuvrer pour la nature et les populations en mobilisant des capitaux efficacement.",
+  about_cta: "Voir le programme",
 
   tile1: "Se former",
   tile2: "Options financières",

@@ -89,7 +89,7 @@ export default async function Home({
             <div className="eyebrow">{t(locale, "about_eyebrow")}</div>
             <h2 className="h-display">{t(locale, "about_title")}</h2>
             <p>{t(locale, "about_body")}</p>
-            <Link href={`/${locale}/navigator`} className="btn orange">
+            <Link href={`/${locale}/learning`} className="btn orange">
               {t(locale, "about_cta")} <Arrow width={14} height={14} />
             </Link>
           </div>
