@@ -136,18 +136,22 @@ export default async function Home({
         <div className="stats">
           <div className="stat">
             <div className="n">{t(locale, "stat1_n")}</div>
+            <div className="title">{t(locale, "stat1_title")}</div>
             <div className="t">{t(locale, "stat1_t")}</div>
           </div>
           <div className="stat">
             <div className="n green">{t(locale, "stat2_n")}</div>
+            <div className="title">{t(locale, "stat2_title")}</div>
             <div className="t">{t(locale, "stat2_t")}</div>
           </div>
           <div className="stat">
             <div className="n teal">{t(locale, "stat3_n")}</div>
+            <div className="title">{t(locale, "stat3_title")}</div>
             <div className="t">{t(locale, "stat3_t")}</div>
           </div>
           <div className="stat">
             <div className="n ink">{t(locale, "stat4_n")}</div>
+            <div className="title">{t(locale, "stat4_title")}</div>
             <div className="t">{t(locale, "stat4_t")}</div>
           </div>
         </div>

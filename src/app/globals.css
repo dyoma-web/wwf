@@ -1059,10 +1059,17 @@ hr.rule {
 .stat .n.green {
   color: var(--forest-2);
 }
+.stat .title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-top: 10px;
+  letter-spacing: 0.01em;
+}
 .stat .t {
   font-size: 13px;
   color: var(--muted);
-  margin-top: 8px;
+  margin-top: 4px;
   line-height: 1.4;
 }
 
