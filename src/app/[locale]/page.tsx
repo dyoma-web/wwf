@@ -158,8 +158,8 @@ export default async function Home({
         <div className="lib-block">
           <div className="bg" style={{ overflow: "hidden" }}>
             <Image
-              src={asset("/images/deck-13.jpg")}
-              alt="Wetland landscape"
+              src={asset("/images/case-sintang-indonesia.jpg")}
+              alt="Conservation landscape"
               fill
               sizes="(max-width: 800px) 100vw, 1200px"
               style={{ objectFit: "cover", objectPosition: "center" }}

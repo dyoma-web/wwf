@@ -35,7 +35,7 @@ const UNITS: Unit[] = [
     id: "p1",
     phaseColor: "var(--teal)",
     num: "01",
-    cover: "/images/deck-14.jpg",
+    cover: "/images/case-mtb-madagascar-seascape.jpg",
     title: {
       en: "Core Concepts of Landscape Finance",
       es: "Conceptos básicos de las Finanzas del Paisaje",
@@ -93,7 +93,7 @@ const UNITS: Unit[] = [
     id: "p2",
     phaseColor: "var(--forest-2)",
     num: "02",
-    cover: "/images/deck-15.jpg",
+    cover: "/images/case-bns-forest-africa-zambia.jpg",
     title: {
       en: "Designing a Landscape Finance Program",
       es: "Diseño de un programa de Finanzas del Paisaje",
@@ -151,7 +151,7 @@ const UNITS: Unit[] = [
     id: "p3",
     phaseColor: "var(--orange)",
     num: "03",
-    cover: "/images/deck-16.jpg",
+    cover: "/images/case-bns-minh-phu-vietnam.jpg",
     title: {
       en: "Screening Financial Solutions",
       es: "Selección de soluciones financieras",
@@ -201,7 +201,7 @@ const UNITS: Unit[] = [
     id: "p4",
     phaseColor: "var(--forest-2)",
     num: "04",
-    cover: "/images/deck-17.jpg",
+    cover: "/images/case-bns-chanzi-tanzania.jpg",
     title: {
       en: "Pitching the Project",
       es: "Presentar el proyecto a financiadores",
@@ -243,7 +243,7 @@ const UNITS: Unit[] = [
     id: "p5",
     phaseColor: "var(--teal)",
     num: "05",
-    cover: "/images/deck-18.jpg",
+    cover: "/images/case-bns-concepta-brazil.jpg",
     title: {
       en: "Real-World Case Studies",
       es: "Casos de estudio reales",

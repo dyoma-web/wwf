@@ -49,14 +49,23 @@ const REGION_COLORS: Record<Region, string> = {
   europe: "#6b6a61",
 };
 
-/** Docs con portada propia en public/images/case-<id>.jpg (slide 23 del deck WWF).
- *  Coincide con los docs `featured: true` del catálogo. */
+/** Docs con portada propia en public/images/case-<id>.jpg.
+ *  Incluye los 6 destacados (slide 23) + las ubicaciones del mapa (slides 12-22).
+ *  Pendientes de imagen: bns-sococam-cameroon, bns-koa-ghana,
+ *  bns-colorquimica-colombia (mantienen placeholder hasta recibir la foto). */
 const CASE_COVERS = new Set<string>([
+  // destacados (grid de case studies)
   "lfa-guide",
   "lfa-practitioner-playbook",
+  "bns-guide",
+  // ubicaciones del mapa (slides 12-22)
   "mtb-madagascar-seascape",
   "sintang-indonesia",
-  "bns-guide",
+  "bns-wuchi-wami-zambia",
+  "bns-minh-phu-vietnam",
+  "bns-forest-africa-zambia",
+  "bns-chanzi-tanzania",
+  "bns-cinch-kenya",
   "bns-concepta-brazil",
 ]);
 
