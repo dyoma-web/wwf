@@ -531,8 +531,18 @@ function DocCard({ doc, locale }: { doc: Doc; locale: Locale }) {
           }}
         >
           <span style={{ fontSize: 11, color: "var(--muted)" }}>{doc.fileName}</span>
-          <span style={{ fontSize: 12, fontWeight: 600, color: "var(--orange)", whiteSpace: "nowrap" }}>
-            {t(locale, "nav_open_doc")} â†’
+          <span
+            style={{
+              fontSize: 12,
+              fontWeight: 600,
+              color: "var(--orange)",
+              whiteSpace: "nowrap",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 4,
+            }}
+          >
+            {t(locale, "nav_open_doc")} <Arrow width={12} height={12} />
           </span>
         </div>
       </div>
