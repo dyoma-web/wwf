@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Noto_Sans, JetBrains_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
 const notoSans = Noto_Sans({
@@ -13,6 +14,14 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
   weight: ["400", "500"],
+  display: "swap",
+});
+
+/* Fuente oficial WWF. Se carga con next/font/local para que respete el
+   basePath (/wwf) automáticamente — el @font-face con url absoluta daba 404. */
+const wwfFont = localFont({
+  src: "../../public/fonts/WWF.otf",
+  variable: "--font-wwf-local",
   display: "swap",
 });
 
@@ -31,7 +40,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${notoSans.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" className={`${notoSans.variable} ${jetbrainsMono.variable} ${wwfFont.variable}`}>
       <body>{children}</body>
     </html>
   );

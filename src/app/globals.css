@@ -8,18 +8,10 @@
  * proporciones exactas del prototipo.
  */
 
-/* WWF Font (oficial de marca) â€” usar en headers y tagline, siempre en caps.
-   Archivo en public/fonts/WWF.otf. */
-@font-face {
-  font-family: "WWF";
-  src: url("/fonts/WWF.otf") format("opentype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
 :root {
-  --font-wwf: "WWF", "Impact", "Oswald", sans-serif;
+  /* La fuente WWF se carga con next/font/local en src/app/layout.tsx
+     (variable --font-wwf-local) para respetar el basePath del deploy. */
+  --font-wwf: var(--font-wwf-local), "Impact", "Oswald", sans-serif;
   --ink: #1d1d1b;
   --ink-2: #2a2a27;
   --muted: #6b6a61;
