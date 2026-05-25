@@ -537,7 +537,7 @@ const en: Dict = {
   fa_eyebrow: "FOOD & AGRICULTURE",
   fa_title: "Financing resilient food systems",
   fa_intro:
-    "Agriculture and food systems sit at the heart of the climate and biodiversity crisis — and are one of our most powerful levers for change.",
+    "Agriculture and food systems sit at the heart of the climate and biodiversity crisis, and are one of our most powerful levers for change.",
   fa_soon_title: "More on this theme is on the way",
   fa_soon_body:
     "We're curating a dedicated space on financing the transition to nature-positive, climate-resilient food and agriculture systems. In the meantime, several Food & Agriculture resources are already in the library and the Navigator.",
@@ -1066,7 +1066,7 @@ const es: Dict = {
   fa_eyebrow: "ALIMENTACIÓN Y AGRICULTURA",
   fa_title: "Financiar sistemas alimentarios resilientes",
   fa_intro:
-    "La agricultura y los sistemas alimentarios están en el centro de la crisis climática y de biodiversidad — y son una de nuestras palancas de cambio más poderosas.",
+    "La agricultura y los sistemas alimentarios están en el centro de la crisis climática y de biodiversidad, y son una de nuestras palancas de cambio más poderosas.",
   fa_soon_title: "Pronto encontrarás más sobre esta temática",
   fa_soon_body:
     "Estamos preparando un espacio dedicado al financiamiento de la transición hacia sistemas de alimentación y agricultura climáticamente resilientes y positivos para la naturaleza. Mientras tanto, ya hay varios recursos de Alimentación y Agricultura en la biblioteca y en el Navegador.",
@@ -1583,7 +1583,7 @@ const fr: Dict = {
   fa_eyebrow: "ALIMENTATION & AGRICULTURE",
   fa_title: "Financer des systèmes alimentaires résilients",
   fa_intro:
-    "L'agriculture et les systèmes alimentaires sont au cœur de la crise climatique et de la biodiversité — et constituent l'un de nos leviers de changement les plus puissants.",
+    "L'agriculture et les systèmes alimentaires sont au cœur de la crise climatique et de la biodiversité, et constituent l'un de nos leviers de changement les plus puissants.",
   fa_soon_title: "Davantage sur ce thème arrive bientôt",
   fa_soon_body:
     "Nous préparons un espace dédié au financement de la transition vers des systèmes alimentaires et agricoles résilients au climat et favorables à la nature. En attendant, plusieurs ressources Alimentation & Agriculture sont déjà dans la bibliothèque et le Navigateur.",
