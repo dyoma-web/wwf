@@ -50,9 +50,8 @@ const REGION_COLORS: Record<Region, string> = {
 };
 
 /** Docs con portada propia en public/images/case-<id>.jpg.
- *  Incluye los 6 destacados (slide 23) + las ubicaciones del mapa (slides 12-22).
- *  Pendientes de imagen: bns-sococam-cameroon, bns-koa-ghana,
- *  bns-colorquimica-colombia (mantienen placeholder hasta recibir la foto). */
+ *  Incluye los 6 destacados (slide 23) + las 11 ubicaciones del mapa (slides 12-22).
+ *  Las imágenes verticales se recortan centradas (object-fit: cover). */
 const CASE_COVERS = new Set<string>([
   // destacados (grid de case studies)
   "lfa-guide",
@@ -67,6 +66,9 @@ const CASE_COVERS = new Set<string>([
   "bns-chanzi-tanzania",
   "bns-cinch-kenya",
   "bns-concepta-brazil",
+  "bns-sococam-cameroon",
+  "bns-koa-ghana",
+  "bns-colorquimica-colombia",
 ]);
 
 const TYPE_OPTIONS: DocType[] = [
