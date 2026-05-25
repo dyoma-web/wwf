@@ -210,6 +210,13 @@ export default async function Home({
                 <Arrow width={14} height={14} />
               </span>
             </Link>
+            <Link href={`/${locale}/food-agriculture`} className="lib-pill">
+              <span className="dot" />
+              <span className="t">{t(locale, "nav_food_ag")}</span>
+              <span className="arr">
+                <Arrow width={14} height={14} />
+              </span>
+            </Link>
           </div>
         </div>
       </section>
