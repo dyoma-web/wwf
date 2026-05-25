@@ -2,9 +2,11 @@
 
 import { Suspense, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import type { Locale } from "@/i18n/config";
 import { t } from "@/i18n/dict";
+import { asset } from "@/lib/asset";
 import {
   DOCS,
   DOCS_LAST_UPDATED,
@@ -46,6 +48,17 @@ const REGION_COLORS: Record<Region, string> = {
   latam: "#f07d00",
   europe: "#6b6a61",
 };
+
+/** Docs con portada propia en public/images/case-<id>.jpg (slide 23 del deck WWF).
+ *  Coincide con los docs `featured: true` del catálogo. */
+const CASE_COVERS = new Set<string>([
+  "lfa-guide",
+  "lfa-practitioner-playbook",
+  "mtb-madagascar-seascape",
+  "sintang-indonesia",
+  "bns-guide",
+  "bns-concepta-brazil",
+]);
 
 const TYPE_OPTIONS: DocType[] = [
   "case-study",
@@ -213,8 +226,20 @@ function ToolkitInner({ locale }: { locale: Locale }) {
               className="case-card"
               style={{ textDecoration: "none", color: "inherit", display: "block" }}
             >
-              <div className="cover phx canopy" style={{ borderRadius: 0 }}>
-                <div className="cap">{(d.countries?.[0] ?? d.regions[0]).toUpperCase()}</div>
+              <div className="cover" style={{ borderRadius: 0, position: "relative", overflow: "hidden" }}>
+                {CASE_COVERS.has(d.id) ? (
+                  <Image
+                    src={asset(`/images/case-${d.id}.jpg`)}
+                    alt={d.title}
+                    fill
+                    sizes="(max-width: 800px) 100vw, 400px"
+                    style={{ objectFit: "cover", objectPosition: "center" }}
+                  />
+                ) : (
+                  <div className="phx canopy" style={{ position: "absolute", inset: 0 }}>
+                    <div className="cap">{(d.countries?.[0] ?? d.regions[0]).toUpperCase()}</div>
+                  </div>
+                )}
               </div>
               <div className="body">
                 <div className="eyebrow" style={{ color, fontSize: 11.5, letterSpacing: ".04em" }}>

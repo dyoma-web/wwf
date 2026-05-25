@@ -63,6 +63,7 @@ const QUESTIONS: Question[] = [
       { id: "corporate", labelKey: "aud_corporate", subKey: "aud_corporate_s", ic: <Globe />, audiences: ["corporate"] },
       { id: "policymaker", labelKey: "aud_policymaker", subKey: "aud_policymaker_s", ic: <Bars />, audiences: ["policymaker"] },
       { id: "ngo-research", labelKey: "aud_ngo_research", subKey: "aud_ngo_research_s", ic: <Book />, audiences: ["ngo", "researcher"] },
+      { id: "community", labelKey: "aud_community", subKey: "aud_community_s", ic: <Leaf />, audiences: ["community"] },
     ],
   },
   {
@@ -259,7 +260,7 @@ export function NavigatorClient({ locale }: { locale: Locale }) {
             </div>
           </div>
         ) : (
-          <Results locale={locale} answers={answers} onRestart={restart} labelFor={labelFor} />
+          <Results locale={locale} answers={answers} onRestart={restart} />
         )}
       </div>
     </div>
@@ -272,12 +273,10 @@ function Results({
   locale,
   answers,
   onRestart,
-  labelFor,
 }: {
   locale: Locale;
   answers: Answers;
   onRestart: () => void;
-  labelFor: (qid: QuestionId) => string;
 }) {
   const facets = answersToFacets(answers);
   const ranked = rankByAnswers(facets);
@@ -292,12 +291,7 @@ function Results({
           className="h-display"
           style={{ fontSize: "clamp(22px,2.4vw,32px)", margin: "8px 0 0", lineHeight: 1.2, letterSpacing: "-.01em" }}
         >
-          {renderSentence(locale, {
-            role: labelFor("role"),
-            region: labelFor("region"),
-            topic: labelFor("topic"),
-            format: labelFor("format"),
-          })}
+          {t(locale, "navigator_result_fixed")}
         </h2>
         <p style={{ color: "var(--muted)", marginTop: 12, fontSize: 13.5 }}>
           {t(locale, "nav_result_count_pre")}
@@ -371,34 +365,3 @@ function Results({
   );
 }
 
-function renderSentence(
-  locale: Locale,
-  parts: { role: string; region: string; topic: string; format: string },
-) {
-  const strong = (s: string) => (
-    <strong style={{ color: "var(--orange)", fontWeight: 700 }}>{s}</strong>
-  );
-  const { role, region, topic, format } = parts;
-  if (locale === "es") {
-    return (
-      <>
-        {strong(role)} en {strong(region)}, interesado/a en {strong(topic.toLowerCase())}, prefiriendo{" "}
-        {strong(format.toLowerCase())}.
-      </>
-    );
-  }
-  if (locale === "fr") {
-    return (
-      <>
-        {strong(role)} en {strong(region)}, intéressé(e) par {strong(topic.toLowerCase())}, préférant{" "}
-        {strong(format.toLowerCase())}.
-      </>
-    );
-  }
-  return (
-    <>
-      {strong(role)} in {strong(region)}, interested in {strong(topic.toLowerCase())}, preferring{" "}
-      {strong(format.toLowerCase())}.
-    </>
-  );
-}

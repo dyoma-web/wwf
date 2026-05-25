@@ -152,15 +152,11 @@ const en: Dict = {
   filter_templates: "Templates",
   filter_glossary: "Glossary",
 
-  // Learning page (chrome) — reestructurado en 5 fases (slides 3 y 24 del deck WWF)
+  // Learning page (chrome)
   learning_eyebrow: "START LEARNING",
-  learning_title: "Master the Landscape Finance Framework",
+  learning_title: "The curriculum",
   learning_subtitle:
-    "Accelerate your expertise through five strategic phases — from core concepts and program design to screening financial solutions, project pitching, and analysing real-world case studies.",
-  learning_intro_title: "Finance the future of nature",
-  learning_intro_body:
-    "This course bridges the gap between global capital and local conservation, serving as an implementation platform to finance the future of nature. Through practical tools and the analysis of real WWF case studies, you will learn to structure sustainable financial models that protect biodiversity and mitigate climate risk, enabling you to co-create high-impact strategies alongside your partners in the field.",
-  learning_phase: "Phase",
+    "Twelve units across three lenses. Preview here — then continue in the LMS for progress tracking and certificates.",
   learning_duration: "Duration",
   learning_format: "Format",
   learning_level: "Level",
@@ -684,15 +680,11 @@ const es: Dict = {
   filter_templates: "Plantillas",
   filter_glossary: "Glosario",
 
-  // Learning — reestructurado en 5 fases (slides 3 y 24 del deck WWF)
+  // Learning
   learning_eyebrow: "EMPIEZA A APRENDER",
-  learning_title: "Domina el marco de Finanzas del Paisaje",
+  learning_title: "El currículo",
   learning_subtitle:
-    "Acelera tu experiencia a través de cinco fases estratégicas — desde los conceptos básicos y el diseño del programa hasta la selección de soluciones financieras, la presentación de proyectos y el análisis de casos reales.",
-  learning_intro_title: "Financia el futuro de la naturaleza",
-  learning_intro_body:
-    "Este curso cierra la brecha entre el capital global y la conservación local, y funciona como plataforma de implementación para financiar el futuro de la naturaleza. A través de herramientas prácticas y el análisis de casos reales de WWF, aprenderás a estructurar modelos financieros sostenibles que protegen la biodiversidad y mitigan el riesgo climático, para co-crear estrategias de alto impacto junto a tus socios en el terreno.",
-  learning_phase: "Fase",
+    "Doce unidades en tres lentes temáticas. Vista previa aquí — luego continúa en el LMS para seguir tu progreso y obtener certificados.",
   learning_duration: "Duración",
   learning_format: "Formato",
   learning_level: "Nivel",
@@ -1213,15 +1205,11 @@ const fr: Dict = {
   filter_templates: "Modèles",
   filter_glossary: "Glossaire",
 
-  // Learning — restructuré en 5 phases (slides 3 et 24 du deck WWF)
+  // Learning
   learning_eyebrow: "COMMENCER À APPRENDRE",
-  learning_title: "Maîtrisez le cadre de la Finance Paysagère",
+  learning_title: "Le programme",
   learning_subtitle:
-    "Développez votre expertise à travers cinq phases stratégiques — des concepts fondamentaux et la conception de programme à la sélection des solutions financières, la présentation de projets et l'analyse de cas réels.",
-  learning_intro_title: "Financez l'avenir de la nature",
-  learning_intro_body:
-    "Ce cours comble le fossé entre le capital mondial et la conservation locale, et sert de plateforme de mise en œuvre pour financer l'avenir de la nature. Grâce à des outils pratiques et à l'analyse d'études de cas réelles de WWF, vous apprendrez à structurer des modèles financiers durables qui protègent la biodiversité et atténuent le risque climatique, pour co-créer des stratégies à fort impact avec vos partenaires de terrain.",
-  learning_phase: "Phase",
+    "Douze unités réparties sur trois axes. Aperçu ici — poursuivez dans le LMS pour le suivi et les certificats.",
   learning_duration: "Durée",
   learning_format: "Format",
   learning_level: "Niveau",

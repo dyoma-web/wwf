@@ -1229,8 +1229,33 @@ hr.rule {
 }
 
 /* ==========================================================
- * LEARNING â€” curriculum con sidebar + detalle de unidad
+ * LEARNING — curriculum con sidebar + detalle de unidad
  * ========================================================== */
+/* Intro del curso (imagen + descripción, slide 24 del deck WWF) */
+.learn-intro {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 32px;
+  align-items: center;
+  margin: 28px 0 44px;
+}
+@media (max-width: 800px) {
+  .learn-intro {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+.learn-intro-img {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--ink);
+}
+.learn-intro-body {
+  min-width: 0;
+}
+
 .curriculum {
   display: grid;
   grid-template-columns: 320px 1fr;

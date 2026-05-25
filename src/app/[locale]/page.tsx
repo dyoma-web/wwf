@@ -17,16 +17,16 @@ export default async function Home({
 
   return (
     <div className="page">
-      {/* HERO estático con farmer.jpg */}
+      {/* HERO estático — imagen de paisaje (slide 2 del deck WWF) */}
       <section className="wrap hero">
         <div className="hero-frame">
           <Image
-            src={asset("/images/farmer.jpg")}
-            alt="Farmer in the field"
+            src={asset("/images/hero-landscape.jpg")}
+            alt="Field team crossing a forested landscape"
             fill
             priority
             sizes="(max-width: 800px) 100vw, 1200px"
-            style={{ objectFit: "cover" }}
+            style={{ objectFit: "cover", objectPosition: "center" }}
           />
           <div className="hero-overlay-card">
             <div className="kicker">{t(locale, "hero_eyebrow")}</div>
@@ -57,17 +57,18 @@ export default async function Home({
         </div>
       </section>
 
-      {/* ABOUT THIS SITE — explica qué es el sitio, dónde se ubica dentro
-          de WWF, quién lo opera y a quién sirve. Copy en borrador, pendiente
-          de revisión por el equipo de marca. */}
+      {/* DISCOVER LANDSCAPE FINANCE — sección intro (slide 3 del deck WWF) */}
       <section className="wrap sec-sm" style={{ paddingBottom: 0 }}>
         <div style={{ maxWidth: 820, margin: "0 auto", textAlign: "center" }}>
-          <div className="eyebrow">{t(locale, "about_site_eyebrow")}</div>
-          <h2 className="h-display h2" style={{ marginTop: 6, marginBottom: 14 }}>
-            {t(locale, "about_site_title")}
+          <div className="eyebrow">{t(locale, "discover_eyebrow")}</div>
+          <h2 className="h-display h2" style={{ marginTop: 6, marginBottom: 8 }}>
+            {t(locale, "discover_title")}
           </h2>
+          <p style={{ color: "var(--orange)", fontWeight: 600, fontSize: 15, margin: "0 0 14px" }}>
+            {t(locale, "discover_sub")}
+          </p>
           <p className="lede" style={{ marginInline: "auto" }}>
-            {t(locale, "about_site_body")}
+            {t(locale, "discover_body")}
           </p>
         </div>
       </section>
@@ -155,8 +156,22 @@ export default async function Home({
       {/* RESOURCE LIBRARY block */}
       <section className="wrap sec-sm">
         <div className="lib-block">
-          <div className="bg phx canopy">
-            <div className="cap">CANOPY / CROP FIELDS — TOP DOWN [ placeholder ]</div>
+          <div className="bg" style={{ overflow: "hidden" }}>
+            <Image
+              src={asset("/images/deck-13.jpg")}
+              alt="Wetland landscape"
+              fill
+              sizes="(max-width: 800px) 100vw, 1200px"
+              style={{ objectFit: "cover", objectPosition: "center" }}
+            />
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                background:
+                  "linear-gradient(90deg, rgba(29,29,27,0.86) 0%, rgba(29,29,27,0.66) 45%, rgba(29,29,27,0.30) 100%)",
+              }}
+            />
           </div>
           <div className="left">
             <div>

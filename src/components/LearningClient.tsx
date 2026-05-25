@@ -1,17 +1,21 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import type { Locale } from "@/i18n/config";
 import { L, t, type Localized } from "@/i18n/dict";
 import { Arrow, Check, Play } from "./Icons";
+import { asset } from "@/lib/asset";
 
 type Lesson = { t: Localized; s: Localized; d: Localized; done: boolean };
 
 type Unit = {
   id: string;
-  pillKey: "lens_greening" | "lens_financing" | "lens_food";
-  pillColor: string;
+  /** Color del marcador de la fase. */
+  phaseColor: string;
   num: string;
+  /** Imagen de portada de la fase (public/images). */
+  cover: string;
   title: Localized;
   narrator: Localized;
   summary: Localized;
@@ -19,52 +23,41 @@ type Unit = {
   lessons: Lesson[];
 };
 
+/* ──────────────────────────────────────────────────────────────────────────
+ * Curriculum reestructurado en CINCO FASES ESTRATÉGICAS (deck WWF, slide 3):
+ * core concepts → program design → screening financial solutions →
+ * project pitching → real-world case studies.
+ * La versión anterior (12 unidades / 3 lentes) queda respaldada en
+ * src/_backups/LearningClient.2026-05-24.tsx.bak por si hay que revertir.
+ * ────────────────────────────────────────────────────────────────────────── */
 const UNITS: Unit[] = [
   {
-    id: "u1",
-    pillKey: "lens_greening",
-    pillColor: "var(--teal)",
+    id: "p1",
+    phaseColor: "var(--teal)",
     num: "01",
+    cover: "/images/deck-14.jpg",
     title: {
-      en: "Foundations of the Landscape Finance Approach",
-      es: "Fundamentos del Enfoque de Finanzas del Paisaje",
-      fr: "Fondamentaux de l'approche Finance Paysagère",
+      en: "Core Concepts of Landscape Finance",
+      es: "Conceptos básicos de las Finanzas del Paisaje",
+      fr: "Concepts fondamentaux de la Finance Paysagère",
     },
-    narrator: {
-      en: "Jane — generalist",
-      es: "Jane — generalista",
-      fr: "Jane — généraliste",
-    },
+    narrator: { en: "Jane — generalist", es: "Jane — generalista", fr: "Jane — généraliste" },
     summary: {
-      en: "What a landscape is, why finance needs to adapt to it, and how capital flows through a place.",
-      es: "Qué es un paisaje, por qué las finanzas deben adaptarse a él, y cómo fluye el capital por un territorio.",
-      fr: "Qu'est-ce qu'un paysage, pourquoi la finance doit s'y adapter, et comment le capital circule dans un territoire.",
+      en: "What a landscape is, why finance must adapt to it, and how capital flows through a place.",
+      es: "Qué es un paisaje, por qué las finanzas deben adaptarse a él y cómo fluye el capital por un territorio.",
+      fr: "Qu'est-ce qu'un paysage, pourquoi la finance doit s'y adapter et comment le capital circule dans un territoire.",
     },
     meta: [
       { kKey: "learning_duration", v: { en: "55 min", es: "55 min", fr: "55 min" } },
-      {
-        kKey: "learning_format",
-        v: { en: "Video + reading", es: "Video + lectura", fr: "Vidéo + lecture" },
-      },
-      {
-        kKey: "learning_level",
-        v: { en: "Intro", es: "Introductorio", fr: "Introductif" },
-      },
+      { kKey: "learning_format", v: { en: "Video + reading", es: "Video + lectura", fr: "Vidéo + lecture" } },
+      { kKey: "learning_level", v: { en: "Intro", es: "Introductorio", fr: "Introductif" } },
     ],
     lessons: [
       {
-        t: {
-          en: "What is a landscape?",
-          es: "¿Qué es un paisaje?",
-          fr: "Qu'est-ce qu'un paysage ?",
-        },
-        s: {
-          en: "Terrestrial, marine, and mixed",
-          es: "Terrestre, marino y mixto",
-          fr: "Terrestre, marin et mixte",
-        },
+        t: { en: "What is a landscape?", es: "¿Qué es un paisaje?", fr: "Qu'est-ce qu'un paysage ?" },
+        s: { en: "Terrestrial, marine, and mixed", es: "Terrestre, marino y mixto", fr: "Terrestre, marin et mixte" },
         d: { en: "8 min", es: "8 min", fr: "8 min" },
-        done: true,
+        done: false,
       },
       {
         t: {
@@ -78,81 +71,107 @@ const UNITS: Unit[] = [
           fr: "Externalités, subventions, incitations mal alignées",
         },
         d: { en: "12 min", es: "12 min", fr: "12 min" },
-        done: true,
-      },
-      {
-        t: {
-          en: "The three lenses: Greening · Financing · Food",
-          es: "Las tres lentes: Verde · Financiamiento · Alimentación",
-          fr: "Les trois axes : Verte · Financement · Alimentation",
-        },
-        s: {
-          en: "How the programme is organised",
-          es: "Cómo está organizado el programa",
-          fr: "Comment le programme est organisé",
-        },
-        d: { en: "10 min", es: "10 min", fr: "10 min" },
         done: false,
       },
       {
         t: {
-          en: "Self-check: which lens fits your work?",
-          es: "Autoevaluación: ¿qué lente encaja con tu trabajo?",
-          fr: "Auto-évaluation : quel axe correspond à votre travail ?",
+          en: "The biodiversity finance gap",
+          es: "La brecha de financiamiento de biodiversidad",
+          fr: "Le déficit de financement de la biodiversité",
         },
         s: {
-          en: "Five guiding questions",
-          es: "Cinco preguntas guía",
-          fr: "Cinq questions directrices",
+          en: "Where the money is — and isn't",
+          es: "Dónde está el dinero — y dónde no",
+          fr: "Où est l'argent — et où il ne l'est pas",
         },
-        d: { en: "6 min", es: "6 min", fr: "6 min" },
+        d: { en: "10 min", es: "10 min", fr: "10 min" },
         done: false,
       },
     ],
   },
   {
-    id: "u2",
-    pillKey: "lens_financing",
-    pillColor: "var(--forest-2)",
+    id: "p2",
+    phaseColor: "var(--forest-2)",
     num: "02",
+    cover: "/images/deck-15.jpg",
     title: {
-      en: "Financing Green: Instruments & Applications",
-      es: "Financiamiento Verde: instrumentos y aplicaciones",
-      fr: "Financement Vert : instruments et applications",
+      en: "Designing a Landscape Finance Program",
+      es: "Diseño de un programa de Finanzas del Paisaje",
+      fr: "Conception d'un programme de Finance Paysagère",
     },
-    narrator: {
-      en: "Jessica — specialist",
-      es: "Jessica — especialista",
-      fr: "Jessica — spécialiste",
-    },
+    narrator: { en: "Jessica — specialist", es: "Jessica — especialista", fr: "Jessica — spécialiste" },
     summary: {
-      en: "A plain-language walk through blended finance, PES, green bonds and outcome-based instruments.",
-      es: "Un recorrido en lenguaje sencillo por finanzas mixtas, PSE, bonos verdes e instrumentos basados en resultados.",
-      fr: "Un parcours en langage clair sur la finance mixte, les PSE, les obligations vertes et les instruments axés sur les résultats.",
+      en: "From a theory of change to a financeable program: objectives, boundaries, and stakeholders.",
+      es: "De una teoría del cambio a un programa financiable: objetivos, límites y actores.",
+      fr: "D'une théorie du changement à un programme finançable : objectifs, limites et parties prenantes.",
     },
     meta: [
-      { kKey: "learning_duration", v: { en: "1 h 40 min", es: "1 h 40 min", fr: "1 h 40 min" } },
-      {
-        kKey: "learning_format",
-        v: { en: "Video + templates", es: "Video + plantillas", fr: "Vidéo + modèles" },
-      },
-      {
-        kKey: "learning_level",
-        v: { en: "Intermediate", es: "Intermedio", fr: "Intermédiaire" },
-      },
+      { kKey: "learning_duration", v: { en: "1 h 20 min", es: "1 h 20 min", fr: "1 h 20 min" } },
+      { kKey: "learning_format", v: { en: "Video + templates", es: "Video + plantillas", fr: "Vidéo + modèles" } },
+      { kKey: "learning_level", v: { en: "Intermediate", es: "Intermedio", fr: "Intermédiaire" } },
     ],
     lessons: [
       {
         t: {
-          en: "Blended finance, explained",
-          es: "Finanzas mixtas, explicadas",
-          fr: "Finance mixte, expliquée",
+          en: "Theory of change & objectives",
+          es: "Teoría del cambio y objetivos",
+          fr: "Théorie du changement et objectifs",
+        },
+        s: { en: "From impact to activities", es: "Del impacto a las actividades", fr: "De l'impact aux activités" },
+        d: { en: "16 min", es: "16 min", fr: "16 min" },
+        done: false,
+      },
+      {
+        t: {
+          en: "Defining landscape boundaries",
+          es: "Definir los límites del paisaje",
+          fr: "Définir les limites du paysage",
         },
         s: {
-          en: "Who puts in what, and why",
-          es: "Quién aporta qué, y por qué",
-          fr: "Qui apporte quoi, et pourquoi",
+          en: "Umbrella & operational landscapes",
+          es: "Paisajes paraguas y operativos",
+          fr: "Paysages parapluie et opérationnels",
         },
+        d: { en: "14 min", es: "14 min", fr: "14 min" },
+        done: false,
+      },
+      {
+        t: {
+          en: "Mapping stakeholders & governance",
+          es: "Mapear actores y gobernanza",
+          fr: "Cartographier parties prenantes et gouvernance",
+        },
+        s: { en: "Who benefits, who decides", es: "Quién se beneficia, quién decide", fr: "Qui bénéficie, qui décide" },
+        d: { en: "18 min", es: "18 min", fr: "18 min" },
+        done: false,
+      },
+    ],
+  },
+  {
+    id: "p3",
+    phaseColor: "var(--orange)",
+    num: "03",
+    cover: "/images/deck-16.jpg",
+    title: {
+      en: "Screening Financial Solutions",
+      es: "Selección de soluciones financieras",
+      fr: "Sélection des solutions financières",
+    },
+    narrator: { en: "Jessica — specialist", es: "Jessica — especialista", fr: "Jessica — spécialiste" },
+    summary: {
+      en: "Matching the right instruments — blended finance, PES, debt, outcome-based — to your context.",
+      es: "Emparejar los instrumentos correctos —finanzas mixtas, PSE, deuda, basados en resultados— con tu contexto.",
+      fr: "Associer les bons instruments — finance mixte, PSE, dette, axés sur les résultats — à votre contexte.",
+    },
+    meta: [
+      { kKey: "learning_duration", v: { en: "1 h 40 min", es: "1 h 40 min", fr: "1 h 40 min" } },
+      { kKey: "learning_format", v: { en: "Video + templates", es: "Video + plantillas", fr: "Vidéo + modèles" } },
+      { kKey: "learning_level", v: { en: "Intermediate", es: "Intermedio", fr: "Intermédiaire" } },
+    ],
+    lessons: [
+      {
+        t: { en: "Blended finance, explained", es: "Finanzas mixtas, explicadas", fr: "Finance mixte, expliquée" },
+        s: { en: "Who puts in what, and why", es: "Quién aporta qué, y por qué", fr: "Qui apporte quoi, et pourquoi" },
         d: { en: "18 min", es: "18 min", fr: "18 min" },
         done: false,
       },
@@ -162,88 +181,102 @@ const UNITS: Unit[] = [
           es: "Pagos por servicios ecosistémicos",
           fr: "Paiements pour services écosystémiques",
         },
-        s: {
-          en: "When they work, when they fail",
-          es: "Cuándo funcionan, cuándo fallan",
-          fr: "Quand ils fonctionnent, quand ils échouent",
-        },
+        s: { en: "When they work, when they fail", es: "Cuándo funcionan, cuándo fallan", fr: "Quand ils marchent, quand ils échouent" },
         d: { en: "16 min", es: "16 min", fr: "16 min" },
         done: false,
       },
       {
         t: {
-          en: "Outcome-based financing",
-          es: "Financiamiento basado en resultados",
-          fr: "Financement axé sur les résultats",
+          en: "Outcome-based & carbon finance",
+          es: "Financiamiento por resultados y de carbono",
+          fr: "Financement axé sur les résultats et carbone",
         },
-        s: {
-          en: "Structures, contracts, verification",
-          es: "Estructuras, contratos, verificación",
-          fr: "Structures, contrats, vérification",
-        },
+        s: { en: "Structures, contracts, verification", es: "Estructuras, contratos, verificación", fr: "Structures, contrats, vérification" },
         d: { en: "22 min", es: "22 min", fr: "22 min" },
         done: false,
       },
     ],
   },
   {
-    id: "u3",
-    pillKey: "lens_food",
-    pillColor: "var(--orange)",
-    num: "03",
+    id: "p4",
+    phaseColor: "var(--forest-2)",
+    num: "04",
+    cover: "/images/deck-17.jpg",
     title: {
-      en: "Landscape Socioeconomic Context",
-      es: "Contexto socioeconómico del paisaje",
-      fr: "Contexte socio-économique du paysage",
+      en: "Pitching the Project",
+      es: "Presentar el proyecto a financiadores",
+      fr: "Présenter le projet aux financeurs",
     },
-    narrator: {
-      en: "Ylva — specialist",
-      es: "Ylva — especialista",
-      fr: "Ylva — spécialiste",
-    },
+    narrator: { en: "Ylva — specialist", es: "Ylva — especialista", fr: "Ylva — spécialiste" },
     summary: {
-      en: "How food systems, tenure and livelihoods shape what can be financed on the ground.",
-      es: "Cómo los sistemas alimentarios, la tenencia y los medios de vida moldean lo que puede financiarse sobre el terreno.",
-      fr: "Comment les systèmes alimentaires, le régime foncier et les moyens de subsistance façonnent ce qui peut être financé sur le terrain.",
+      en: "Building the investment case, the budget, and the risk story funders need to say yes.",
+      es: "Construir el caso de inversión, el presupuesto y la narrativa de riesgo que los financiadores necesitan para decir que sí.",
+      fr: "Construire l'argumentaire d'investissement, le budget et le récit de risque dont les financeurs ont besoin pour dire oui.",
     },
     meta: [
-      { kKey: "learning_duration", v: { en: "1 h 15 min", es: "1 h 15 min", fr: "1 h 15 min" } },
-      {
-        kKey: "learning_format",
-        v: { en: "Video + case", es: "Video + caso", fr: "Vidéo + étude de cas" },
-      },
-      {
-        kKey: "learning_level",
-        v: { en: "Intermediate", es: "Intermedio", fr: "Intermédiaire" },
-      },
+      { kKey: "learning_duration", v: { en: "1 h 10 min", es: "1 h 10 min", fr: "1 h 10 min" } },
+      { kKey: "learning_format", v: { en: "Video + case", es: "Video + caso", fr: "Vidéo + étude de cas" } },
+      { kKey: "learning_level", v: { en: "Advanced", es: "Avanzado", fr: "Avancé" } },
     ],
     lessons: [
       {
-        t: {
-          en: "Reading a landscape as a social system",
-          es: "Leer un paisaje como sistema social",
-          fr: "Lire un paysage comme système social",
-        },
-        s: {
-          en: "Actors, rights, flows",
-          es: "Actores, derechos, flujos",
-          fr: "Acteurs, droits, flux",
-        },
-        d: { en: "14 min", es: "14 min", fr: "14 min" },
+        t: { en: "Building the investment case", es: "Construir el caso de inversión", fr: "Construire l'argumentaire d'investissement" },
+        s: { en: "Impact + return narrative", es: "Narrativa de impacto + retorno", fr: "Récit d'impact + rendement" },
+        d: { en: "15 min", es: "15 min", fr: "15 min" },
         done: false,
       },
       {
-        t: {
-          en: "Harmful subsidies & how to redirect them",
-          es: "Subsidios perjudiciales y cómo redirigirlos",
-          fr: "Subventions nuisibles et comment les réorienter",
-        },
-        s: {
-          en: "Practical levers",
-          es: "Palancas prácticas",
-          fr: "Leviers pratiques",
-        },
+        t: { en: "Budget & financial model", es: "Presupuesto y modelo financiero", fr: "Budget et modèle financier" },
+        s: { en: "Costs, phasing, overhead", es: "Costos, fases, indirectos", fr: "Coûts, phasage, frais généraux" },
+        d: { en: "20 min", es: "20 min", fr: "20 min" },
+        done: false,
+      },
+      {
+        t: { en: "Risk, safeguards & bankability", es: "Riesgo, salvaguardas y bancabilidad", fr: "Risque, garanties et bancabilité" },
+        s: { en: "What gets you past screening", es: "Lo que te hace pasar el filtro", fr: "Ce qui passe le filtre" },
+        d: { en: "17 min", es: "17 min", fr: "17 min" },
+        done: false,
+      },
+    ],
+  },
+  {
+    id: "p5",
+    phaseColor: "var(--teal)",
+    num: "05",
+    cover: "/images/deck-18.jpg",
+    title: {
+      en: "Real-World Case Studies",
+      es: "Casos de estudio reales",
+      fr: "Études de cas réelles",
+    },
+    narrator: { en: "Field narrators", es: "Narradores de campo", fr: "Narrateurs de terrain" },
+    summary: {
+      en: "How the approach plays out on the ground — from Madagascar's seascapes to Sintang and the Cerrado.",
+      es: "Cómo se aplica el enfoque en el terreno — de los paisajes marinos de Madagascar a Sintang y el Cerrado.",
+      fr: "Comment l'approche se déploie sur le terrain — des paysages marins de Madagascar à Sintang et au Cerrado.",
+    },
+    meta: [
+      { kKey: "learning_duration", v: { en: "1 h 30 min", es: "1 h 30 min", fr: "1 h 30 min" } },
+      { kKey: "learning_format", v: { en: "Case studies", es: "Casos de estudio", fr: "Études de cas" } },
+      { kKey: "learning_level", v: { en: "All levels", es: "Todos los niveles", fr: "Tous niveaux" } },
+    ],
+    lessons: [
+      {
+        t: { en: "Seascape finance: MTB Madagascar", es: "Finanzas de paisaje marino: MTB Madagascar", fr: "Finance des paysages marins : MTB Madagascar" },
+        s: { en: "Blue economy, portfolio approach", es: "Economía azul, enfoque de portafolio", fr: "Économie bleue, approche portefeuille" },
+        d: { en: "20 min", es: "20 min", fr: "20 min" },
+        done: false,
+      },
+      {
+        t: { en: "Bankable Nature Solutions", es: "Soluciones basadas en la naturaleza bancarizables", fr: "Solutions Fondées sur la Nature bancables" },
+        s: { en: "13 blueprints, what worked", es: "13 modelos, qué funcionó", fr: "13 modèles, ce qui a marché" },
         d: { en: "18 min", es: "18 min", fr: "18 min" },
+        done: false,
+      },
+      {
+        t: { en: "Sintang Landscape Initiative", es: "Iniciativa de Paisaje Sintang", fr: "Initiative Paysagère de Sintang" },
+        s: { en: "4 returns in West Kalimantan", es: "4 retornos en Kalimantan Occidental", fr: "4 retours au Kalimantan occidental" },
+        d: { en: "16 min", es: "16 min", fr: "16 min" },
         done: false,
       },
     ],
@@ -251,7 +284,7 @@ const UNITS: Unit[] = [
 ];
 
 export function LearningClient({ locale }: { locale: Locale }) {
-  const [active, setActive] = useState<string>("u1");
+  const [active, setActive] = useState<string>("p1");
   const unit = UNITS.find((u) => u.id === active)!;
 
   return (
@@ -266,19 +299,26 @@ export function LearningClient({ locale }: { locale: Locale }) {
             {t(locale, "learning_subtitle")}
           </p>
         </div>
-        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-          <span className="chip">
-            <span className="swatch" style={{ background: "var(--teal)" }} />
-            {t(locale, "lens_greening")}
-          </span>
-          <span className="chip">
-            <span className="swatch" style={{ background: "var(--forest-2)" }} />
-            {t(locale, "lens_financing")}
-          </span>
-          <span className="chip">
-            <span className="swatch" style={{ background: "var(--orange)" }} />
-            {t(locale, "lens_food_short")}
-          </span>
+      </div>
+
+      {/* Intro del curso (slide 24 del deck WWF) */}
+      <div className="learn-intro">
+        <div className="learn-intro-img">
+          <Image
+            src={asset("/images/course-about.jpg")}
+            alt="Landscape finance in the field"
+            fill
+            sizes="(max-width: 800px) 100vw, 480px"
+            style={{ objectFit: "cover", objectPosition: "center" }}
+          />
+        </div>
+        <div className="learn-intro-body">
+          <h3 className="h-display" style={{ fontSize: "clamp(20px,2vw,26px)", margin: "0 0 10px" }}>
+            {t(locale, "learning_intro_title")}
+          </h3>
+          <p style={{ color: "var(--ink-2)", lineHeight: 1.6, margin: 0 }}>
+            {t(locale, "learning_intro_body")}
+          </p>
         </div>
       </div>
 
@@ -293,13 +333,13 @@ export function LearningClient({ locale }: { locale: Locale }) {
                   <span
                     className="swatch"
                     style={{
-                      background: u.pillColor,
+                      background: u.phaseColor,
                       display: "inline-block",
                       marginRight: 5,
                       verticalAlign: "middle",
                     }}
                   />
-                  {t(locale, u.pillKey)} · {L(locale, u.narrator)}
+                  {t(locale, "learning_phase")} {u.num} · {L(locale, u.narrator)}
                 </div>
               </div>
             </button>
@@ -311,9 +351,9 @@ export function LearningClient({ locale }: { locale: Locale }) {
             <div style={{ flex: 1, minWidth: 260 }}>
               <span
                 className="chip"
-                style={{ background: unit.pillColor, color: "#fff", borderColor: unit.pillColor }}
+                style={{ background: unit.phaseColor, color: "#fff", borderColor: unit.phaseColor }}
               >
-                {t(locale, unit.pillKey)}
+                {t(locale, "learning_phase")} {unit.num}
               </span>
               <h3>{L(locale, unit.title)}</h3>
               <p>{L(locale, unit.summary)}</p>
@@ -331,10 +371,15 @@ export function LearningClient({ locale }: { locale: Locale }) {
               </div>
             </div>
             <div
-              className="phx canopy"
-              style={{ width: 220, aspectRatio: "4/3", flex: "0 0 220px", position: "relative" }}
+              style={{ width: 220, aspectRatio: "4/3", flex: "0 0 220px", position: "relative", overflow: "hidden" }}
             >
-              <div className="cap">UNIT COVER</div>
+              <Image
+                src={asset(unit.cover)}
+                alt={L(locale, unit.title)}
+                fill
+                sizes="220px"
+                style={{ objectFit: "cover", objectPosition: "center" }}
+              />
             </div>
           </div>
           <div className="unit-lessons">
