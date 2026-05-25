@@ -36,7 +36,7 @@ const LeafletMap = dynamic(() => import("./LeafletMap").then((m) => m.LeafletMap
         fontSize: 12,
       }}
     >
-      Loading mapâ€¦
+      Loading map&hellip;
     </div>
   ),
 });
@@ -180,13 +180,25 @@ function ToolkitInner({ locale }: { locale: Locale }) {
         </div>
         {activePin && (
           <div className="res-card" style={{ padding: 0, overflow: "hidden", display: "flex", flexDirection: "column" }}>
-            <div className="phx canopy" style={{ aspectRatio: "16/10", position: "relative", borderRadius: 0 }}>
-              <div className="cap">{activePin.map!.label.toUpperCase()}</div>
+            <div style={{ aspectRatio: "16/10", position: "relative", borderRadius: 0, overflow: "hidden" }}>
+              {CASE_COVERS.has(activePin.id) ? (
+                <Image
+                  src={asset(`/images/case-${activePin.id}.jpg`)}
+                  alt={activePin.title}
+                  fill
+                  sizes="(max-width: 800px) 100vw, 420px"
+                  style={{ objectFit: "cover", objectPosition: "center" }}
+                />
+              ) : (
+                <div className="phx canopy" style={{ position: "absolute", inset: 0 }}>
+                  <div className="cap">{activePin.map!.label.toUpperCase()}</div>
+                </div>
+              )}
             </div>
             <div style={{ padding: "22px 24px", display: "flex", flexDirection: "column", flex: 1 }}>
               <div className="eyebrow" style={{ color: REGION_COLORS[activePin.regions[0]] }}>
                 {t(locale, `region_${activePin.regions[0]}`).toUpperCase()}
-                {" Â· "}
+                {" · "}
                 {t(locale, `topic_${activePin.topic}`).toUpperCase()}
               </div>
               <h3 style={{ fontSize: 22, fontWeight: 700, margin: "6px 0 6px", letterSpacing: "-.01em" }}>
@@ -244,7 +256,7 @@ function ToolkitInner({ locale }: { locale: Locale }) {
               <div className="body">
                 <div className="eyebrow" style={{ color, fontSize: 11.5, letterSpacing: ".04em" }}>
                   {t(locale, `type_${d.type.replace(/-/g, "_")}`).toUpperCase()}
-                  {" Â· "}
+                  {" · "}
                   {t(locale, `topic_${d.topic}`).toUpperCase()}
                 </div>
                 <h4>{d.title}</h4>
