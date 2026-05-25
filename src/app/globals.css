@@ -254,18 +254,23 @@ hr.rule {
 .brand-name {
   font-family: var(--font-wwf);
   font-weight: 400;
-  font-size: 15px;
-  letter-spacing: 0.06em;
-  line-height: 1.05;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
   text-transform: uppercase;
+  /* Tagline más larga ("Discover Landscape Finance"): la acotamos para que
+     no empuje al nav. Envuelve en 1-2 líneas dentro de este ancho. */
+  max-width: 240px;
 }
 .brand-sub {
   font-family: var(--font-wwf);
-  font-size: 12px;
+  font-size: 10.5px;
   color: var(--muted);
-  margin-top: 4px;
-  letter-spacing: 0.06em;
+  margin-top: 3px;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
   text-transform: uppercase;
+  max-width: 240px;
 }
 .nav-main {
   display: flex;

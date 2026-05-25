@@ -11,8 +11,8 @@ const en: Dict = {
   nav_contact: "Contact Us",
 
   // Marca
-  brand_name: "SUSTAINABLE FINANCE",
-  brand_sub: "FOR CONSERVATION",
+  brand_name: "Discover Landscape Finance",
+  brand_sub: "Scaling Capital for Nature and People",
 
   // Hero (slide 2 del deck WWF)
   hero_eyebrow: "Built for Landscape Impact",
@@ -551,8 +551,8 @@ const es: Dict = {
   nav_toolkit: "Herramientas",
   nav_contact: "Contáctanos",
 
-  brand_name: "FINANZAS SOSTENIBLES",
-  brand_sub: "PARA LA CONSERVACIÓN",
+  brand_name: "Descubre las Finanzas del Paisaje",
+  brand_sub: "Escalando capital para la naturaleza y las personas",
 
   hero_eyebrow: "Creado para el impacto en el paisaje",
   hero_title: "Explora las Finanzas del Paisaje",
@@ -1080,8 +1080,8 @@ const fr: Dict = {
   nav_toolkit: "Outils",
   nav_contact: "Contact",
 
-  brand_name: "FINANCE DURABLE",
-  brand_sub: "POUR LA CONSERVATION",
+  brand_name: "Découvrez la Finance Paysagère",
+  brand_sub: "Mobiliser des capitaux pour la nature et les populations",
 
   hero_eyebrow: "Conçu pour l'impact paysager",
   hero_title: "Explorez la Finance Paysagère",
