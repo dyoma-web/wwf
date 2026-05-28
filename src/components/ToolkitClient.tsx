@@ -81,7 +81,7 @@ const TYPE_OPTIONS: DocType[] = [
   "guidance-note",
   "presentation",
 ];
-const TOPIC_OPTIONS: DocTopic[] = ["basics", "mechanisms", "implementation", "strategy"];
+const TOPIC_OPTIONS: DocTopic[] = ["basics", "mechanisms", "implementation", "strategy", "food-agriculture"];
 const AUDIENCE_OPTIONS: Audience[] = [
   "investor",
   "practitioner",
@@ -92,6 +92,8 @@ const AUDIENCE_OPTIONS: Audience[] = [
   "community",
 ];
 const REGION_OPTIONS: Region[] = ["global", "africa", "asia", "latam"];
+
+const topicLabelKey = (topic: DocTopic) => `topic_${topic.replace(/-/g, "_")}`;
 
 export function ToolkitClient({ locale }: { locale: Locale }) {
   return (
@@ -163,7 +165,7 @@ function ToolkitInner({ locale }: { locale: Locale }) {
               name: d.map!.label,
               position: d.map!.position,
               color: REGION_COLORS[d.regions[0]] ?? "#9b988b",
-              tag: t(locale, `topic_${d.topic}`),
+              tag: t(locale, topicLabelKey(d.topic)),
             }))}
             active={activePin?.id ?? ""}
             onPick={setActiveMapPin}
@@ -210,7 +212,7 @@ function ToolkitInner({ locale }: { locale: Locale }) {
               <div className="eyebrow" style={{ color: REGION_COLORS[activePin.regions[0]] }}>
                 {t(locale, `region_${activePin.regions[0]}`).toUpperCase()}
                 {" · "}
-                {t(locale, `topic_${activePin.topic}`).toUpperCase()}
+                {t(locale, topicLabelKey(activePin.topic)).toUpperCase()}
               </div>
               <h3 style={{ fontSize: 22, fontWeight: 700, margin: "6px 0 6px", letterSpacing: "-.01em" }}>
                 {activePin.title}
@@ -268,7 +270,7 @@ function ToolkitInner({ locale }: { locale: Locale }) {
                 <div className="eyebrow" style={{ color, fontSize: 11.5, letterSpacing: ".04em" }}>
                   {t(locale, `type_${d.type.replace(/-/g, "_")}`).toUpperCase()}
                   {" · "}
-                  {t(locale, `topic_${d.topic}`).toUpperCase()}
+                  {t(locale, topicLabelKey(d.topic)).toUpperCase()}
                 </div>
                 <h4>{d.title}</h4>
                 <p>{d.description}</p>
@@ -338,7 +340,7 @@ function ToolkitInner({ locale }: { locale: Locale }) {
           labelKey="toolkit_filter_topic"
           value={facets.topic}
           options={TOPIC_OPTIONS}
-          labelFor={(v) => t(locale, `topic_${v}`)}
+          labelFor={(v) => t(locale, topicLabelKey(v as DocTopic))}
           onChange={(v) => setFacets((f) => ({ ...f, topic: v as DocTopic | undefined }))}
         />
         <FacetSelect
@@ -511,7 +513,7 @@ function DocCard({ doc, locale }: { doc: Doc; locale: Locale }) {
             {t(locale, `type_${doc.type.replace(/-/g, "_")}`)}
           </span>
           <span className="chip" style={{ fontSize: 10.5 }}>
-            {t(locale, `topic_${doc.topic}`)}
+            {t(locale, topicLabelKey(doc.topic))}
           </span>
           {doc.regions.map((r) => (
             <span key={r} className="chip" style={{ fontSize: 10.5 }}>

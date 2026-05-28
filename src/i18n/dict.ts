@@ -187,7 +187,7 @@ const en: Dict = {
   q_region_hint: "Global resources are always shown when you pick a specific region.",
   q_topic_label: "Topic",
   q_topic_q: "What do you want to dive into?",
-  q_topic_hint: "The four buckets the WWF programme is organised around.",
+  q_topic_hint: "The five buckets the WWF programme is organised around.",
   q_format_label: "Format",
   q_format_q: "What format works best today?",
   q_format_hint: "Skip if you don't have a preference — we score it lightly.",
@@ -229,6 +229,8 @@ const en: Dict = {
   topic_implementation_s: "How to put it into practice",
   topic_strategy: "Conservation strategy & mapping",
   topic_strategy_s: "Defining boundaries, prioritisation",
+  topic_food_agriculture: "Food and Agriculture",
+  topic_food_agriculture_s: "Agrifood systems, practices, and policy",
 
   // Document type labels (facets)
   type_brief: "Brief",
@@ -711,7 +713,7 @@ const es: Dict = {
   q_region_hint: "Los recursos globales se muestran siempre, incluso al elegir una región.",
   q_topic_label: "Tema",
   q_topic_q: "¿En qué quieres profundizar?",
-  q_topic_hint: "Las cuatro categorías sobre las que se organiza el programa de WWF.",
+  q_topic_hint: "Las cinco categorías sobre las que se organiza el programa de WWF.",
   q_format_label: "Formato",
   q_format_q: "¿Qué formato te sirve hoy?",
   q_format_hint: "Sáltalo si no tienes preferencia — pesa poco en el resultado.",
@@ -753,6 +755,8 @@ const es: Dict = {
   topic_implementation_s: "Cómo aplicarlo en la práctica",
   topic_strategy: "Estrategia y mapeo de conservación",
   topic_strategy_s: "Definición de límites, priorización",
+  topic_food_agriculture: "Alimentación y agricultura",
+  topic_food_agriculture_s: "Sistemas agroalimentarios, prácticas y política",
 
   // Tipos de documento
   type_brief: "Resumen",
@@ -1232,7 +1236,7 @@ const fr: Dict = {
   q_region_hint: "Les ressources globales s'affichent toujours en complément.",
   q_topic_label: "Thème",
   q_topic_q: "Sur quoi voulez-vous approfondir ?",
-  q_topic_hint: "Les quatre piliers du programme WWF.",
+  q_topic_hint: "Les cinq piliers du programme WWF.",
   q_format_label: "Format",
   q_format_q: "Quel format vous convient aujourd'hui ?",
   q_format_hint: "Passez si vous n'avez pas de préférence — il pèse peu.",
@@ -1274,6 +1278,8 @@ const fr: Dict = {
   topic_implementation_s: "Comment passer à la pratique",
   topic_strategy: "Stratégie & cartographie de conservation",
   topic_strategy_s: "Définir les limites, prioriser",
+  topic_food_agriculture: "Alimentation et agriculture",
+  topic_food_agriculture_s: "Systèmes agroalimentaires, pratiques et politiques",
 
   // Types de documents
   type_brief: "Synthèse",

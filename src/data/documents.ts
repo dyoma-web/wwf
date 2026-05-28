@@ -22,7 +22,7 @@ export type DocType =
   | "guidance-note"
   | "presentation";
 
-export type DocTopic = "basics" | "mechanisms" | "implementation" | "strategy";
+export type DocTopic = "basics" | "mechanisms" | "implementation" | "strategy" | "food-agriculture";
 
 export type Audience =
   | "investor"
@@ -485,7 +485,7 @@ export const DOCS: Doc[] = [
       "Primer introductorio sobre el Nature-Positive Agrifood Systems Toolkit, avanzando acción climática y de biodiversidad en agricultura y sistemas alimentarios. Explica por qué los sistemas agroalimentarios son palanca clave para mitigación, adaptación y restauración de biodiversidad.",
     url: "https://drive.google.com/file/d/1QGqqtKXLJoAj3IJIAl4kLuCPO8YNj9vX/view?usp=sharing",
     type: "guide",
-    topic: "basics",
+    topic: "food-agriculture",
     audiences: ["practitioner", "policymaker", "ngo", "researcher"],
     regions: ["global"],
     financeTypes: [],
@@ -499,7 +499,7 @@ export const DOCS: Doc[] = [
       "Documento final de la 5ª Conferencia Global del One Planet Network's Sustainable Food Systems (SFS) Programme. Reúne conclusiones sobre cómo superar las barreras a la transformación de los sistemas alimentarios mediante políticas coherentes y soluciones sensibles a la equidad para combatir hambre, pérdida de biodiversidad y crisis climática.",
     url: "https://drive.google.com/file/d/18iNVrSKkg4KTXv4fBdUagC_ARuc-zj-Y/view?usp=sharing",
     type: "report",
-    topic: "strategy",
+    topic: "food-agriculture",
     audiences: ["policymaker", "ngo", "researcher"],
     regions: ["global"],
     financeTypes: [],
@@ -513,7 +513,7 @@ export const DOCS: Doc[] = [
       "Evaluación de las Contribuciones Determinadas a Nivel Nacional (NDCs 3.0) para la transformación de la agricultura y los sistemas alimentarios. Identifica brechas, oportunidades y prioridades para integrar la mitigación y adaptación de sistemas alimentarios en las NDCs. Producido por WWF Food Practice y Climate Focus.",
     url: "https://drive.google.com/file/d/1TLi_QQcUvwe3KHX8rxWalZrJTG5rLcTs/view?usp=sharing",
     type: "report",
-    topic: "strategy",
+    topic: "food-agriculture",
     audiences: ["policymaker", "ngo", "researcher", "practitioner"],
     regions: ["global"],
     financeTypes: ["grants", "private-investment"],
@@ -527,7 +527,7 @@ export const DOCS: Doc[] = [
       "Toolkit de WWF, FAO y NDC Partnership que recoge buenas prácticas, iniciativas y herramientas para transformar los sistemas alimentarios a través de NDCs, Planes Nacionales de Adaptación (NAPs) y Estrategias Nacionales de Biodiversidad (NBSAPs). Pensado para gobiernos y socios técnicos.",
     url: "https://drive.google.com/file/d/1my189x5gum_arOgGOD2_vrpQ_ho1acrZ/view?usp=sharing",
     type: "guide",
-    topic: "implementation",
+    topic: "food-agriculture",
     audiences: ["policymaker", "practitioner", "ngo"],
     regions: ["global"],
     financeTypes: [],
@@ -541,7 +541,7 @@ export const DOCS: Doc[] = [
       "Brief práctico sobre la implementación de prácticas sostenibles de cultivo de arroz. Aborda sistemas de arroz inundado y arroz de siembra directa (DSR), su impacto en biodiversidad, emisiones de metano y uso de agua, con énfasis en paisajes asiáticos donde el arroz es cultivo base.",
     url: "https://drive.google.com/file/d/1r58tVhQ9Pu8r_xMvLdk9Eg1r4QBxwp6-/view?usp=sharing",
     type: "brief",
-    topic: "implementation",
+    topic: "food-agriculture",
     audiences: ["practitioner", "policymaker", "community", "ngo"],
     regions: ["global", "asia"],
     financeTypes: [],

@@ -88,6 +88,7 @@ const QUESTIONS: Question[] = [
       { id: "mechanisms", labelKey: "topic_mechanisms", subKey: "topic_mechanisms_s", ic: <Coin />, topic: "mechanisms" },
       { id: "implementation", labelKey: "topic_implementation", subKey: "topic_implementation_s", ic: <Tools />, topic: "implementation" },
       { id: "strategy", labelKey: "topic_strategy", subKey: "topic_strategy_s", ic: <Compass />, topic: "strategy" },
+      { id: "food-agriculture", labelKey: "topic_food_agriculture", subKey: "topic_food_agriculture_s", ic: <Leaf />, topic: "food-agriculture" },
     ],
   },
   {
@@ -105,6 +106,8 @@ const QUESTIONS: Question[] = [
 ];
 
 type Answers = Partial<Record<QuestionId, string>>;
+
+const topicLabelKey = (topic: DocTopic) => `topic_${topic.replace(/-/g, "_")}`;
 
 /** Convierte las respuestas del usuario al objeto Facets que usa el ranker. */
 function answersToFacets(answers: Answers): Facets {
@@ -329,7 +332,7 @@ function Results({
                       {t(locale, `type_${d.type.replace(/-/g, "_")}`)}
                     </span>
                     <span className="chip" style={{ background: "transparent", borderColor: "#3a3a36", color: "#c7c4b8" }}>
-                      {t(locale, `topic_${d.topic}`)}
+                      {t(locale, topicLabelKey(d.topic))}
                     </span>
                   </div>
                 </div>
@@ -364,4 +367,3 @@ function Results({
     </div>
   );
 }
-
