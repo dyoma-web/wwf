@@ -15,7 +15,6 @@ type Unit = {
   num: string;
   cover: string;
   title: Localized;
-  narrator: Localized;
   summary: Localized;
   meta: { kKey: string; v: Localized }[];
   lessons: Lesson[];
@@ -35,7 +34,6 @@ const UNITS: Unit[] = [
       es: "Bienvenida e introducción al curso",
       fr: "Bienvenue et introduction au cours",
     },
-    narrator: { en: "Course guide", es: "Guía del curso", fr: "Guide du cours" },
     summary: {
       en: "Why finance, food, and nature need to work together to create real change in landscapes.",
       es: "Por qué las finanzas, la alimentación y la naturaleza deben trabajar juntas para generar cambios reales en los paisajes.",
@@ -73,7 +71,6 @@ const UNITS: Unit[] = [
       es: "El enfoque de paisaje y el contexto de conservación",
       fr: "L'approche paysage et le contexte de conservation",
     },
-    narrator: { en: "Conservation specialist", es: "Especialista en conservación", fr: "Spécialiste conservation" },
     summary: {
       en: "How the Inclusive Conservation Programme provides the foundation for finance decisions.",
       es: "Cómo el Programa de Conservación Inclusiva sirve de base para las decisiones financieras.",
@@ -111,7 +108,6 @@ const UNITS: Unit[] = [
       es: "Introducción a paisajes de finanzas sostenibles",
       fr: "Introduction aux paysages de finance durable",
     },
-    narrator: { en: "Finance specialist", es: "Especialista financiero", fr: "Spécialiste finance" },
     summary: {
       en: "How to finance solutions in practice, from needs and barriers to possible pathways.",
       es: "Cómo financiar soluciones en la práctica, desde necesidades y barreras hasta rutas posibles.",
@@ -149,7 +145,6 @@ const UNITS: Unit[] = [
       es: "Financiamiento verde en la práctica",
       fr: "Financement vert en pratique",
     },
-    narrator: { en: "Finance specialist", es: "Especialista financiero", fr: "Spécialiste finance" },
     summary: {
       en: "Which financial instruments can be used, and how they come together in real financing strategies.",
       es: "Qué instrumentos financieros pueden usarse y cómo se combinan en estrategias reales de financiamiento.",
@@ -187,7 +182,6 @@ const UNITS: Unit[] = [
       es: "Finanzas verdes en la práctica",
       fr: "Verdissement de la finance en pratique",
     },
-    narrator: { en: "Policy specialist", es: "Especialista en políticas", fr: "Spécialiste politiques" },
     summary: {
       en: "How system-level rules, incentives, information, and data shape finance decisions affecting landscapes.",
       es: "Cómo las reglas, incentivos, información y datos del sistema influyen en decisiones financieras que afectan los paisajes.",
@@ -225,7 +219,6 @@ const UNITS: Unit[] = [
       es: "Escalar las Finanzas del Paisaje en la práctica",
       fr: "Changer d'échelle en Finance Paysagère",
     },
-    narrator: { en: "Programme specialist", es: "Especialista de programa", fr: "Spécialiste programme" },
     summary: {
       en: "How financing green and greening finance can work together at landscape scale.",
       es: "Cómo el financiamiento verde y las finanzas verdes pueden trabajar juntos a escala de paisaje.",
@@ -263,7 +256,6 @@ const UNITS: Unit[] = [
       es: "Cierre y próximos pasos",
       fr: "Conclusion et prochaines étapes",
     },
-    narrator: { en: "Course guide", es: "Guía del curso", fr: "Guide du cours" },
     summary: {
       en: "Reflect on what you have learned, connect it to your own context, and identify practical next steps.",
       es: "Reflexiona sobre lo aprendido, conéctalo con tu propio contexto e identifica próximos pasos prácticos.",
@@ -348,7 +340,7 @@ export function LearningClient({ locale }: { locale: Locale }) {
                       verticalAlign: "middle",
                     }}
                   />
-                  {t(locale, "learning_phase")} {u.num} · {L(locale, u.narrator)}
+                  {t(locale, "learning_phase")} {u.num}
                 </div>
               </div>
             </button>
@@ -373,10 +365,6 @@ export function LearningClient({ locale }: { locale: Locale }) {
                     <strong>{L(locale, m.v)}</strong>
                   </div>
                 ))}
-                <div>
-                  <span style={{ color: "var(--muted)" }}>{t(locale, "learning_narrator")} </span>
-                  <strong>{L(locale, unit.narrator)}</strong>
-                </div>
               </div>
             </div>
             <div
