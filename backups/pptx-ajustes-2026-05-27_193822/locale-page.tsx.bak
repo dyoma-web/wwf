@@ -78,8 +78,8 @@ export default async function Home({
         <div className="two-col">
           <div className="phx canopy" style={{ position: "relative", overflow: "hidden" }}>
             <Image
-              src={asset("/images/by-objective-landscape.jpg")}
-              alt="Landscape finance field reference"
+              src={asset("/images/hands-earth.jpg")}
+              alt="Hands holding soil with a young plant and a globe motif"
               fill
               sizes="(max-width: 800px) 100vw, 500px"
               style={{ objectFit: "cover" }}
@@ -214,6 +214,13 @@ export default async function Home({
                 <Arrow width={14} height={14} />
               </span>
             </Link>
+            <Link href={`/${locale}/food-agriculture`} className="lib-pill">
+              <span className="dot" />
+              <span className="t">{t(locale, "nav_food_ag")}</span>
+              <span className="arr">
+                <Arrow width={14} height={14} />
+              </span>
+            </Link>
           </div>
         </div>
       </section>
@@ -252,3 +259,4 @@ export default async function Home({
     </div>
   );
 }
+

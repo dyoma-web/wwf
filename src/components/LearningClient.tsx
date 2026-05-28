@@ -4,17 +4,15 @@ import { useState } from "react";
 import Image from "next/image";
 import type { Locale } from "@/i18n/config";
 import { L, t, type Localized } from "@/i18n/dict";
-import { Arrow, Check, Play } from "./Icons";
 import { asset } from "@/lib/asset";
+import { Arrow, Check, Play } from "./Icons";
 
 type Lesson = { t: Localized; s: Localized; d: Localized; done: boolean };
 
 type Unit = {
   id: string;
-  /** Color del marcador de la fase. */
   phaseColor: string;
   num: string;
-  /** Imagen de portada de la fase (public/images). */
   cover: string;
   title: Localized;
   narrator: Localized;
@@ -23,260 +21,272 @@ type Unit = {
   lessons: Lesson[];
 };
 
-/* ──────────────────────────────────────────────────────────────────────────
- * Curriculum reestructurado en CINCO FASES ESTRATÉGICAS (deck WWF, slide 3):
- * core concepts → program design → screening financial solutions →
- * project pitching → real-world case studies.
- * La versión anterior (12 unidades / 3 lentes) queda respaldada en
- * src/_backups/LearningClient.2026-05-24.tsx.bak por si hay que revertir.
- * ────────────────────────────────────────────────────────────────────────── */
+// Curriculum aligned with "Copia de WEBSite_WWF_Curso.pptx", slide 5.
+// Food and agri-food systems remain a cross-cutting learning lens, not a
+// standalone site section.
 const UNITS: Unit[] = [
   {
-    id: "p1",
+    id: "m1",
     phaseColor: "var(--teal)",
     num: "01",
-    cover: "/images/case-mtb-madagascar-seascape.jpg",
+    cover: "/images/course-about.jpg",
     title: {
-      en: "Core Concepts of Landscape Finance",
-      es: "Conceptos básicos de las Finanzas del Paisaje",
-      fr: "Concepts fondamentaux de la Finance Paysagère",
+      en: "Welcome and Introduction to the Course",
+      es: "Bienvenida e introducción al curso",
+      fr: "Bienvenue et introduction au cours",
     },
-    narrator: { en: "Jane — generalist", es: "Jane — generalista", fr: "Jane — généraliste" },
+    narrator: { en: "Course guide", es: "Guía del curso", fr: "Guide du cours" },
     summary: {
-      en: "What a landscape is, why finance must adapt to it, and how capital flows through a place.",
-      es: "Qué es un paisaje, por qué las finanzas deben adaptarse a él y cómo fluye el capital por un territorio.",
-      fr: "Qu'est-ce qu'un paysage, pourquoi la finance doit s'y adapter et comment le capital circule dans un territoire.",
+      en: "Why finance, food, and nature need to work together to create real change in landscapes.",
+      es: "Por qué las finanzas, la alimentación y la naturaleza deben trabajar juntas para generar cambios reales en los paisajes.",
+      fr: "Pourquoi la finance, l'alimentation et la nature doivent travailler ensemble pour créer un changement réel dans les paysages.",
     },
     meta: [
-      { kKey: "learning_duration", v: { en: "55 min", es: "55 min", fr: "55 min" } },
+      { kKey: "learning_duration", v: { en: "20 min", es: "20 min", fr: "20 min" } },
+      { kKey: "learning_format", v: { en: "Orientation", es: "Orientación", fr: "Orientation" } },
+      { kKey: "learning_level", v: { en: "Intro", es: "Introductorio", fr: "Introductif" } },
+    ],
+    lessons: [
+      {
+        t: {
+          en: "Why finance, food, and nature work together",
+          es: "Por qué finanzas, alimentación y naturaleza trabajan juntas",
+          fr: "Pourquoi finance, alimentation et nature vont ensemble",
+        },
+        s: {
+          en: "Course goals, structure, and practical ways to use it",
+          es: "Objetivos, estructura y formas prácticas de usar el curso",
+          fr: "Objectifs, structure et usages pratiques du cours",
+        },
+        d: { en: "20 min", es: "20 min", fr: "20 min" },
+        done: false,
+      },
+    ],
+  },
+  {
+    id: "m2",
+    phaseColor: "var(--forest-2)",
+    num: "02",
+    cover: "/images/case-mtb-madagascar-seascape.jpg",
+    title: {
+      en: "The Landscape Approach and the Conservation Context",
+      es: "El enfoque de paisaje y el contexto de conservación",
+      fr: "L'approche paysage et le contexte de conservation",
+    },
+    narrator: { en: "Conservation specialist", es: "Especialista en conservación", fr: "Spécialiste conservation" },
+    summary: {
+      en: "How the Inclusive Conservation Programme provides the foundation for finance decisions.",
+      es: "Cómo el Programa de Conservación Inclusiva sirve de base para las decisiones financieras.",
+      fr: "Comment le Programme de Conservation Inclusive fonde les décisions financières.",
+    },
+    meta: [
+      { kKey: "learning_duration", v: { en: "20 min", es: "20 min", fr: "20 min" } },
       { kKey: "learning_format", v: { en: "Video + reading", es: "Video + lectura", fr: "Vidéo + lecture" } },
       { kKey: "learning_level", v: { en: "Intro", es: "Introductorio", fr: "Introductif" } },
     ],
     lessons: [
       {
-        t: { en: "What is a landscape?", es: "¿Qué es un paisaje?", fr: "Qu'est-ce qu'un paysage ?" },
-        s: { en: "Terrestrial, marine, and mixed", es: "Terrestre, marino y mixto", fr: "Terrestre, marin et mixte" },
-        d: { en: "8 min", es: "8 min", fr: "8 min" },
-        done: false,
-      },
-      {
         t: {
-          en: "Why finance alone does not conserve",
-          es: "Por qué las finanzas por sí solas no conservan",
-          fr: "Pourquoi la finance seule ne conserve pas",
+          en: "Inclusive conservation as the starting point",
+          es: "La conservación inclusiva como punto de partida",
+          fr: "La conservation inclusive comme point de départ",
         },
         s: {
-          en: "Externalities, subsidies, misaligned incentives",
-          es: "Externalidades, subsidios, incentivos desalineados",
-          fr: "Externalités, subventions, incitations mal alignées",
+          en: "Landscape priorities before finance instruments",
+          es: "Prioridades del paisaje antes que instrumentos financieros",
+          fr: "Les priorités du paysage avant les instruments financiers",
         },
-        d: { en: "12 min", es: "12 min", fr: "12 min" },
-        done: false,
-      },
-      {
-        t: {
-          en: "The biodiversity finance gap",
-          es: "La brecha de financiamiento de biodiversidad",
-          fr: "Le déficit de financement de la biodiversité",
-        },
-        s: {
-          en: "Where the money is — and isn't",
-          es: "Dónde está el dinero — y dónde no",
-          fr: "Où est l'argent — et où il ne l'est pas",
-        },
-        d: { en: "10 min", es: "10 min", fr: "10 min" },
+        d: { en: "20 min", es: "20 min", fr: "20 min" },
         done: false,
       },
     ],
   },
   {
-    id: "p2",
-    phaseColor: "var(--forest-2)",
-    num: "02",
-    cover: "/images/case-bns-forest-africa-zambia.jpg",
-    title: {
-      en: "Designing a Landscape Finance Program",
-      es: "Diseño de un programa de Finanzas del Paisaje",
-      fr: "Conception d'un programme de Finance Paysagère",
-    },
-    narrator: { en: "Jessica — specialist", es: "Jessica — especialista", fr: "Jessica — spécialiste" },
-    summary: {
-      en: "From a theory of change to a financeable program: objectives, boundaries, and stakeholders.",
-      es: "De una teoría del cambio a un programa financiable: objetivos, límites y actores.",
-      fr: "D'une théorie du changement à un programme finançable : objectifs, limites et parties prenantes.",
-    },
-    meta: [
-      { kKey: "learning_duration", v: { en: "1 h 20 min", es: "1 h 20 min", fr: "1 h 20 min" } },
-      { kKey: "learning_format", v: { en: "Video + templates", es: "Video + plantillas", fr: "Vidéo + modèles" } },
-      { kKey: "learning_level", v: { en: "Intermediate", es: "Intermedio", fr: "Intermédiaire" } },
-    ],
-    lessons: [
-      {
-        t: {
-          en: "Theory of change & objectives",
-          es: "Teoría del cambio y objetivos",
-          fr: "Théorie du changement et objectifs",
-        },
-        s: { en: "From impact to activities", es: "Del impacto a las actividades", fr: "De l'impact aux activités" },
-        d: { en: "16 min", es: "16 min", fr: "16 min" },
-        done: false,
-      },
-      {
-        t: {
-          en: "Defining landscape boundaries",
-          es: "Definir los límites del paisaje",
-          fr: "Définir les limites du paysage",
-        },
-        s: {
-          en: "Umbrella & operational landscapes",
-          es: "Paisajes paraguas y operativos",
-          fr: "Paysages parapluie et opérationnels",
-        },
-        d: { en: "14 min", es: "14 min", fr: "14 min" },
-        done: false,
-      },
-      {
-        t: {
-          en: "Mapping stakeholders & governance",
-          es: "Mapear actores y gobernanza",
-          fr: "Cartographier parties prenantes et gouvernance",
-        },
-        s: { en: "Who benefits, who decides", es: "Quién se beneficia, quién decide", fr: "Qui bénéficie, qui décide" },
-        d: { en: "18 min", es: "18 min", fr: "18 min" },
-        done: false,
-      },
-    ],
-  },
-  {
-    id: "p3",
+    id: "m3",
     phaseColor: "var(--orange)",
     num: "03",
-    cover: "/images/case-bns-minh-phu-vietnam.jpg",
+    cover: "/images/case-lfa-guide.jpg",
     title: {
-      en: "Screening Financial Solutions",
-      es: "Selección de soluciones financieras",
-      fr: "Sélection des solutions financières",
+      en: "Introduction to Sustainable Finance Landscapes",
+      es: "Introducción a paisajes de finanzas sostenibles",
+      fr: "Introduction aux paysages de finance durable",
     },
-    narrator: { en: "Jessica — specialist", es: "Jessica — especialista", fr: "Jessica — spécialiste" },
+    narrator: { en: "Finance specialist", es: "Especialista financiero", fr: "Spécialiste finance" },
     summary: {
-      en: "Matching the right instruments — blended finance, PES, debt, outcome-based — to your context.",
-      es: "Emparejar los instrumentos correctos —finanzas mixtas, PSE, deuda, basados en resultados— con tu contexto.",
-      fr: "Associer les bons instruments — finance mixte, PSE, dette, axés sur les résultats — à votre contexte.",
+      en: "How to finance solutions in practice, from needs and barriers to possible pathways.",
+      es: "Cómo financiar soluciones en la práctica, desde necesidades y barreras hasta rutas posibles.",
+      fr: "Comment financer les solutions en pratique, des besoins et obstacles aux voies possibles.",
     },
     meta: [
-      { kKey: "learning_duration", v: { en: "1 h 40 min", es: "1 h 40 min", fr: "1 h 40 min" } },
-      { kKey: "learning_format", v: { en: "Video + templates", es: "Video + plantillas", fr: "Vidéo + modèles" } },
-      { kKey: "learning_level", v: { en: "Intermediate", es: "Intermedio", fr: "Intermédiaire" } },
+      { kKey: "learning_duration", v: { en: "40 min", es: "40 min", fr: "40 min" } },
+      { kKey: "learning_format", v: { en: "Video + tools", es: "Video + herramientas", fr: "Vidéo + outils" } },
+      { kKey: "learning_level", v: { en: "Intro", es: "Introductorio", fr: "Introductif" } },
     ],
     lessons: [
       {
-        t: { en: "Blended finance, explained", es: "Finanzas mixtas, explicadas", fr: "Finance mixte, expliquée" },
-        s: { en: "Who puts in what, and why", es: "Quién aporta qué, y por qué", fr: "Qui apporte quoi, et pourquoi" },
-        d: { en: "18 min", es: "18 min", fr: "18 min" },
-        done: false,
-      },
-      {
         t: {
-          en: "Payments for ecosystem services",
-          es: "Pagos por servicios ecosistémicos",
-          fr: "Paiements pour services écosystémiques",
+          en: "How can you actually finance the solutions?",
+          es: "¿Cómo se pueden financiar realmente las soluciones?",
+          fr: "Comment financer concrètement les solutions ?",
         },
-        s: { en: "When they work, when they fail", es: "Cuándo funcionan, cuándo fallan", fr: "Quand ils marchent, quand ils échouent" },
-        d: { en: "16 min", es: "16 min", fr: "16 min" },
-        done: false,
-      },
-      {
-        t: {
-          en: "Outcome-based & carbon finance",
-          es: "Financiamiento por resultados y de carbono",
-          fr: "Financement axé sur les résultats et carbone",
+        s: {
+          en: "Needs, barriers, and first finance pathways",
+          es: "Necesidades, barreras y primeras rutas de financiamiento",
+          fr: "Besoins, obstacles et premières voies de financement",
         },
-        s: { en: "Structures, contracts, verification", es: "Estructuras, contratos, verificación", fr: "Structures, contrats, vérification" },
-        d: { en: "22 min", es: "22 min", fr: "22 min" },
+        d: { en: "40 min", es: "40 min", fr: "40 min" },
         done: false,
       },
     ],
   },
   {
-    id: "p4",
+    id: "m4",
     phaseColor: "var(--forest-2)",
     num: "04",
-    cover: "/images/case-bns-chanzi-tanzania.jpg",
+    cover: "/images/case-lfa-practitioner-playbook.jpg",
     title: {
-      en: "Pitching the Project",
-      es: "Presentar el proyecto a financiadores",
-      fr: "Présenter le projet aux financeurs",
+      en: "Financing Green in Practice",
+      es: "Financiamiento verde en la práctica",
+      fr: "Financement vert en pratique",
     },
-    narrator: { en: "Ylva — specialist", es: "Ylva — especialista", fr: "Ylva — spécialiste" },
+    narrator: { en: "Finance specialist", es: "Especialista financiero", fr: "Spécialiste finance" },
     summary: {
-      en: "Building the investment case, the budget, and the risk story funders need to say yes.",
-      es: "Construir el caso de inversión, el presupuesto y la narrativa de riesgo que los financiadores necesitan para decir que sí.",
-      fr: "Construire l'argumentaire d'investissement, le budget et le récit de risque dont les financeurs ont besoin pour dire oui.",
+      en: "Which financial instruments can be used, and how they come together in real financing strategies.",
+      es: "Qué instrumentos financieros pueden usarse y cómo se combinan en estrategias reales de financiamiento.",
+      fr: "Quels instruments financiers utiliser et comment les combiner dans des stratégies réelles.",
     },
     meta: [
-      { kKey: "learning_duration", v: { en: "1 h 10 min", es: "1 h 10 min", fr: "1 h 10 min" } },
-      { kKey: "learning_format", v: { en: "Video + case", es: "Video + caso", fr: "Vidéo + étude de cas" } },
+      { kKey: "learning_duration", v: { en: "40 min", es: "40 min", fr: "40 min" } },
+      { kKey: "learning_format", v: { en: "Cases + tools", es: "Casos + herramientas", fr: "Cas + outils" } },
+      { kKey: "learning_level", v: { en: "Intermediate", es: "Intermedio", fr: "Intermédiaire" } },
+    ],
+    lessons: [
+      {
+        t: {
+          en: "Financial instruments and financing strategies",
+          es: "Instrumentos financieros y estrategias de financiamiento",
+          fr: "Instruments financiers et stratégies de financement",
+        },
+        s: {
+          en: "Blended finance, debt, grants, PES, and outcome-based structures",
+          es: "Finanzas mixtas, deuda, subvenciones, PSE y estructuras basadas en resultados",
+          fr: "Finance mixte, dette, subventions, PSE et mécanismes axés sur les résultats",
+        },
+        d: { en: "40 min", es: "40 min", fr: "40 min" },
+        done: false,
+      },
+    ],
+  },
+  {
+    id: "m5",
+    phaseColor: "var(--teal)",
+    num: "05",
+    cover: "/images/case-sintang-indonesia.jpg",
+    title: {
+      en: "Greening Finance in Practice",
+      es: "Finanzas verdes en la práctica",
+      fr: "Verdissement de la finance en pratique",
+    },
+    narrator: { en: "Policy specialist", es: "Especialista en políticas", fr: "Spécialiste politiques" },
+    summary: {
+      en: "How system-level rules, incentives, information, and data shape finance decisions affecting landscapes.",
+      es: "Cómo las reglas, incentivos, información y datos del sistema influyen en decisiones financieras que afectan los paisajes.",
+      fr: "Comment les règles, incitations, informations et données systémiques orientent les décisions financières qui affectent les paysages.",
+    },
+    meta: [
+      { kKey: "learning_duration", v: { en: "40 min", es: "40 min", fr: "40 min" } },
+      { kKey: "learning_format", v: { en: "Video + examples", es: "Video + ejemplos", fr: "Vidéo + exemples" } },
+      { kKey: "learning_level", v: { en: "Intermediate", es: "Intermedio", fr: "Intermédiaire" } },
+    ],
+    lessons: [
+      {
+        t: {
+          en: "Rules, incentives, and information",
+          es: "Reglas, incentivos e información",
+          fr: "Règles, incitations et information",
+        },
+        s: {
+          en: "Subsidies, regulation, and data that redirect financial decisions",
+          es: "Subsidios, regulación y datos que redirigen decisiones financieras",
+          fr: "Subventions, réglementation et données qui réorientent les décisions financières",
+        },
+        d: { en: "40 min", es: "40 min", fr: "40 min" },
+        done: false,
+      },
+    ],
+  },
+  {
+    id: "m6",
+    phaseColor: "var(--orange)",
+    num: "06",
+    cover: "/images/case-bns-concepta-brazil.jpg",
+    title: {
+      en: "Scaling Landscape Finance in Practice",
+      es: "Escalar las Finanzas del Paisaje en la práctica",
+      fr: "Changer d'échelle en Finance Paysagère",
+    },
+    narrator: { en: "Programme specialist", es: "Especialista de programa", fr: "Spécialiste programme" },
+    summary: {
+      en: "How financing green and greening finance can work together at landscape scale.",
+      es: "Cómo el financiamiento verde y las finanzas verdes pueden trabajar juntos a escala de paisaje.",
+      fr: "Comment le financement vert et le verdissement de la finance peuvent fonctionner ensemble à l'échelle du paysage.",
+    },
+    meta: [
+      { kKey: "learning_duration", v: { en: "40 min", es: "40 min", fr: "40 min" } },
+      { kKey: "learning_format", v: { en: "Case synthesis", es: "Síntesis de casos", fr: "Synthèse de cas" } },
       { kKey: "learning_level", v: { en: "Advanced", es: "Avanzado", fr: "Avancé" } },
     ],
     lessons: [
       {
-        t: { en: "Building the investment case", es: "Construir el caso de inversión", fr: "Construire l'argumentaire d'investissement" },
-        s: { en: "Impact + return narrative", es: "Narrativa de impacto + retorno", fr: "Récit d'impact + rendement" },
-        d: { en: "15 min", es: "15 min", fr: "15 min" },
-        done: false,
-      },
-      {
-        t: { en: "Budget & financial model", es: "Presupuesto y modelo financiero", fr: "Budget et modèle financier" },
-        s: { en: "Costs, phasing, overhead", es: "Costos, fases, indirectos", fr: "Coûts, phasage, frais généraux" },
-        d: { en: "20 min", es: "20 min", fr: "20 min" },
-        done: false,
-      },
-      {
-        t: { en: "Risk, safeguards & bankability", es: "Riesgo, salvaguardas y bancabilidad", fr: "Risque, garanties et bancabilité" },
-        s: { en: "What gets you past screening", es: "Lo que te hace pasar el filtro", fr: "Ce qui passe le filtre" },
-        d: { en: "17 min", es: "17 min", fr: "17 min" },
+        t: {
+          en: "Combining both finance tracks",
+          es: "Combinar ambas rutas financieras",
+          fr: "Combiner les deux voies financières",
+        },
+        s: {
+          en: "From local pilots to systemic landscape strategies",
+          es: "De pilotos locales a estrategias sistémicas de paisaje",
+          fr: "Des pilotes locaux aux stratégies paysagères systémiques",
+        },
+        d: { en: "40 min", es: "40 min", fr: "40 min" },
         done: false,
       },
     ],
   },
   {
-    id: "p5",
-    phaseColor: "var(--teal)",
-    num: "05",
-    cover: "/images/case-bns-concepta-brazil.jpg",
+    id: "m7",
+    phaseColor: "var(--forest-2)",
+    num: "07",
+    cover: "/images/case-bns-forest-africa-zambia.jpg",
     title: {
-      en: "Real-World Case Studies",
-      es: "Casos de estudio reales",
-      fr: "Études de cas réelles",
+      en: "Wrapping Up and Moving Forward",
+      es: "Cierre y próximos pasos",
+      fr: "Conclusion et prochaines étapes",
     },
-    narrator: { en: "Field narrators", es: "Narradores de campo", fr: "Narrateurs de terrain" },
+    narrator: { en: "Course guide", es: "Guía del curso", fr: "Guide du cours" },
     summary: {
-      en: "How the approach plays out on the ground — from Madagascar's seascapes to Sintang and the Cerrado.",
-      es: "Cómo se aplica el enfoque en el terreno — de los paisajes marinos de Madagascar a Sintang y el Cerrado.",
-      fr: "Comment l'approche se déploie sur le terrain — des paysages marins de Madagascar à Sintang et au Cerrado.",
+      en: "Reflect on what you have learned, connect it to your own context, and identify practical next steps.",
+      es: "Reflexiona sobre lo aprendido, conéctalo con tu propio contexto e identifica próximos pasos prácticos.",
+      fr: "Revenez sur vos apprentissages, reliez-les à votre contexte et identifiez les prochaines étapes pratiques.",
     },
     meta: [
-      { kKey: "learning_duration", v: { en: "1 h 30 min", es: "1 h 30 min", fr: "1 h 30 min" } },
-      { kKey: "learning_format", v: { en: "Case studies", es: "Casos de estudio", fr: "Études de cas" } },
+      { kKey: "learning_duration", v: { en: "20 min", es: "20 min", fr: "20 min" } },
+      { kKey: "learning_format", v: { en: "Reflection", es: "Reflexión", fr: "Réflexion" } },
       { kKey: "learning_level", v: { en: "All levels", es: "Todos los niveles", fr: "Tous niveaux" } },
     ],
     lessons: [
       {
-        t: { en: "Seascape finance: MTB Madagascar", es: "Finanzas de paisaje marino: MTB Madagascar", fr: "Finance des paysages marins : MTB Madagascar" },
-        s: { en: "Blue economy, portfolio approach", es: "Economía azul, enfoque de portafolio", fr: "Économie bleue, approche portefeuille" },
+        t: {
+          en: "Apply the learning in your context",
+          es: "Aplicar lo aprendido en tu contexto",
+          fr: "Appliquer les apprentissages à votre contexte",
+        },
+        s: {
+          en: "Review, reflection, and practical next steps",
+          es: "Revisión, reflexión y próximos pasos prácticos",
+          fr: "Révision, réflexion et prochaines étapes pratiques",
+        },
         d: { en: "20 min", es: "20 min", fr: "20 min" },
-        done: false,
-      },
-      {
-        t: { en: "Bankable Nature Solutions", es: "Soluciones basadas en la naturaleza bancarizables", fr: "Solutions Fondées sur la Nature bancables" },
-        s: { en: "13 blueprints, what worked", es: "13 modelos, qué funcionó", fr: "13 modèles, ce qui a marché" },
-        d: { en: "18 min", es: "18 min", fr: "18 min" },
-        done: false,
-      },
-      {
-        t: { en: "Sintang Landscape Initiative", es: "Iniciativa de Paisaje Sintang", fr: "Initiative Paysagère de Sintang" },
-        s: { en: "4 returns in West Kalimantan", es: "4 retornos en Kalimantan Occidental", fr: "4 retours au Kalimantan occidental" },
-        d: { en: "16 min", es: "16 min", fr: "16 min" },
         done: false,
       },
     ],
@@ -284,7 +294,7 @@ const UNITS: Unit[] = [
 ];
 
 export function LearningClient({ locale }: { locale: Locale }) {
-  const [active, setActive] = useState<string>("p1");
+  const [active, setActive] = useState<string>("m1");
   const unit = UNITS.find((u) => u.id === active)!;
 
   return (
@@ -301,7 +311,6 @@ export function LearningClient({ locale }: { locale: Locale }) {
         </div>
       </div>
 
-      {/* Intro del curso (slide 24 del deck WWF) */}
       <div className="learn-intro">
         <div className="learn-intro-img">
           <Image

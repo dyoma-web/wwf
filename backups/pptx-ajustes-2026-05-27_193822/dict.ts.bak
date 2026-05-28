@@ -32,10 +32,10 @@ const en: Dict = {
 
   // By objective → Master the Framework (slide 3, bloque C del deck WWF)
   about_eyebrow: "LEARNING PATH",
-  about_title: "Master the Landscape Finance Approach",
+  about_title: "Master the Landscape Finance Framework",
   about_body:
-    "Agrifood systems are currently the biggest threat to nature, but they also hold the key to global conservation. WWF's Roadmap 2030 aims to scale nature-positive agriculture across 800 million hectares by 2030 through regenerative, non-destructive practices, supportive national policies, favorable financial incentives for farmers, and corporate supply chains that reward sustainable production.",
-  about_cta: "Learn more",
+    "Accelerate your expertise through five strategic phases. From core concepts and program design to screening financial solutions, project pitching, and analysing real-world case studies — this course equips you to work for nature and people by sourcing capital effectively.",
+  about_cta: "Explore the curriculum",
 
   // Tiles
   tile1: "Start learning",
@@ -158,13 +158,13 @@ const en: Dict = {
 
   // Learning page (chrome) — reestructurado en 5 fases (slides 3 y 24 del deck WWF)
   learning_eyebrow: "START LEARNING",
-  learning_title: "Master the Landscape Finance Approach",
+  learning_title: "Master the Landscape Finance Framework",
   learning_subtitle:
-    "Progress through a guided learning journey, from understanding landscapes and agri-food systems to analysing real cases, exploring finance solutions, and applying the Landscape Finance Approach in practice.",
-  learning_intro_title: "Connect finance, people, and nature",
+    "Accelerate your expertise through five strategic phases — from core concepts and program design to screening financial solutions, project pitching, and analysing real-world case studies.",
+  learning_intro_title: "Finance the future of nature",
   learning_intro_body:
-    "Learn how to connect finance, people, and nature to create real change in landscapes, with agri-food systems treated as a cross-cutting lens rather than a separate section. Through practical tools and WWF case studies, you will understand landscapes, identify priorities, and apply the Landscape Finance Approach to design effective, context-specific strategies.",
-  learning_phase: "Module",
+    "This course bridges the gap between global capital and local conservation, serving as an implementation platform to finance the future of nature. Through practical tools and the analysis of real WWF case studies, you will learn to structure sustainable financial models that protect biodiversity and mitigate climate risk, enabling you to co-create high-impact strategies alongside your partners in the field.",
+  learning_phase: "Phase",
   learning_duration: "Duration",
   learning_format: "Format",
   learning_level: "Level",
@@ -177,6 +177,8 @@ const en: Dict = {
   // Lenses temáticas (compartido entre páginas)
   lens_greening: "Greening finance",
   lens_financing: "Financing Green",
+  lens_food: "Food & Agriculture",
+  lens_food_short: "Food & agriculture",
 
   // Navigator — preguntas reformuladas para el catálogo real de docs
   q_role_label: "Your role",
@@ -534,6 +536,16 @@ const en: Dict = {
   coming_cta_toolkit: "Browse the resource library",
   coming_cta_learning: "Start learning",
 
+  // Food & Agriculture (nav + página "próximamente")
+  nav_food_ag: "Food & Agriculture",
+  fa_eyebrow: "FOOD & AGRICULTURE",
+  fa_title: "Financing resilient food systems",
+  fa_intro:
+    "Agriculture and food systems sit at the heart of the climate and biodiversity crisis, and are one of our most powerful levers for change.",
+  fa_soon_title: "More on this theme is on the way",
+  fa_soon_body:
+    "We're curating a dedicated space on financing the transition to nature-positive, climate-resilient food and agriculture systems. In the meantime, several Food & Agriculture resources are already in the library and the Navigator.",
+  fa_cta_navigator: "Find resources",
 };
 
 const es: Dict = {
@@ -562,10 +574,10 @@ const es: Dict = {
     "Te damos la bienvenida a tu centro estratégico para el Enfoque de Finanzas del Paisaje (LFA). Domina las herramientas, los kits y los casos de estudio diseñados para desbloquear y escalar capital sostenible donde la naturaleza y las comunidades más lo necesitan.",
 
   about_eyebrow: "RUTA DE APRENDIZAJE",
-  about_title: "Domina el Enfoque de Finanzas del Paisaje",
+  about_title: "Domina el marco de Finanzas del Paisaje",
   about_body:
-    "Los sistemas agroalimentarios son actualmente la mayor amenaza para la naturaleza, pero también tienen la clave para la conservación global. La Hoja de Ruta 2030 de WWF busca escalar la agricultura positiva para la naturaleza en 800 millones de hectáreas para 2030 mediante prácticas regenerativas y no destructivas, políticas nacionales de apoyo, incentivos financieros favorables para productores y cadenas corporativas que recompensen la producción sostenible.",
-  about_cta: "Conoce más",
+    "Acelera tu experiencia a través de cinco fases estratégicas. Desde los conceptos básicos y el diseño del programa hasta la selección de soluciones financieras, la presentación de proyectos y el análisis de casos reales — este curso te prepara para trabajar por la naturaleza y las personas movilizando capital de forma efectiva.",
+  about_cta: "Ver el currículo",
 
   tile1: "Empezar a aprender",
   tile2: "Opciones financieras",
@@ -682,13 +694,13 @@ const es: Dict = {
 
   // Learning — reestructurado en 5 fases (slides 3 y 24 del deck WWF)
   learning_eyebrow: "EMPIEZA A APRENDER",
-  learning_title: "Domina el Enfoque de Finanzas del Paisaje",
+  learning_title: "Domina el marco de Finanzas del Paisaje",
   learning_subtitle:
-    "Avanza por un recorrido guiado: desde comprender los paisajes y los sistemas agroalimentarios hasta analizar casos reales, explorar soluciones financieras y aplicar el Enfoque de Finanzas del Paisaje en la práctica.",
-  learning_intro_title: "Conecta finanzas, personas y naturaleza",
+    "Acelera tu experiencia a través de cinco fases estratégicas — desde los conceptos básicos y el diseño del programa hasta la selección de soluciones financieras, la presentación de proyectos y el análisis de casos reales.",
+  learning_intro_title: "Financia el futuro de la naturaleza",
   learning_intro_body:
-    "Aprende a conectar finanzas, personas y naturaleza para generar cambios reales en los paisajes, con los sistemas agroalimentarios como lente transversal y no como una sección separada. A través de herramientas prácticas y casos de WWF, comprenderás paisajes, identificarás prioridades y aplicarás el Enfoque de Finanzas del Paisaje para diseñar estrategias efectivas y específicas al contexto.",
-  learning_phase: "Módulo",
+    "Este curso cierra la brecha entre el capital global y la conservación local, y funciona como plataforma de implementación para financiar el futuro de la naturaleza. A través de herramientas prácticas y el análisis de casos reales de WWF, aprenderás a estructurar modelos financieros sostenibles que protegen la biodiversidad y mitigan el riesgo climático, para co-crear estrategias de alto impacto junto a tus socios en el terreno.",
+  learning_phase: "Fase",
   learning_duration: "Duración",
   learning_format: "Formato",
   learning_level: "Nivel",
@@ -701,6 +713,8 @@ const es: Dict = {
   // Lentes temáticas
   lens_greening: "Finanzas verdes",
   lens_financing: "Financiamiento verde",
+  lens_food: "Alimentación y agricultura",
+  lens_food_short: "Alimentación y agricultura",
 
   // Navigator — preguntas
   q_role_label: "Tu rol",
@@ -1055,6 +1069,16 @@ const es: Dict = {
   coming_cta_toolkit: "Explorar la biblioteca de recursos",
   coming_cta_learning: "Empezar a aprender",
 
+  // Food & Agriculture (nav + página "próximamente")
+  nav_food_ag: "Alimentación y Agricultura",
+  fa_eyebrow: "ALIMENTACIÓN Y AGRICULTURA",
+  fa_title: "Financiar sistemas alimentarios resilientes",
+  fa_intro:
+    "La agricultura y los sistemas alimentarios están en el centro de la crisis climática y de biodiversidad, y son una de nuestras palancas de cambio más poderosas.",
+  fa_soon_title: "Pronto encontrarás más sobre esta temática",
+  fa_soon_body:
+    "Estamos preparando un espacio dedicado al financiamiento de la transición hacia sistemas de alimentación y agricultura climáticamente resilientes y positivos para la naturaleza. Mientras tanto, ya hay varios recursos de Alimentación y Agricultura en la biblioteca y en el Navegador.",
+  fa_cta_navigator: "Buscar recursos",
 };
 
 const fr: Dict = {
@@ -1083,10 +1107,10 @@ const fr: Dict = {
     "Bienvenue dans votre pôle stratégique pour l'approche Finance Paysagère (LFA). Maîtrisez les outils, les boîtes à outils et les études de cas conçus pour débloquer et déployer des capitaux durables là où la nature et les communautés en ont le plus besoin.",
 
   about_eyebrow: "PARCOURS D'APPRENTISSAGE",
-  about_title: "Maîtrisez l'approche de Finance Paysagère",
+  about_title: "Maîtrisez le cadre de la Finance Paysagère",
   about_body:
-    "Les systèmes agroalimentaires sont aujourd'hui la plus grande menace pour la nature, mais ils détiennent aussi une clé majeure pour la conservation mondiale. La Feuille de route 2030 du WWF vise à étendre une agriculture positive pour la nature sur 800 millions d'hectares d'ici 2030 grâce à des pratiques régénératrices et non destructrices, des politiques nationales favorables, des incitations financières pour les producteurs et des chaînes d'approvisionnement qui récompensent la production durable.",
-  about_cta: "En savoir plus",
+    "Développez votre expertise à travers cinq phases stratégiques. Des concepts fondamentaux et la conception de programme à la sélection des solutions financières, la présentation de projets et l'analyse de cas réels — ce cours vous prépare à œuvrer pour la nature et les populations en mobilisant des capitaux efficacement.",
+  about_cta: "Voir le programme",
 
   tile1: "Se former",
   tile2: "Options financières",
@@ -1203,13 +1227,13 @@ const fr: Dict = {
 
   // Learning — restructuré en 5 phases (slides 3 et 24 du deck WWF)
   learning_eyebrow: "COMMENCER À APPRENDRE",
-  learning_title: "Maîtrisez l'approche de Finance Paysagère",
+  learning_title: "Maîtrisez le cadre de la Finance Paysagère",
   learning_subtitle:
-    "Progressez dans un parcours guidé, de la compréhension des paysages et des systèmes agroalimentaires à l'analyse de cas réels, l'exploration de solutions financières et l'application de l'approche de Finance Paysagère.",
-  learning_intro_title: "Relier finance, personnes et nature",
+    "Développez votre expertise à travers cinq phases stratégiques — des concepts fondamentaux et la conception de programme à la sélection des solutions financières, la présentation de projets et l'analyse de cas réels.",
+  learning_intro_title: "Financez l'avenir de la nature",
   learning_intro_body:
-    "Apprenez à relier finance, personnes et nature afin de créer un changement réel dans les paysages, les systèmes agroalimentaires étant traités comme un angle transversal plutôt que comme une section séparée. Grâce à des outils pratiques et à des études de cas WWF, vous apprendrez à comprendre les paysages, identifier les priorités et appliquer l'approche de Finance Paysagère.",
-  learning_phase: "Module",
+    "Ce cours comble le fossé entre le capital mondial et la conservation locale, et sert de plateforme de mise en œuvre pour financer l'avenir de la nature. Grâce à des outils pratiques et à l'analyse d'études de cas réelles de WWF, vous apprendrez à structurer des modèles financiers durables qui protègent la biodiversité et atténuent le risque climatique, pour co-créer des stratégies à fort impact avec vos partenaires de terrain.",
+  learning_phase: "Phase",
   learning_duration: "Durée",
   learning_format: "Format",
   learning_level: "Niveau",
@@ -1222,6 +1246,8 @@ const fr: Dict = {
   // Axes thématiques
   lens_greening: "Finance verte",
   lens_financing: "Financement vert",
+  lens_food: "Alimentation & agriculture",
+  lens_food_short: "Alim. & agriculture",
 
   // Navigator — questions
   q_role_label: "Votre rôle",
@@ -1564,6 +1590,16 @@ const fr: Dict = {
   coming_cta_toolkit: "Explorer la bibliothèque",
   coming_cta_learning: "Commencer à apprendre",
 
+  // Food & Agriculture (nav + page « bientôt »)
+  nav_food_ag: "Alimentation & Agriculture",
+  fa_eyebrow: "ALIMENTATION & AGRICULTURE",
+  fa_title: "Financer des systèmes alimentaires résilients",
+  fa_intro:
+    "L'agriculture et les systèmes alimentaires sont au cœur de la crise climatique et de la biodiversité, et constituent l'un de nos leviers de changement les plus puissants.",
+  fa_soon_title: "Davantage sur ce thème arrive bientôt",
+  fa_soon_body:
+    "Nous préparons un espace dédié au financement de la transition vers des systèmes alimentaires et agricoles résilients au climat et favorables à la nature. En attendant, plusieurs ressources Alimentation & Agriculture sont déjà dans la bibliothèque et le Navigateur.",
+  fa_cta_navigator: "Trouver des ressources",
 };
 
 const dicts: Record<Locale, Dict> = { en, es, fr };
