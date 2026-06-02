@@ -18,7 +18,7 @@ const en: Dict = {
   hero_eyebrow: "Built for Landscape Impact",
   hero_title: "Explore Landscape Finance",
   hero_sub:
-    "Access the tools, real-world case studies, and financial frameworks needed to protect ecosystems and fund a sustainable future.",
+    "Access the tools, real-world case studies, and financial frameworks needed to protect ecosystems and transform food systems for a sustainable future.",
   hero_cta1: "Start learning",
   hero_cta2: "Find my path",
   hero_cap: "LANDSCAPE PHOTO · FARMER AT SUNRISE [ placeholder ]",
@@ -551,7 +551,7 @@ const es: Dict = {
   hero_eyebrow: "Creado para el impacto en el paisaje",
   hero_title: "Explora las Finanzas del Paisaje",
   hero_sub:
-    "Accede a las herramientas, casos reales y marcos financieros necesarios para proteger los ecosistemas y financiar un futuro sostenible.",
+    "Accede a las herramientas, casos reales y marcos financieros necesarios para proteger los ecosistemas y transformar los sistemas alimentarios hacia un futuro sostenible.",
   hero_cta1: "Empezar a aprender",
   hero_cta2: "Encontrar mi ruta",
   hero_cap: "PAISAJE · AGRICULTOR AL AMANECER [ placeholder ]",
@@ -1074,7 +1074,7 @@ const fr: Dict = {
   hero_eyebrow: "Conçu pour l'impact paysager",
   hero_title: "Explorez la Finance Paysagère",
   hero_sub:
-    "Accédez aux outils, aux études de cas réelles et aux cadres financiers nécessaires pour protéger les écosystèmes et financer un avenir durable.",
+    "Accédez aux outils, aux études de cas réelles et aux cadres financiers nécessaires pour protéger les écosystèmes et transformer les systèmes alimentaires pour un avenir durable.",
   hero_cta1: "Commencer",
   hero_cta2: "Trouver ma voie",
   hero_cap: "PAYSAGE · AGRICULTEUR AU LEVER DU SOLEIL [ placeholder ]",
