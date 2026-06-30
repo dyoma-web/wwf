@@ -7,8 +7,14 @@ const en: Dict = {
   nav_home: "Home",
   nav_learn: "Learning",
   nav_finance: "Navigator",
-  nav_toolkit: "Toolkit",
+  nav_toolkit: "Knowledge Hub",
+  nav_search: "Search",
   nav_contact: "Contact Us",
+  search_placeholder: "Search",
+  search_title: "Search the WWF knowledge base",
+  search_results_hint: "Results are powered by Google and limited to panda.org while this platform gets its final domain.",
+  search_open_google: "Search on Google",
+  search_empty: "Type a keyword to search WWF global content.",
 
   // Marca
   brand_name: "Discover Landscape Finance",
@@ -18,7 +24,7 @@ const en: Dict = {
   hero_eyebrow: "Built for Landscape Impact",
   hero_title: "Explore Landscape Finance",
   hero_sub:
-    "Access the tools, real-world case studies, and financial frameworks needed to protect ecosystems and transform food systems for a sustainable future.",
+    "Access the tools, real-world case studies, and financial frameworks needed to protect ecosystems and transform food and agriculture systems for a sustainable future.",
   hero_cta1: "Start learning",
   hero_cta2: "Find my path",
   hero_cap: "LANDSCAPE PHOTO · FARMER AT SUNRISE [ placeholder ]",
@@ -28,19 +34,19 @@ const en: Dict = {
   discover_title: "Discover Landscape Finance",
   discover_sub: "Scaling Capital for Nature and People",
   discover_body:
-    "Welcome to your strategic hub for the Landscape Finance Approach (LFA). Master the tools, toolkits, and case studies designed to unlock and scale sustainable capital where nature and communities need it most.",
+    "The Landscape Finance Approach (LFA) is a holistic framework and systematic process for mobilizing and aligning public, private, and philanthropic finance for the benefit of people, nature and the economy. The approach identifies landscapes with strong impact and financing potential, translates them into investable opportunities combining “Financing Green” interventions that increase investment in nature with “Greening Finance” interventions that integrate environmental and social considerations into financial decision-making, ensuring these strategies reinforce one another to achieve climate, biodiversity, and community outcomes.",
 
   // By objective → Master the Framework (slide 3, bloque C del deck WWF)
   about_eyebrow: "LEARNING PATH",
-  about_title: "Master the Landscape Finance Approach",
+  about_title: "Understand the Landscape Finance Approach for Agri-Food Systems",
   about_body:
-    "Agrifood systems are currently the biggest threat to nature, but they also hold the key to global conservation. WWF's Roadmap 2030 aims to scale nature-positive agriculture across 800 million hectares by 2030 through regenerative, non-destructive practices, supportive national policies, favorable financial incentives for farmers, and corporate supply chains that reward sustainable production.",
+    "Agrifood systems are currently one of the greatest pressures on nature, but they also offer a critical opportunity for conservation. WWF works to advance nature-positive agriculture by promoting regenerative, non-destructive practices, strengthening supportive national policies, and improving financial incentives for farmers.",
   about_cta: "Learn more",
 
   // Tiles
   tile1: "Start learning",
   tile2: "Finance options",
-  tile3: "Apply in your landscape",
+  tile3: "Knowledge Hub",
 
   // Stats (slide 5 del deck WWF — The Reality in Numbers)
   stats_eyebrow: "WHY IT MATTERS",
@@ -65,8 +71,9 @@ const en: Dict = {
   lib_sub:
     "The Playbook, the LFA framework, ready-to-use templates and a plain-language glossary — versioned, dated, open.",
   lib_pill1: "Landscape Finance Approach",
-  lib_pill2: "Sustainable Finance Playbook for Conservation",
-  lib_pill3: "Templates & self-assessment",
+  lib_pill2: "Sustainable Finance Case Studies",
+  lib_pill3: "Nature Positive Food and Agriculture",
+  lib_pill4: "Knowledge Hub",
 
   // People
   people_eyebrow: "MEET THE GUIDES",
@@ -79,9 +86,9 @@ const en: Dict = {
   contact_title: "Contact Us",
   contact_body:
     "Have a question, a landscape to contribute, or a partner to connect? We read every message.",
-  contact_loc: "Gland, Switzerland · remote contributors",
-  contact_phone: "+41 00 000 00 00",
-  contact_mail: "hello@example.org",
+  contact_loc: "Rue Mauverney 28, 1196 Gland, Switzerland",
+  contact_phone: "+41 22 364 91 11",
+  contact_mail: "finance@wwfint.org · food.practice@wwfint.org",
   contact_name: "Name",
   contact_email: "Email",
   contact_message: "Message",
@@ -89,6 +96,7 @@ const en: Dict = {
   contact_email_ph: "you@org.com",
   contact_message_ph: "How can we help?",
   contact_send: "Send message",
+  contact_mail_subject: "Landscape Finance contact request",
 
   // Footer
   footer_rights: "© 2026 · Open resource · CC BY-NC-SA",
@@ -132,7 +140,7 @@ const en: Dict = {
 
   // Toolkit page (chrome)
   toolkit_eyebrow: "TOOLKIT · RESOURCES & LIBRARY",
-  toolkit_title: "Your Implementation Toolkit",
+  toolkit_title: "Your Implementation Resources",
   toolkit_subtitle:
     "A comprehensive repository of ready-to-use templates, strategic playbooks, and regional frameworks.",
   toolkit_map: "INTERACTIVE MAP",
@@ -158,10 +166,10 @@ const en: Dict = {
 
   // Learning page (chrome) — reestructurado en 5 fases (slides 3 y 24 del deck WWF)
   learning_eyebrow: "START LEARNING",
-  learning_title: "Master the Landscape Finance Approach",
+  learning_title: "Understand the Landscape Finance Approach",
   learning_subtitle:
     "Progress through a guided learning journey, from understanding landscapes and agri-food systems to analysing real cases, exploring finance solutions, and applying the Landscape Finance Approach in practice.",
-  learning_intro_title: "Connect finance, people, and nature",
+  learning_intro_title: "Connect finance for agri-food systems",
   learning_intro_body:
     "Learn how to connect finance, people, and nature to create real change in landscapes, with agri-food systems treated as a cross-cutting lens rather than a separate section. Through practical tools and WWF case studies, you will understand landscapes, identify priorities, and apply the Landscape Finance Approach to design effective, context-specific strategies.",
   learning_phase: "Module",
@@ -542,8 +550,14 @@ const es: Dict = {
   nav_home: "Inicio",
   nav_learn: "Aprende",
   nav_finance: "Navegador",
-  nav_toolkit: "Herramientas",
+  nav_toolkit: "Knowledge Hub",
+  nav_search: "Buscar",
   nav_contact: "Contáctanos",
+  search_placeholder: "Buscar",
+  search_title: "Buscar en la base de conocimiento WWF",
+  search_results_hint: "Los resultados se generan con Google y se limitan a panda.org mientras esta plataforma obtiene su dominio final.",
+  search_open_google: "Buscar en Google",
+  search_empty: "Escribe una palabra clave para buscar contenido global de WWF.",
 
   brand_name: "Descubre las Finanzas del Paisaje",
   brand_sub: "Escalando capital para la naturaleza y las personas",
@@ -551,7 +565,7 @@ const es: Dict = {
   hero_eyebrow: "Creado para el impacto en el paisaje",
   hero_title: "Explora las Finanzas del Paisaje",
   hero_sub:
-    "Accede a las herramientas, casos reales y marcos financieros necesarios para proteger los ecosistemas y transformar los sistemas alimentarios hacia un futuro sostenible.",
+    "Accede a las herramientas, casos reales y marcos financieros necesarios para proteger los ecosistemas y transformar los sistemas alimentarios y agrícolas hacia un futuro sostenible.",
   hero_cta1: "Empezar a aprender",
   hero_cta2: "Encontrar mi ruta",
   hero_cap: "PAISAJE · AGRICULTOR AL AMANECER [ placeholder ]",
@@ -561,17 +575,17 @@ const es: Dict = {
   discover_title: "Descubre las Finanzas del Paisaje",
   discover_sub: "Escalando capital para la naturaleza y las personas",
   discover_body:
-    "Te damos la bienvenida a tu centro estratégico para el Enfoque de Finanzas del Paisaje (LFA). Domina las herramientas, los kits y los casos de estudio diseñados para desbloquear y escalar capital sostenible donde la naturaleza y las comunidades más lo necesitan.",
+    "El Enfoque de Finanzas del Paisaje (LFA) es un marco holístico y un proceso sistemático para movilizar y alinear financiación pública, privada y filantrópica en beneficio de las personas, la naturaleza y la economía. El enfoque identifica paisajes con alto impacto y potencial de financiación, los traduce en oportunidades invertibles que combinan intervenciones de “Financing Green”, orientadas a aumentar la inversión en la naturaleza, con intervenciones de “Greening Finance”, que integran consideraciones ambientales y sociales en la toma de decisiones financieras, asegurando que estas estrategias se refuercen entre sí para lograr resultados climáticos, de biodiversidad y comunitarios.",
 
   about_eyebrow: "RUTA DE APRENDIZAJE",
-  about_title: "Domina el Enfoque de Finanzas del Paisaje",
+  about_title: "Comprende el Enfoque de Finanzas del Paisaje para Sistemas Agroalimentarios",
   about_body:
-    "Los sistemas agroalimentarios son actualmente la mayor amenaza para la naturaleza, pero también tienen la clave para la conservación global. La Hoja de Ruta 2030 de WWF busca escalar la agricultura positiva para la naturaleza en 800 millones de hectáreas para 2030 mediante prácticas regenerativas y no destructivas, políticas nacionales de apoyo, incentivos financieros favorables para productores y cadenas corporativas que recompensen la producción sostenible.",
+    "Los sistemas agroalimentarios son actualmente una de las mayores presiones sobre la naturaleza, pero también ofrecen una oportunidad crítica para la conservación. WWF trabaja para impulsar una agricultura positiva para la naturaleza promoviendo prácticas regenerativas y no destructivas, fortaleciendo políticas nacionales de apoyo y mejorando los incentivos financieros para los productores.",
   about_cta: "Conoce más",
 
   tile1: "Empezar a aprender",
   tile2: "Opciones financieras",
-  tile3: "Aplicar en tu paisaje",
+  tile3: "Knowledge Hub",
 
   stats_eyebrow: "POR QUÉ IMPORTA",
   stats_t: "La realidad en cifras",
@@ -594,8 +608,9 @@ const es: Dict = {
   lib_sub:
     "El Playbook, el marco LFA, plantillas listas para usar y un glosario en lenguaje sencillo — versionados, fechados, abiertos.",
   lib_pill1: "Enfoque de Finanzas del Paisaje",
-  lib_pill2: "Playbook de Finanzas Sostenibles para la Conservación",
-  lib_pill3: "Plantillas y autoevaluación",
+  lib_pill2: "Casos de estudio de finanzas sostenibles",
+  lib_pill3: "Alimentos y agricultura positivos para la naturaleza",
+  lib_pill4: "Knowledge Hub",
 
   people_eyebrow: "CONOCE A LAS GUÍAS",
   people_t: "Conoce a las guías",
@@ -606,9 +621,9 @@ const es: Dict = {
   contact_title: "Contáctanos",
   contact_body:
     "¿Tienes una pregunta, un paisaje que aportar o un socio al que conectar? Leemos todos los mensajes.",
-  contact_loc: "Gland, Suiza · colaboradores remotos",
-  contact_phone: "+41 00 000 00 00",
-  contact_mail: "hola@example.org",
+  contact_loc: "Rue Mauverney 28, 1196 Gland, Suiza",
+  contact_phone: "+41 22 364 91 11",
+  contact_mail: "finance@wwfint.org · food.practice@wwfint.org",
   contact_name: "Nombre",
   contact_email: "Correo",
   contact_message: "Mensaje",
@@ -616,6 +631,7 @@ const es: Dict = {
   contact_email_ph: "tu@org.com",
   contact_message_ph: "¿Cómo podemos ayudarte?",
   contact_send: "Enviar mensaje",
+  contact_mail_subject: "Solicitud de contacto sobre Finanzas del Paisaje",
 
   footer_rights: "© 2026 · Recurso abierto · CC BY-NC-SA",
   footer_tech: "EN · ES · FR · WCAG AA · mobile-first",
@@ -658,7 +674,7 @@ const es: Dict = {
 
   // Toolkit
   toolkit_eyebrow: "HERRAMIENTAS · RECURSOS Y BIBLIOTECA",
-  toolkit_title: "Tu kit de implementación",
+  toolkit_title: "Tus recursos de implementación",
   toolkit_subtitle:
     "Un repositorio completo de plantillas listas para usar, playbooks estratégicos y marcos regionales.",
   toolkit_map: "MAPA INTERACTIVO",
@@ -684,10 +700,10 @@ const es: Dict = {
 
   // Learning — reestructurado en 5 fases (slides 3 y 24 del deck WWF)
   learning_eyebrow: "EMPIEZA A APRENDER",
-  learning_title: "Domina el Enfoque de Finanzas del Paisaje",
+  learning_title: "Comprende el Enfoque de Finanzas del Paisaje",
   learning_subtitle:
     "Avanza por un recorrido guiado: desde comprender los paisajes y los sistemas agroalimentarios hasta analizar casos reales, explorar soluciones financieras y aplicar el Enfoque de Finanzas del Paisaje en la práctica.",
-  learning_intro_title: "Conecta finanzas, personas y naturaleza",
+  learning_intro_title: "Conecta finanzas para sistemas agroalimentarios",
   learning_intro_body:
     "Aprende a conectar finanzas, personas y naturaleza para generar cambios reales en los paisajes, con los sistemas agroalimentarios como lente transversal y no como una sección separada. A través de herramientas prácticas y casos de WWF, comprenderás paisajes, identificarás prioridades y aplicarás el Enfoque de Finanzas del Paisaje para diseñar estrategias efectivas y específicas al contexto.",
   learning_phase: "Módulo",
@@ -1065,8 +1081,14 @@ const fr: Dict = {
   nav_home: "Accueil",
   nav_learn: "Se former",
   nav_finance: "Navigateur",
-  nav_toolkit: "Outils",
+  nav_toolkit: "Knowledge Hub",
+  nav_search: "Recherche",
   nav_contact: "Contact",
+  search_placeholder: "Recherche",
+  search_title: "Rechercher dans la base de connaissances WWF",
+  search_results_hint: "Les resultats utilisent Google et sont limites a panda.org pendant que cette plateforme obtient son domaine final.",
+  search_open_google: "Rechercher sur Google",
+  search_empty: "Saisissez un mot-cle pour rechercher du contenu WWF global.",
 
   brand_name: "Découvrez la Finance Paysagère",
   brand_sub: "Mobiliser des capitaux pour la nature et les populations",
@@ -1074,7 +1096,7 @@ const fr: Dict = {
   hero_eyebrow: "Conçu pour l'impact paysager",
   hero_title: "Explorez la Finance Paysagère",
   hero_sub:
-    "Accédez aux outils, aux études de cas réelles et aux cadres financiers nécessaires pour protéger les écosystèmes et transformer les systèmes alimentaires pour un avenir durable.",
+    "Accédez aux outils, aux études de cas réelles et aux cadres financiers nécessaires pour protéger les écosystèmes et transformer les systèmes alimentaires et agricoles pour un avenir durable.",
   hero_cta1: "Commencer",
   hero_cta2: "Trouver ma voie",
   hero_cap: "PAYSAGE · AGRICULTEUR AU LEVER DU SOLEIL [ placeholder ]",
@@ -1084,17 +1106,17 @@ const fr: Dict = {
   discover_title: "Découvrez la Finance Paysagère",
   discover_sub: "Mobiliser des capitaux pour la nature et les populations",
   discover_body:
-    "Bienvenue dans votre pôle stratégique pour l'approche Finance Paysagère (LFA). Maîtrisez les outils, les boîtes à outils et les études de cas conçus pour débloquer et déployer des capitaux durables là où la nature et les communautés en ont le plus besoin.",
+    "L'approche de Finance Paysagère (LFA) est un cadre holistique et un processus systématique pour mobiliser et aligner les financements publics, privés et philanthropiques au bénéfice des personnes, de la nature et de l'économie. Elle identifie les paysages présentant un fort potentiel d'impact et de financement, puis les traduit en opportunités investissables combinant des interventions de « Financing Green », qui augmentent l'investissement dans la nature, avec des interventions de « Greening Finance », qui intègrent les considérations environnementales et sociales dans la prise de décision financière, afin que ces stratégies se renforcent mutuellement pour obtenir des résultats pour le climat, la biodiversité et les communautés.",
 
   about_eyebrow: "PARCOURS D'APPRENTISSAGE",
-  about_title: "Maîtrisez l'approche de Finance Paysagère",
+  about_title: "Comprendre l'approche de Finance Paysagère pour les systèmes agroalimentaires",
   about_body:
-    "Les systèmes agroalimentaires sont aujourd'hui la plus grande menace pour la nature, mais ils détiennent aussi une clé majeure pour la conservation mondiale. La Feuille de route 2030 du WWF vise à étendre une agriculture positive pour la nature sur 800 millions d'hectares d'ici 2030 grâce à des pratiques régénératrices et non destructrices, des politiques nationales favorables, des incitations financières pour les producteurs et des chaînes d'approvisionnement qui récompensent la production durable.",
+    "Les systèmes agroalimentaires exercent aujourd'hui l'une des plus fortes pressions sur la nature, mais ils offrent aussi une occasion essentielle pour la conservation. Le WWF travaille à faire progresser une agriculture positive pour la nature en promouvant des pratiques régénératrices et non destructrices, en renforçant les politiques nationales de soutien et en améliorant les incitations financières pour les producteurs.",
   about_cta: "En savoir plus",
 
   tile1: "Se former",
   tile2: "Options financières",
-  tile3: "Appliquer au paysage",
+  tile3: "Knowledge Hub",
 
   stats_eyebrow: "POURQUOI C'EST IMPORTANT",
   stats_t: "La réalité en chiffres",
@@ -1117,8 +1139,9 @@ const fr: Dict = {
   lib_sub:
     "Le Playbook, le cadre LFA, des modèles prêts à l'emploi et un glossaire en langage clair — versionnés, datés, ouverts.",
   lib_pill1: "Approche Finance Paysagère",
-  lib_pill2: "Playbook Finance Durable pour la Conservation",
-  lib_pill3: "Modèles et auto-évaluation",
+  lib_pill2: "Études de cas sur la finance durable",
+  lib_pill3: "Alimentation et agriculture positives pour la nature",
+  lib_pill4: "Knowledge Hub",
 
   people_eyebrow: "LES GUIDES",
   people_t: "Les guides",
@@ -1129,9 +1152,9 @@ const fr: Dict = {
   contact_title: "Contactez-nous",
   contact_body:
     "Une question, un paysage à proposer, un partenaire à connecter ? Nous lisons chaque message.",
-  contact_loc: "Gland, Suisse · contributeurs à distance",
-  contact_phone: "+41 00 000 00 00",
-  contact_mail: "bonjour@example.org",
+  contact_loc: "Rue Mauverney 28, 1196 Gland, Suisse",
+  contact_phone: "+41 22 364 91 11",
+  contact_mail: "finance@wwfint.org · food.practice@wwfint.org",
   contact_name: "Nom",
   contact_email: "E-mail",
   contact_message: "Message",
@@ -1139,6 +1162,7 @@ const fr: Dict = {
   contact_email_ph: "vous@org.com",
   contact_message_ph: "Comment pouvons-nous aider ?",
   contact_send: "Envoyer",
+  contact_mail_subject: "Demande de contact Finance Paysagère",
 
   footer_rights: "© 2026 · Ressource ouverte · CC BY-NC-SA",
   footer_tech: "EN · ES · FR · WCAG AA · mobile-first",
@@ -1181,7 +1205,7 @@ const fr: Dict = {
 
   // Toolkit
   toolkit_eyebrow: "OUTILS · RESSOURCES & BIBLIOTHÈQUE",
-  toolkit_title: "Votre boîte à outils de mise en œuvre",
+  toolkit_title: "Vos ressources de mise en œuvre",
   toolkit_subtitle:
     "Un répertoire complet de modèles prêts à l'emploi, de playbooks stratégiques et de cadres régionaux.",
   toolkit_map: "CARTE INTERACTIVE",
@@ -1207,10 +1231,10 @@ const fr: Dict = {
 
   // Learning — restructuré en 5 phases (slides 3 et 24 du deck WWF)
   learning_eyebrow: "COMMENCER À APPRENDRE",
-  learning_title: "Maîtrisez l'approche de Finance Paysagère",
+  learning_title: "Comprendre l'approche de Finance Paysagère",
   learning_subtitle:
     "Progressez dans un parcours guidé, de la compréhension des paysages et des systèmes agroalimentaires à l'analyse de cas réels, l'exploration de solutions financières et l'application de l'approche de Finance Paysagère.",
-  learning_intro_title: "Relier finance, personnes et nature",
+  learning_intro_title: "Relier la finance aux systèmes agroalimentaires",
   learning_intro_body:
     "Apprenez à relier finance, personnes et nature afin de créer un changement réel dans les paysages, les systèmes agroalimentaires étant traités comme un angle transversal plutôt que comme une section séparée. Grâce à des outils pratiques et à des études de cas WWF, vous apprendrez à comprendre les paysages, identifier les priorités et appliquer l'approche de Finance Paysagère.",
   learning_phase: "Module",

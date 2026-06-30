@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { isLocale } from "@/i18n/config";
 import { t } from "@/i18n/dict";
-import { Arrow, Book, Coin, Leaf, Pin, Phone, Mail, ChevronLeft, ChevronRight } from "@/components/Icons";
+import { Arrow, Book, Coin, Doc, Pin, Phone, Mail, ChevronLeft, ChevronRight } from "@/components/Icons";
 import { ContactForm } from "@/components/ContactForm";
 import { asset } from "@/lib/asset";
 
@@ -18,16 +18,17 @@ export default async function Home({
   return (
     <div className="page">
       {/* HERO estático — imagen de paisaje (slide 2 del deck WWF) */}
-      <section className="wrap hero">
+      <section className="hero hero-full">
         <div className="hero-frame">
           <Image
-            src={asset("/images/hero-landscape.jpg")}
-            alt="Field team crossing a forested landscape"
+            src={asset("/images/hero-saigoneer-wwf-vietnam.jpg")}
+            alt="WWF Viet Nam field team crossing a forested landscape"
             fill
             priority
             sizes="(max-width: 800px) 100vw, 1200px"
             style={{ objectFit: "cover", objectPosition: "center" }}
           />
+          <div className="hero-credit">&copy; Saigoneer / WWF-Viet Nam</div>
           <div className="hero-overlay-card">
             <div className="kicker">{t(locale, "hero_eyebrow")}</div>
             <h1>{t(locale, "hero_title")}</h1>
@@ -78,12 +79,13 @@ export default async function Home({
         <div className="two-col">
           <div className="phx canopy" style={{ position: "relative", overflow: "hidden" }}>
             <Image
-              src={asset("/images/by-objective-landscape.jpg")}
-              alt="Landscape finance field reference"
+              src={asset("/images/learning-path-alejandro-prieto.jpg")}
+              alt="Agri-food systems field reference"
               fill
               sizes="(max-width: 800px) 100vw, 500px"
-              style={{ objectFit: "cover" }}
+              style={{ objectFit: "cover", objectPosition: "center" }}
             />
+            <div className="photo-credit">&copy; WWF-US/Alejandro Prieto</div>
           </div>
           <div>
             <div className="eyebrow">{t(locale, "about_eyebrow")}</div>
@@ -115,7 +117,7 @@ export default async function Home({
           </Link>
           <Link href={`/${locale}/toolkit`} className="tile">
             <div className="ic">
-              <Leaf width={26} height={26} />
+              <Doc width={26} height={26} />
             </div>
             <div className="t">{t(locale, "tile3")}</div>
           </Link>
@@ -162,12 +164,13 @@ export default async function Home({
         <div className="lib-block">
           <div className="bg" style={{ overflow: "hidden" }}>
             <Image
-              src={asset("/images/case-sintang-indonesia.jpg")}
-              alt="Conservation landscape"
+              src={asset("/images/resource-library-juha-pekka-kervinen.jpg")}
+              alt="Field team working in a wetland landscape"
               fill
               sizes="(max-width: 800px) 100vw, 1200px"
               style={{ objectFit: "cover", objectPosition: "center" }}
             />
+            <div className="photo-credit lib-credit">&copy; Juha-Pekka Kervinen / WWF</div>
             <div
               style={{
                 position: "absolute",
@@ -182,34 +185,52 @@ export default async function Home({
               <div className="eyebrow" style={{ color: "var(--orange)" }}>
                 {t(locale, "lib_eyebrow")}
               </div>
-              <h2>
-                Resource
-                <br />
-                library
-              </h2>
+              <h2>{t(locale, "lib_title")}</h2>
             </div>
             <p style={{ color: "#d8d5ca", fontSize: 14, maxWidth: "36ch", margin: 0 }}>
               {t(locale, "lib_sub")}
             </p>
           </div>
           <div className="right">
-            <Link href={`/${locale}/toolkit`} className="lib-pill">
+            <Link
+              href="https://wwf.panda.org/discover/our_focus/finance/green_financial_solutions/landscape_finance/"
+              className="lib-pill"
+              target="_blank"
+              rel="noreferrer"
+            >
               <span className="dot" />
               <span className="t">{t(locale, "lib_pill1")}</span>
               <span className="arr">
                 <Arrow width={14} height={14} />
               </span>
             </Link>
-            <Link href={`/${locale}/toolkit`} className="lib-pill">
+            <Link
+              href="https://wwfint.awsassets.panda.org/downloads/lfa-supplement.pdf"
+              className="lib-pill"
+              target="_blank"
+              rel="noreferrer"
+            >
               <span className="dot" />
               <span className="t">{t(locale, "lib_pill2")}</span>
               <span className="arr">
                 <Arrow width={14} height={14} />
               </span>
             </Link>
-            <Link href={`/${locale}/toolkit`} className="lib-pill">
+            <Link
+              href="https://www.panda.org/discover/our_focus/food_practice/nature_positive_production/"
+              className="lib-pill"
+              target="_blank"
+              rel="noreferrer"
+            >
               <span className="dot" />
               <span className="t">{t(locale, "lib_pill3")}</span>
+              <span className="arr">
+                <Arrow width={14} height={14} />
+              </span>
+            </Link>
+            <Link href={`/${locale}/toolkit`} className="lib-pill">
+              <span className="dot" />
+              <span className="t">{t(locale, "lib_pill4")}</span>
               <span className="arr">
                 <Arrow width={14} height={14} />
               </span>

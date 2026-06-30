@@ -33,7 +33,7 @@ const C = {
   muted: "#6b6a61",
   line: "#d6d3c8",
   paper: "#f4f2eb",
-  orange: "#f07d00",
+  orange: "#dd681b",
 };
 
 const styles = StyleSheet.create({

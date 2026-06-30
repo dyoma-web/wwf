@@ -45,7 +45,7 @@ const REGION_COLORS: Record<Region, string> = {
   global: "#9b988b",
   africa: "#2f5a34",
   asia: "#009191",
-  latam: "#f07d00",
+  latam: "#dd681b",
   europe: "#6b6a61",
 };
 
@@ -70,6 +70,17 @@ const CASE_COVERS = new Set<string>([
   "bns-koa-ghana",
   "bns-colorquimica-colombia",
 ]);
+
+const CASE_CREDITS: Record<string, string> = {
+  "bns-concepta-brazil": "© João Albuquerque / WWF-Brazil",
+  "bns-koa-ghana": "© WWF-Colombia / Maloca Joven",
+  "bns-sococam-cameroon": "© Tom Vierus / WWF-Pacific",
+  "bns-wuchi-wami-zambia": "© WWF-US/Mac Stone",
+  "bns-forest-africa-zambia": "© Justin Jin / WWF France",
+  "mtb-madagascar-seascape": "© WWF-US/Gareth Bentley",
+  "bns-minh-phu-vietnam": "© Ho Gia Phu / WWF-Viet Nam",
+  "sintang-indonesia": "© WWF-Indonesia / Yunaidi Joepoet",
+};
 
 const TYPE_OPTIONS: DocType[] = [
   "case-study",
@@ -207,6 +218,7 @@ function ToolkitInner({ locale }: { locale: Locale }) {
                   <div className="cap">{activePin.map!.label.toUpperCase()}</div>
                 </div>
               )}
+              {CASE_CREDITS[activePin.id] ? <div className="photo-credit">{CASE_CREDITS[activePin.id]}</div> : null}
             </div>
             <div style={{ padding: "22px 24px", display: "flex", flexDirection: "column", flex: 1 }}>
               <div className="eyebrow" style={{ color: REGION_COLORS[activePin.regions[0]] }}>
@@ -265,6 +277,7 @@ function ToolkitInner({ locale }: { locale: Locale }) {
                     <div className="cap">{(d.countries?.[0] ?? d.regions[0]).toUpperCase()}</div>
                   </div>
                 )}
+                {CASE_CREDITS[d.id] ? <div className="photo-credit">{CASE_CREDITS[d.id]}</div> : null}
               </div>
               <div className="body">
                 <div className="eyebrow" style={{ color, fontSize: 11.5, letterSpacing: ".04em" }}>

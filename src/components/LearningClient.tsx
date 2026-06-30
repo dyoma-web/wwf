@@ -67,9 +67,9 @@ const UNITS: Unit[] = [
     num: "02",
     cover: "/images/case-mtb-madagascar-seascape.jpg",
     title: {
-      en: "The Landscape Approach and the Conservation Context",
-      es: "El enfoque de paisaje y el contexto de conservación",
-      fr: "L'approche paysage et le contexte de conservation",
+      en: "Explore how different financing approaches can support conservation, restoration, and nature-positive food and agriculture systems.",
+      es: "Explora cómo distintos enfoques de financiación pueden apoyar la conservación, la restauración y sistemas alimentarios y agrícolas positivos para la naturaleza.",
+      fr: "Explorez comment différentes approches de financement peuvent soutenir la conservation, la restauration et des systèmes alimentaires et agricoles positifs pour la nature.",
     },
     summary: {
       en: "How the Inclusive Conservation Programme provides the foundation for finance decisions.",
@@ -306,12 +306,13 @@ export function LearningClient({ locale }: { locale: Locale }) {
       <div className="learn-intro">
         <div className="learn-intro-img">
           <Image
-            src={asset("/images/course-about.jpg")}
+            src={asset("/images/learning-tuane-fernandes-wwf-brazil.jpg")}
             alt="Landscape finance in the field"
             fill
             sizes="(max-width: 800px) 100vw, 480px"
             style={{ objectFit: "cover", objectPosition: "center" }}
           />
+          <div className="photo-credit">&copy; Tuane Fernandes / WWF-Brazil</div>
         </div>
         <div className="learn-intro-body">
           <h3 className="h-display" style={{ fontSize: "clamp(20px,2vw,26px)", margin: "0 0 10px" }}>

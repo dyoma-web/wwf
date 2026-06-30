@@ -7,7 +7,7 @@ import { useState } from "react";
 import { locales, type Locale } from "@/i18n/config";
 import { t } from "@/i18n/dict";
 import { asset } from "@/lib/asset";
-import { Menu, Close } from "./Icons";
+import { Menu, Close, Search } from "./Icons";
 
 type Props = { locale: Locale };
 
@@ -74,7 +74,12 @@ export function Header({ locale }: Props) {
         </nav>
 
         <div className="hd-end">
-          <LocaleSwitcher current={locale} pathNoLocale={pathNoLocale} />
+          <div className="hd-actions" aria-label="Header tools">
+            <Link href={`${hrefFor("search")}`} className="hd-icon-btn" aria-label={t(locale, "nav_search")}>
+              <Search width={19} height={19} />
+            </Link>
+            <LocaleSwitcher current={locale} pathNoLocale={pathNoLocale} />
+          </div>
           <Link href={`${hrefFor("")}#contact`} className="btn orange sm">
             {t(locale, "nav_contact")}
           </Link>
