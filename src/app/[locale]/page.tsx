@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { isLocale } from "@/i18n/config";
 import { t } from "@/i18n/dict";
-import { Arrow, Book, Coin, Doc, Pin, Phone, Mail, ChevronLeft, ChevronRight } from "@/components/Icons";
+import { Arrow, Book, Coin, Doc, Pin, Phone, Mail } from "@/components/Icons";
 import { ContactForm } from "@/components/ContactForm";
 import { asset } from "@/lib/asset";
 
@@ -41,19 +41,6 @@ export default async function Home({
                 {t(locale, "hero_cta2")}
               </Link>
             </div>
-          </div>
-          <div className="hero-dots">
-            <span className="on" />
-            <span />
-            <span />
-          </div>
-          <div className="hero-arrows">
-            <button aria-label="Prev">
-              <ChevronLeft width={14} height={14} />
-            </button>
-            <button aria-label="Next">
-              <ChevronRight width={14} height={14} />
-            </button>
           </div>
         </div>
       </section>
