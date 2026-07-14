@@ -10,7 +10,7 @@
  * mismos `id` para no romper enlaces compartidos al Toolkit.
  */
 
-export const DOCS_LAST_UPDATED = "2026-05-15";
+export const DOCS_LAST_UPDATED = "2026-07-14";
 
 export type DocType =
   | "case-study"
@@ -546,6 +546,20 @@ export const DOCS: Doc[] = [
     regions: ["global", "asia"],
     financeTypes: [],
     tags: ["sustainable rice", "DSR", "wet rice systems", "methane reduction", "water management", "biodiversity", "Asia"],
+  },
+  {
+    id: "farming-with-biodiversity",
+    title: "Farming with Biodiversity — Towards Nature-Positive Production at Scale",
+    fileName: "farming-with-biodiversity_wwf-report-2021_spreads.pdf",
+    description:
+      "Informe de WWF (2021) que propone un cambio de paradigma hacia la producción positiva para la naturaleza mediante enfoques agroecológicos. Detalla acciones a nivel de finca, de paisaje y de sistema alimentario, con casos de estudio globales.",
+    url: "https://drive.google.com/file/d/18tMI2oUOKSVTBan5g9apVDCjc5BAc8IO/view?usp=drive_link",
+    type: "report",
+    topic: "food-agriculture",
+    audiences: ["policymaker", "practitioner", "investor", "ngo"],
+    regions: ["global"],
+    financeTypes: [],
+    tags: ["farming with biodiversity", "agroecology", "nature-positive production", "food systems transformation", "landscape approach", "sustainable agriculture"],
   },
 ];
 
