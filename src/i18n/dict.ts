@@ -29,6 +29,13 @@ const en: Dict = {
   hero_cta2: "Find my path",
   hero_cap: "LANDSCAPE PHOTO · FARMER AT SUNRISE [ placeholder ]",
 
+  // About Us — presentación institucional de WWF (entre hero y Discover)
+  aboutus_eyebrow: "ABOUT US",
+  aboutus_body1:
+    "WWF is an independent global conservation organization, formed in 1961 and committed to building a future where people and nature thrive.",
+  aboutus_body2:
+    "Our mission is to stop the degradation of the planet’s natural environment and to build a future in which humans live in harmony with nature.",
+
   // Discover Landscape Finance (slide 3 del deck WWF — reemplaza About this site)
   discover_eyebrow: "SHAPE THE FUTURE OF CONSERVATION",
   discover_title: "Discover Landscape Finance",
@@ -40,7 +47,7 @@ const en: Dict = {
   about_eyebrow: "LEARNING PATH",
   about_title: "Understand the Landscape Finance Approach for Agri-Food Systems",
   about_body:
-    "Agrifood systems are currently one of the greatest pressures on nature, but they also offer a critical opportunity for conservation. WWF works to advance nature-positive agriculture by promoting regenerative, non-destructive practices, strengthening supportive national policies, and improving financial incentives for farmers.",
+    "Agrifood systems are currently one of the greatest pressures on nature, but they also offer a critical opportunity for conservation. Nature-positive agriculture is an approach to farming that produces food while protecting, managing, and restoring nature, enabling ecosystems, biodiversity, and soils to recover and continue to support people and production in the long term.",
   about_cta: "Learn more",
 
   // Tiles
@@ -71,9 +78,9 @@ const en: Dict = {
   lib_sub:
     "The Playbook, the LFA framework, ready-to-use templates and a plain-language glossary — versioned, dated, open.",
   lib_pill1: "Landscape Finance Approach",
-  lib_pill2: "Sustainable Finance Case Studies",
+  lib_pill2: "Food Forward NDCs and NBSAPs",
   lib_pill3: "Nature Positive Food and Agriculture",
-  lib_pill4: "Knowledge Hub",
+  lib_pill4: "Agri-food Systems Toolkit",
 
   // People
   people_eyebrow: "MEET THE GUIDES",
@@ -86,6 +93,7 @@ const en: Dict = {
   contact_title: "Contact Us",
   contact_body:
     "Have a question, a landscape to contribute, or a partner to connect? We read every message.",
+  contact_org: "WWF International – Food Practice and Finance Practice Leads",
   contact_loc: "Rue Mauverney 28, 1196 Gland, Switzerland",
   contact_phone: "+41 22 364 91 11",
   contact_mail: "finance@wwfint.org · food.practice@wwfint.org",
@@ -106,7 +114,7 @@ const en: Dict = {
   navigator_eyebrow: "FINANCING NAVIGATOR",
   navigator_title: "Find Your Pathway",
   navigator_subtitle:
-    "Answer 4 simple questions to filter the library and instantly access the toolkits, cases, and resources tailored to your goals.",
+    "Answer 3 simple questions to filter the library and instantly access the toolkits, cases, and resources tailored to your goals.",
   navigator_inputs: "YOUR INPUTS",
   navigator_not_set: "Not set",
   navigator_complete: "Complete",
@@ -143,12 +151,25 @@ const en: Dict = {
   toolkit_title: "Your Implementation Resources",
   toolkit_subtitle:
     "A comprehensive repository of ready-to-use templates, strategic playbooks, and regional frameworks.",
-  toolkit_map: "INTERACTIVE MAP",
+  toolkit_map: "GLOBAL CASE STUDIES",
   toolkit_landscapes: "landscapes",
   toolkit_read_case: "Read case",
   toolkit_1pager: "1-pager",
   toolkit_cases_eyebrow: "OUR IMPACT IN ACTION",
   toolkit_cases_title: "Global Case Studies",
+
+  // Food Forward NDCs & NBSAPs — banner de áreas de intervención (Knowledge Hub)
+  ffn_eyebrow: "FOOD SYSTEMS POLICY",
+  ffn_title: "Food Forward NDCs & NBSAPs",
+  ffn_banner_pre: "Browse the",
+  ffn_banner_hl: "37 food system actions",
+  ffn_banner_post: "and their connections to global sustainability targets",
+  ffn_select: "SELECT INTERVENTION AREA",
+  ffn_consumption: "Food Consumption",
+  ffn_environment: "Food Environment",
+  ffn_governance: "Food Governance",
+  ffn_production: "Food Production",
+  ffn_supply_chains: "Food Supply Chains",
   toolkit_narrator: "Narrator",
   toolkit_open: "Open",
   toolkit_library: "LIBRARY",
@@ -180,7 +201,7 @@ const en: Dict = {
   learning_preview: "Preview",
   learning_continue: "Continue in the LMS",
   learning_continue_tail: "to track progress, take assessments and earn a certificate.",
-  learning_open_lms: "Open in LMS",
+  learning_open_lms: "Start learning",
 
   // Lenses temáticas (compartido entre páginas)
   lens_greening: "Greening finance",
@@ -570,6 +591,13 @@ const es: Dict = {
   hero_cta2: "Encontrar mi ruta",
   hero_cap: "PAISAJE · AGRICULTOR AL AMANECER [ placeholder ]",
 
+  // About Us — presentación institucional de WWF (entre hero y Discover)
+  aboutus_eyebrow: "SOBRE NOSOTROS",
+  aboutus_body1:
+    "WWF es una organización global de conservación, independiente, fundada en 1961 y comprometida con construir un futuro en el que las personas y la naturaleza prosperen.",
+  aboutus_body2:
+    "Nuestra misión es detener la degradación del entorno natural del planeta y construir un futuro en el que los seres humanos vivan en armonía con la naturaleza.",
+
   // Discover Landscape Finance (slide 3 — reemplaza About this site)
   discover_eyebrow: "MOLDEA EL FUTURO DE LA CONSERVACIÓN",
   discover_title: "Descubre las Finanzas del Paisaje",
@@ -580,7 +608,7 @@ const es: Dict = {
   about_eyebrow: "RUTA DE APRENDIZAJE",
   about_title: "Comprende el Enfoque de Finanzas del Paisaje para Sistemas Agroalimentarios",
   about_body:
-    "Los sistemas agroalimentarios son actualmente una de las mayores presiones sobre la naturaleza, pero también ofrecen una oportunidad crítica para la conservación. WWF trabaja para impulsar una agricultura positiva para la naturaleza promoviendo prácticas regenerativas y no destructivas, fortaleciendo políticas nacionales de apoyo y mejorando los incentivos financieros para los productores.",
+    "Los sistemas agroalimentarios son actualmente una de las mayores presiones sobre la naturaleza, pero también ofrecen una oportunidad crítica para la conservación. La agricultura positiva para la naturaleza es un enfoque de producción que genera alimentos mientras protege, gestiona y restaura la naturaleza, permitiendo que los ecosistemas, la biodiversidad y los suelos se recuperen y sigan sosteniendo a las personas y la producción en el largo plazo.",
   about_cta: "Conoce más",
 
   tile1: "Empezar a aprender",
@@ -608,9 +636,9 @@ const es: Dict = {
   lib_sub:
     "El Playbook, el marco LFA, plantillas listas para usar y un glosario en lenguaje sencillo — versionados, fechados, abiertos.",
   lib_pill1: "Enfoque de Finanzas del Paisaje",
-  lib_pill2: "Casos de estudio de finanzas sostenibles",
+  lib_pill2: "Food Forward NDCs and NBSAPs",
   lib_pill3: "Alimentos y agricultura positivos para la naturaleza",
-  lib_pill4: "Knowledge Hub",
+  lib_pill4: "Agri-food Systems Toolkit",
 
   people_eyebrow: "CONOCE A LAS GUÍAS",
   people_t: "Conoce a las guías",
@@ -621,6 +649,7 @@ const es: Dict = {
   contact_title: "Contáctanos",
   contact_body:
     "¿Tienes una pregunta, un paisaje que aportar o un socio al que conectar? Leemos todos los mensajes.",
+  contact_org: "WWF International – Food Practice and Finance Practice Leads",
   contact_loc: "Rue Mauverney 28, 1196 Gland, Suiza",
   contact_phone: "+41 22 364 91 11",
   contact_mail: "finance@wwfint.org · food.practice@wwfint.org",
@@ -640,7 +669,7 @@ const es: Dict = {
   navigator_eyebrow: "NAVEGADOR DE FINANCIAMIENTO",
   navigator_title: "Encuentra tu ruta",
   navigator_subtitle:
-    "Responde 4 preguntas sencillas para filtrar la biblioteca y acceder al instante a los kits, casos y recursos hechos a la medida de tus objetivos.",
+    "Responde 3 preguntas sencillas para filtrar la biblioteca y acceder al instante a los kits, casos y recursos hechos a la medida de tus objetivos.",
   navigator_inputs: "TUS RESPUESTAS",
   navigator_not_set: "Sin definir",
   navigator_complete: "Completado",
@@ -677,12 +706,25 @@ const es: Dict = {
   toolkit_title: "Tus recursos de implementación",
   toolkit_subtitle:
     "Un repositorio completo de plantillas listas para usar, playbooks estratégicos y marcos regionales.",
-  toolkit_map: "MAPA INTERACTIVO",
+  toolkit_map: "CASOS DE ESTUDIO GLOBALES",
   toolkit_landscapes: "paisajes",
   toolkit_read_case: "Leer caso",
   toolkit_1pager: "Resumen de 1 página",
   toolkit_cases_eyebrow: "NUESTRO IMPACTO EN ACCIÓN",
   toolkit_cases_title: "Casos de estudio globales",
+
+  // Food Forward NDCs & NBSAPs — banner de áreas de intervención (Knowledge Hub)
+  ffn_eyebrow: "POLÍTICA DE SISTEMAS ALIMENTARIOS",
+  ffn_title: "Food Forward NDCs & NBSAPs",
+  ffn_banner_pre: "Explora las",
+  ffn_banner_hl: "37 acciones de los sistemas alimentarios",
+  ffn_banner_post: "y sus conexiones con las metas globales de sostenibilidad",
+  ffn_select: "SELECCIONA EL ÁREA DE INTERVENCIÓN",
+  ffn_consumption: "Consumo de alimentos",
+  ffn_environment: "Entorno alimentario",
+  ffn_governance: "Gobernanza alimentaria",
+  ffn_production: "Producción de alimentos",
+  ffn_supply_chains: "Cadenas de suministro",
   toolkit_narrator: "Narrador/a",
   toolkit_open: "Abrir",
   toolkit_library: "BIBLIOTECA",
@@ -714,7 +756,7 @@ const es: Dict = {
   learning_preview: "Vista previa",
   learning_continue: "Continúa en el LMS",
   learning_continue_tail: "para seguir tu progreso, hacer evaluaciones y obtener un certificado.",
-  learning_open_lms: "Abrir en LMS",
+  learning_open_lms: "Comenzar a aprender",
 
   // Lentes temáticas
   lens_greening: "Finanzas verdes",
@@ -1101,6 +1143,13 @@ const fr: Dict = {
   hero_cta2: "Trouver ma voie",
   hero_cap: "PAYSAGE · AGRICULTEUR AU LEVER DU SOLEIL [ placeholder ]",
 
+  // About Us — présentation institutionnelle du WWF (entre hero et Discover)
+  aboutus_eyebrow: "À PROPOS DE NOUS",
+  aboutus_body1:
+    "Le WWF est une organisation mondiale de conservation indépendante, fondée en 1961 et engagée à bâtir un avenir où les personnes et la nature prospèrent.",
+  aboutus_body2:
+    "Notre mission est de stopper la dégradation de l'environnement naturel de la planète et de construire un avenir où les humains vivent en harmonie avec la nature.",
+
   // Discover Landscape Finance (slide 3 — remplace About this site)
   discover_eyebrow: "FAÇONNEZ L'AVENIR DE LA CONSERVATION",
   discover_title: "Découvrez la Finance Paysagère",
@@ -1111,7 +1160,7 @@ const fr: Dict = {
   about_eyebrow: "PARCOURS D'APPRENTISSAGE",
   about_title: "Comprendre l'approche de Finance Paysagère pour les systèmes agroalimentaires",
   about_body:
-    "Les systèmes agroalimentaires exercent aujourd'hui l'une des plus fortes pressions sur la nature, mais ils offrent aussi une occasion essentielle pour la conservation. Le WWF travaille à faire progresser une agriculture positive pour la nature en promouvant des pratiques régénératrices et non destructrices, en renforçant les politiques nationales de soutien et en améliorant les incitations financières pour les producteurs.",
+    "Les systèmes agroalimentaires exercent aujourd'hui l'une des plus fortes pressions sur la nature, mais ils offrent aussi une occasion essentielle pour la conservation. L'agriculture positive pour la nature est une approche agricole qui produit de la nourriture tout en protégeant, gérant et restaurant la nature, permettant aux écosystèmes, à la biodiversité et aux sols de se régénérer et de continuer à soutenir les populations et la production sur le long terme.",
   about_cta: "En savoir plus",
 
   tile1: "Se former",
@@ -1139,9 +1188,9 @@ const fr: Dict = {
   lib_sub:
     "Le Playbook, le cadre LFA, des modèles prêts à l'emploi et un glossaire en langage clair — versionnés, datés, ouverts.",
   lib_pill1: "Approche Finance Paysagère",
-  lib_pill2: "Études de cas sur la finance durable",
+  lib_pill2: "Food Forward NDCs and NBSAPs",
   lib_pill3: "Alimentation et agriculture positives pour la nature",
-  lib_pill4: "Knowledge Hub",
+  lib_pill4: "Agri-food Systems Toolkit",
 
   people_eyebrow: "LES GUIDES",
   people_t: "Les guides",
@@ -1152,6 +1201,7 @@ const fr: Dict = {
   contact_title: "Contactez-nous",
   contact_body:
     "Une question, un paysage à proposer, un partenaire à connecter ? Nous lisons chaque message.",
+  contact_org: "WWF International – Food Practice and Finance Practice Leads",
   contact_loc: "Rue Mauverney 28, 1196 Gland, Suisse",
   contact_phone: "+41 22 364 91 11",
   contact_mail: "finance@wwfint.org · food.practice@wwfint.org",
@@ -1171,7 +1221,7 @@ const fr: Dict = {
   navigator_eyebrow: "NAVIGATEUR DE FINANCEMENT",
   navigator_title: "Trouvez votre voie",
   navigator_subtitle:
-    "Répondez à 4 questions simples pour filtrer la bibliothèque et accéder instantanément aux boîtes à outils, études de cas et ressources adaptées à vos objectifs.",
+    "Répondez à 3 questions simples pour filtrer la bibliothèque et accéder instantanément aux boîtes à outils, études de cas et ressources adaptées à vos objectifs.",
   navigator_inputs: "VOS RÉPONSES",
   navigator_not_set: "Non défini",
   navigator_complete: "Terminé",
@@ -1208,12 +1258,25 @@ const fr: Dict = {
   toolkit_title: "Vos ressources de mise en œuvre",
   toolkit_subtitle:
     "Un répertoire complet de modèles prêts à l'emploi, de playbooks stratégiques et de cadres régionaux.",
-  toolkit_map: "CARTE INTERACTIVE",
+  toolkit_map: "ÉTUDES DE CAS MONDIALES",
   toolkit_landscapes: "paysages",
   toolkit_read_case: "Lire l'étude",
   toolkit_1pager: "Fiche 1 page",
   toolkit_cases_eyebrow: "NOTRE IMPACT EN ACTION",
   toolkit_cases_title: "Études de cas mondiales",
+
+  // Food Forward NDCs & NBSAPs — banner de áreas de intervención (Knowledge Hub)
+  ffn_eyebrow: "POLITIQUE DES SYSTÈMES ALIMENTAIRES",
+  ffn_title: "Food Forward NDCs & NBSAPs",
+  ffn_banner_pre: "Parcourez les",
+  ffn_banner_hl: "37 actions des systèmes alimentaires",
+  ffn_banner_post: "et leurs liens avec les objectifs mondiaux de durabilité",
+  ffn_select: "SÉLECTIONNEZ LE DOMAINE D'INTERVENTION",
+  ffn_consumption: "Consommation alimentaire",
+  ffn_environment: "Environnement alimentaire",
+  ffn_governance: "Gouvernance alimentaire",
+  ffn_production: "Production alimentaire",
+  ffn_supply_chains: "Chaînes d'approvisionnement",
   toolkit_narrator: "Narratrice",
   toolkit_open: "Ouvrir",
   toolkit_library: "BIBLIOTHÈQUE",
@@ -1245,7 +1308,7 @@ const fr: Dict = {
   learning_preview: "Aperçu",
   learning_continue: "Continuez dans le LMS",
   learning_continue_tail: "pour suivre votre progression, passer les évaluations et obtenir un certificat.",
-  learning_open_lms: "Ouvrir dans le LMS",
+  learning_open_lms: "Commencer à apprendre",
 
   // Axes thématiques
   lens_greening: "Finance verte",

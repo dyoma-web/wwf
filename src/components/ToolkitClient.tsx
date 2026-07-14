@@ -82,6 +82,42 @@ const CASE_CREDITS: Record<string, string> = {
   "sintang-indonesia": "© WWF-Indonesia / Yunaidi Joepoet",
 };
 
+/** Áreas de intervención de Food Forward NDCs & NBSAPs (foodforwardndcsnbsaps.panda.org).
+ *  Las fotos que aún no tienen archivo en public/images usan el placeholder .phx
+ *  hasta que se descarguen los originales de Drive (pesan >10 MB). */
+const FFN_AREAS = [
+  {
+    id: "food-consumption",
+    labelKey: "ffn_consumption",
+    credit: "© WWF-US/Khaula Jamil",
+    hasImg: false,
+  },
+  {
+    id: "food-environment",
+    labelKey: "ffn_environment",
+    credit: "© WWF-US / Justin Mott",
+    hasImg: true,
+  },
+  {
+    id: "food-governance",
+    labelKey: "ffn_governance",
+    credit: "© WWF-US/Khaula Jamil",
+    hasImg: false,
+  },
+  {
+    id: "food-production",
+    labelKey: "ffn_production",
+    credit: "© WWF-US / Justin Mott",
+    hasImg: false,
+  },
+  {
+    id: "food-supply-chains",
+    labelKey: "ffn_supply_chains",
+    credit: "© David Bebber / WWF-UK",
+    hasImg: true,
+  },
+];
+
 const TYPE_OPTIONS: DocType[] = [
   "case-study",
   "guide",
@@ -306,6 +342,52 @@ function ToolkitInner({ locale }: { locale: Locale }) {
             </a>
           );
         })}
+      </div>
+
+      {/* FOOD FORWARD NDCs & NBSAPs — áreas de intervención */}
+      <div className="sec-hd" style={{ marginTop: 72 }}>
+        <div>
+          <div className="eyebrow">{t(locale, "ffn_eyebrow")}</div>
+          <h3 className="h-display" style={{ fontSize: "clamp(24px,2.6vw,34px)", margin: "8px 0 0" }}>
+            {t(locale, "ffn_title")}
+          </h3>
+        </div>
+      </div>
+      <div className="ffn-panel">
+        <h3 className="ffn-heading">
+          {t(locale, "ffn_banner_pre")} <span>{t(locale, "ffn_banner_hl")}</span>{" "}
+          {t(locale, "ffn_banner_post")}
+        </h3>
+        <div className="ffn-select">{t(locale, "ffn_select")}</div>
+        <div className="ffn-grid">
+          {FFN_AREAS.map((a) => (
+            <a
+              key={a.id}
+              href={`https://foodforwardndcsnbsaps.panda.org/policy-options/?areas=${a.id}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ffn-card"
+            >
+              <div className="cover">
+                {a.hasImg ? (
+                  <Image
+                    src={asset(`/images/ffn-${a.id}.jpg`)}
+                    alt={t(locale, a.labelKey)}
+                    fill
+                    sizes="(max-width: 800px) 50vw, 240px"
+                    style={{ objectFit: "cover", objectPosition: "center" }}
+                  />
+                ) : (
+                  <div className="phx canopy" style={{ position: "absolute", inset: 0 }} />
+                )}
+                <div className="photo-credit">{a.credit}</div>
+              </div>
+              <div className="t">
+                {t(locale, a.labelKey)} <Arrow width={13} height={13} />
+              </div>
+            </a>
+          ))}
+        </div>
       </div>
 
       {/* LIBRARY with multi-facet filters */}

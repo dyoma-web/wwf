@@ -7,7 +7,6 @@ import { t } from "@/i18n/dict";
 import {
   type Audience,
   type DocTopic,
-  type DocType,
   type Region,
 } from "@/data/documents";
 import { facetsToQuery, rankByAnswers, type Facets } from "@/lib/document-filter";
@@ -18,16 +17,14 @@ import {
   Check,
   Coin,
   Compass,
-  Doc as DocIc,
   Globe,
   Leaf,
-  Pdf,
   Tools,
 } from "./Icons";
 
 /* ----- estructura de las preguntas ----- */
 
-type QuestionId = "role" | "region" | "topic" | "format";
+type QuestionId = "role" | "region" | "topic";
 
 type Option = {
   id: string;
@@ -40,7 +37,6 @@ type Option = {
   audiences?: Audience[];
   region?: Region;
   topic?: DocTopic;
-  type?: DocType;
 };
 
 type Question = {
@@ -91,18 +87,6 @@ const QUESTIONS: Question[] = [
       { id: "food-agriculture", labelKey: "topic_food_agriculture", subKey: "topic_food_agriculture_s", ic: <Leaf />, topic: "food-agriculture" },
     ],
   },
-  {
-    id: "format",
-    labelKey: "q_format_label",
-    qKey: "q_format_q",
-    hintKey: "q_format_hint",
-    options: [
-      { id: "brief", labelKey: "type_brief", subKey: "type_brief_s", ic: <DocIc />, type: "brief" },
-      { id: "guide", labelKey: "type_guide", subKey: "type_guide_s", ic: <Book />, type: "guide" },
-      { id: "case-study", labelKey: "type_case_study", subKey: "type_case_study_s", ic: <Pdf />, type: "case-study" },
-      { id: "playbook", labelKey: "type_playbook", subKey: "type_playbook_s", ic: <Tools />, type: "playbook" },
-    ],
-  },
 ];
 
 type Answers = Partial<Record<QuestionId, string>>;
@@ -120,7 +104,6 @@ function answersToFacets(answers: Answers): Facets {
     if (opt.audiences && opt.audiences.length === 1) facets.audience = opt.audiences[0];
     if (opt.region) facets.region = opt.region;
     if (opt.topic) facets.topic = opt.topic;
-    if (opt.type) facets.type = opt.type;
   }
   return facets;
 }

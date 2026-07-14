@@ -224,6 +224,8 @@ hr.rule {
   justify-content: space-between;
   gap: 20px;
   height: 72px;
+  /* Ancla de la pastilla del logo (.brand-mark, posicionada absoluta) */
+  position: relative;
 }
 .brand {
   display: flex;
@@ -242,6 +244,28 @@ hr.rule {
   position: relative;
   overflow: visible;
   flex-shrink: 0;
+}
+/* Pastilla del logo — solo en el header (el footer reutiliza .brand-mark
+   con su tamaño normal). Estilo wwf.org: nace en el tope de la barra y
+   cuelga por debajo, montándose sobre el hero. */
+.site-hd .brand {
+  /* Espacio de la pastilla (120px) + clearance (22px) */
+  padding-left: 142px;
+}
+.site-hd .brand-mark {
+  position: absolute;
+  left: 24px;
+  top: 0;
+  width: 120px;
+  height: 120px;
+  background: #fff;
+  z-index: 2;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.14);
+}
+.site-hd .brand-mark img {
+  width: auto;
+  height: 100px;
+  object-fit: contain;
 }
 .brand-name {
   font-family: var(--font-wwf);
@@ -371,6 +395,17 @@ hr.rule {
   }
   .site-hd-inner {
     gap: 12px;
+  }
+  .site-hd .brand {
+    padding-left: 96px;
+  }
+  .site-hd .brand-mark {
+    left: 16px;
+    width: 84px;
+    height: 84px;
+  }
+  .site-hd .brand-mark img {
+    height: 68px;
   }
   .hd-end {
     gap: 8px;
@@ -1593,7 +1628,8 @@ hr.rule {
   background: #1d1d1b;
   color: #fff;
   display: flex;
-  justify-content: space-between;
+  /* Sin el texto "Continue in the LMS", el botón va solo a la derecha */
+  justify-content: flex-end;
   align-items: center;
   gap: 16px;
   flex-wrap: wrap;
@@ -1898,6 +1934,78 @@ hr.rule {
 @media (max-width: 900px) {
   .cases {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================
+ * FOOD FORWARD NDCs & NBSAPs — banner oscuro con las 5 áreas
+ * de intervención (estilo foodforwardndcsnbsaps.panda.org)
+ * ========================================================== */
+.ffn-panel {
+  background: #1d1d1b;
+  padding: 40px 44px 44px;
+  margin-top: 18px;
+}
+.ffn-heading {
+  color: #fff;
+  font-size: clamp(22px, 2.6vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  margin: 0;
+  max-width: 760px;
+}
+.ffn-heading span {
+  color: #c5d86d;
+}
+.ffn-select {
+  margin: 26px 0 14px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: #9b988b;
+}
+.ffn-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+}
+.ffn-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: #2a2a27;
+  overflow: hidden;
+  transition: transform 0.12s;
+}
+.ffn-card:hover {
+  transform: translateY(-3px);
+}
+.ffn-card .cover {
+  position: relative;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+}
+.ffn-card .t {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px 14px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+.ffn-card:hover .t {
+  color: #c5d86d;
+}
+@media (max-width: 900px) {
+  .ffn-panel {
+    padding: 28px 22px 30px;
+  }
+  .ffn-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 

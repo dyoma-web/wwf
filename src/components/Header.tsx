@@ -49,9 +49,8 @@ export function Header({ locale }: Props) {
             <Image
               src={asset("/images/wwf-logo-full.png")}
               alt="WWF"
-              width={60}
-              height={60}
-              style={{ objectFit: "contain", width: "auto", height: "60px" }}
+              width={120}
+              height={120}
               priority
             />
           </div>

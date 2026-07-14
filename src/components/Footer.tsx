@@ -28,18 +28,6 @@ export function Footer({ locale }: Props) {
             </div>
           </Link>
 
-          <div className="foot-links">
-            {[0, 1, 2].map((col) => (
-              <div key={col}>
-                {[0, 1, 2].map((row) => (
-                  <a key={row} href="#">
-                    Lorem ipsum dolor
-                  </a>
-                ))}
-              </div>
-            ))}
-          </div>
-
           <div className="foot-social">
             <a href="#" aria-label="Facebook"><Facebook width={16} height={16} /></a>
             <a href="#" aria-label="Twitter"><Twitter width={16} height={16} /></a>

@@ -45,6 +45,19 @@ export default async function Home({
         </div>
       </section>
 
+      {/* ABOUT US — presentación institucional de WWF */}
+      <section className="wrap sec-sm" style={{ paddingBottom: 0 }}>
+        <div style={{ maxWidth: 820, margin: "0 auto", textAlign: "center" }}>
+          <div className="eyebrow">{t(locale, "aboutus_eyebrow")}</div>
+          <p className="lede" style={{ marginInline: "auto", marginTop: 10 }}>
+            {t(locale, "aboutus_body1")}
+          </p>
+          <p className="lede" style={{ marginInline: "auto", marginTop: 10 }}>
+            {t(locale, "aboutus_body2")}
+          </p>
+        </div>
+      </section>
+
       {/* DISCOVER LANDSCAPE FINANCE — sección intro (slide 3 del deck WWF) */}
       <section className="wrap sec-sm" style={{ paddingBottom: 0 }}>
         <div style={{ maxWidth: 820, margin: "0 auto", textAlign: "center" }}>
@@ -192,7 +205,7 @@ export default async function Home({
               </span>
             </Link>
             <Link
-              href="https://wwfint.awsassets.panda.org/downloads/lfa-supplement.pdf"
+              href="https://foodforwardndcsnbsaps.panda.org/"
               className="lib-pill"
               target="_blank"
               rel="noreferrer"
@@ -215,7 +228,12 @@ export default async function Home({
                 <Arrow width={14} height={14} />
               </span>
             </Link>
-            <Link href={`/${locale}/toolkit`} className="lib-pill">
+            <Link
+              href="https://agrifood-systems-toolkit.panda.org/"
+              className="lib-pill"
+              target="_blank"
+              rel="noreferrer"
+            >
               <span className="dot" />
               <span className="t">{t(locale, "lib_pill4")}</span>
               <span className="arr">
@@ -233,6 +251,9 @@ export default async function Home({
             <div className="eyebrow">{t(locale, "contact_eyebrow")}</div>
             <h3>{t(locale, "contact_title")}</h3>
             <p>{t(locale, "contact_body")}</p>
+            <p style={{ fontWeight: 700, fontStyle: "italic", marginTop: 10 }}>
+              {t(locale, "contact_org")}
+            </p>
             <div className="info">
               <div className="info-row">
                 <span className="ic">

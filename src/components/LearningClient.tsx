@@ -359,14 +359,6 @@ export function LearningClient({ locale }: { locale: Locale }) {
               </span>
               <h3>{L(locale, unit.title)}</h3>
               <p>{L(locale, unit.summary)}</p>
-              <div className="meta">
-                {unit.meta.map((m) => (
-                  <div key={m.kKey}>
-                    <span style={{ color: "var(--muted)" }}>{t(locale, m.kKey)} </span>
-                    <strong>{L(locale, m.v)}</strong>
-                  </div>
-                ))}
-              </div>
             </div>
             <div
               style={{ width: 220, aspectRatio: "4/3", flex: "0 0 220px", position: "relative", overflow: "hidden" }}
@@ -398,9 +390,6 @@ export function LearningClient({ locale }: { locale: Locale }) {
             ))}
           </div>
           <div className="unit-cta">
-            <div className="note">
-              <strong>{t(locale, "learning_continue")}</strong> {t(locale, "learning_continue_tail")}
-            </div>
             <a href="#" className="btn orange">
               {t(locale, "learning_open_lms")} <Arrow width={14} height={14} />
             </a>
