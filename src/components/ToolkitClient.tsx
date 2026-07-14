@@ -83,39 +83,14 @@ const CASE_CREDITS: Record<string, string> = {
 };
 
 /** Áreas de intervención de Food Forward NDCs & NBSAPs (foodforwardndcsnbsaps.panda.org).
- *  Las fotos que aún no tienen archivo en public/images usan el placeholder .phx
- *  hasta que se descarguen los originales de Drive (pesan >10 MB). */
+ *  Cada tarjeta enlaza a policy-options/?areas=<id> y usa la foto
+ *  public/images/ffn-<id>.jpg con su crédito correspondiente. */
 const FFN_AREAS = [
-  {
-    id: "food-consumption",
-    labelKey: "ffn_consumption",
-    credit: "© WWF-US/Khaula Jamil",
-    hasImg: false,
-  },
-  {
-    id: "food-environment",
-    labelKey: "ffn_environment",
-    credit: "© WWF-US / Justin Mott",
-    hasImg: true,
-  },
-  {
-    id: "food-governance",
-    labelKey: "ffn_governance",
-    credit: "© WWF-US/Khaula Jamil",
-    hasImg: false,
-  },
-  {
-    id: "food-production",
-    labelKey: "ffn_production",
-    credit: "© WWF-US / Justin Mott",
-    hasImg: false,
-  },
-  {
-    id: "food-supply-chains",
-    labelKey: "ffn_supply_chains",
-    credit: "© David Bebber / WWF-UK",
-    hasImg: true,
-  },
+  { id: "food-consumption", labelKey: "ffn_consumption", credit: "© WWF-US/Khaula Jamil" },
+  { id: "food-environment", labelKey: "ffn_environment", credit: "© WWF-US / Justin Mott" },
+  { id: "food-governance", labelKey: "ffn_governance", credit: "© WWF-US/Khaula Jamil" },
+  { id: "food-production", labelKey: "ffn_production", credit: "© WWF-US / Justin Mott" },
+  { id: "food-supply-chains", labelKey: "ffn_supply_chains", credit: "© David Bebber / WWF-UK" },
 ];
 
 const TYPE_OPTIONS: DocType[] = [
@@ -369,17 +344,13 @@ function ToolkitInner({ locale }: { locale: Locale }) {
               className="ffn-card"
             >
               <div className="cover">
-                {a.hasImg ? (
-                  <Image
-                    src={asset(`/images/ffn-${a.id}.jpg`)}
-                    alt={t(locale, a.labelKey)}
-                    fill
-                    sizes="(max-width: 800px) 50vw, 240px"
-                    style={{ objectFit: "cover", objectPosition: "center" }}
-                  />
-                ) : (
-                  <div className="phx canopy" style={{ position: "absolute", inset: 0 }} />
-                )}
+                <Image
+                  src={asset(`/images/ffn-${a.id}.jpg`)}
+                  alt={t(locale, a.labelKey)}
+                  fill
+                  sizes="(max-width: 800px) 50vw, 240px"
+                  style={{ objectFit: "cover", objectPosition: "center" }}
+                />
                 <div className="photo-credit">{a.credit}</div>
               </div>
               <div className="t">
