@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Open_Sans, JetBrains_Mono } from "next/font/google";
 import localFont from "next/font/local";
+import { SITE_BASE } from "@/lib/site";
 import "./globals.css";
 
 const openSans = Open_Sans({
@@ -26,12 +27,21 @@ const wwfFont = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_BASE),
   title: {
-    default: "Sustainable Finance for Conservation",
-    template: "%s · Sustainable Finance for Conservation",
+    default: "Discover Landscape Finance — Scaling Capital for Nature and People",
+    template: "%s · Discover Landscape Finance",
   },
   description:
     "A single entry point to learn, explore and apply the Landscape Finance Approach.",
+  openGraph: {
+    type: "website",
+    siteName: "Discover Landscape Finance",
+    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({

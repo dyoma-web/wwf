@@ -33,6 +33,7 @@ jobs:
       - name: Build static export
         env:
           BASE_PATH: /wwf
+          SITE_URL: https://dyoma-web.github.io
           NODE_ENV: production
         run: npm run build
 
