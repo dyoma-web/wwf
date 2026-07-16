@@ -383,14 +383,25 @@ export function LearningClient({ locale }: { locale: Locale }) {
                   <div className="s">{L(locale, l.s)}</div>
                 </div>
                 <div className="dur">{L(locale, l.d)}</div>
-                <button className="btn sm ghost" style={{ padding: ".45rem .7rem" }}>
+                <a
+                  href="https://wwf.myabsorb.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn sm ghost"
+                  style={{ padding: ".45rem .7rem" }}
+                >
                   <Play /> {t(locale, "learning_preview")}
-                </button>
+                </a>
               </div>
             ))}
           </div>
           <div className="unit-cta">
-            <a href="#" className="btn orange">
+            <a
+              href="https://wwf.myabsorb.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn orange"
+            >
               {t(locale, "learning_open_lms")} <Arrow width={14} height={14} />
             </a>
           </div>
