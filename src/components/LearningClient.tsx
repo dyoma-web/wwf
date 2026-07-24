@@ -9,9 +9,7 @@ import { Arrow, Check, Play } from "./Icons";
 
 const LMS_URL = "https://wwf.myabsorb.com/";
 
-/** Vistas previas de los módulos (exportaciones Rise servidas desde R2).
- *  El módulo 7 aún no tiene curso exportado — sin entrada aquí, el botón
- *  de vista previa no se muestra. */
+/** Vistas previas de los módulos (exportaciones Rise servidas desde R2). */
 const COURSE_PREVIEWS: Record<string, string> = {
   m1: "https://cursos.landscapefinancehub.org/curso-1/index.html",
   m2: "https://cursos.landscapefinancehub.org/curso-2/index.html",
@@ -19,6 +17,7 @@ const COURSE_PREVIEWS: Record<string, string> = {
   m4: "https://cursos.landscapefinancehub.org/curso-4/index.html",
   m5: "https://cursos.landscapefinancehub.org/curso-5/index.html",
   m6: "https://cursos.landscapefinancehub.org/curso-6/index.html",
+  m7: "https://cursos.landscapefinancehub.org/curso-7/index.html",
 };
 
 type Lesson = { t: Localized; s: Localized; d: Localized; done: boolean };
