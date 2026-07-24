@@ -403,7 +403,7 @@ export function LearningClient({ locale }: { locale: Locale }) {
             {unit.lessons.map((l, i) => (
               <div className="row" key={i}>
                 <div className={`dot ${l.done ? "done" : ""}`}>
-                  {l.done ? <Check width={12} height={12} /> : String(i + 1).padStart(2, "0")}
+                  {l.done ? <Check width={12} height={12} /> : unit.num}
                 </div>
                 <div>
                   <div className="t">{L(locale, l.t)}</div>
