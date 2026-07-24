@@ -199,6 +199,10 @@ const en: Dict = {
   learning_level: "Level",
   learning_narrator: "Narrator",
   learning_preview: "Preview",
+  learning_preview_note:
+    "This is a free preview of the module content. To take the full course and earn your certificate, visit our learning platform.",
+  learning_preview_cta: "Go to the learning platform",
+  learning_preview_close: "Close",
   learning_continue: "Continue in the LMS",
   learning_continue_tail: "to track progress, take assessments and earn a certificate.",
   learning_open_lms: "Start learning",
@@ -754,6 +758,10 @@ const es: Dict = {
   learning_level: "Nivel",
   learning_narrator: "Narrador/a",
   learning_preview: "Vista previa",
+  learning_preview_note:
+    "Esta es una vista previa del contenido del módulo (en inglés). Para tomar el curso completo y obtener tu certificado, ingresa a nuestra plataforma de aprendizaje.",
+  learning_preview_cta: "Ir a la plataforma de aprendizaje",
+  learning_preview_close: "Cerrar",
   learning_continue: "Continúa en el LMS",
   learning_continue_tail: "para seguir tu progreso, hacer evaluaciones y obtener un certificado.",
   learning_open_lms: "Comenzar a aprender",
@@ -1306,6 +1314,10 @@ const fr: Dict = {
   learning_level: "Niveau",
   learning_narrator: "Narratrice",
   learning_preview: "Aperçu",
+  learning_preview_note:
+    "Ceci est un aperçu du contenu du module (en anglais). Pour suivre le cours complet et obtenir votre certificat, rendez-vous sur notre plateforme d'apprentissage.",
+  learning_preview_cta: "Accéder à la plateforme d'apprentissage",
+  learning_preview_close: "Fermer",
   learning_continue: "Continuez dans le LMS",
   learning_continue_tail: "pour suivre votre progression, passer les évaluations et obtenir un certificat.",
   learning_open_lms: "Commencer à apprendre",

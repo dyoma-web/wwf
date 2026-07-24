@@ -1,11 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import type { Locale } from "@/i18n/config";
 import { L, t, type Localized } from "@/i18n/dict";
 import { asset } from "@/lib/asset";
 import { Arrow, Check, Play } from "./Icons";
+
+const LMS_URL = "https://wwf.myabsorb.com/";
+
+/** Vistas previas de los módulos (exportaciones Rise servidas desde R2).
+ *  El módulo 7 aún no tiene curso exportado — sin entrada aquí, el botón
+ *  de vista previa no se muestra. */
+const COURSE_PREVIEWS: Record<string, string> = {
+  m1: "https://cursos.landscapefinancehub.org/curso-1/index.html",
+  m2: "https://cursos.landscapefinancehub.org/curso-2/index.html",
+  m3: "https://cursos.landscapefinancehub.org/curso-3/index.html",
+  m4: "https://cursos.landscapefinancehub.org/curso-4/index.html",
+  m5: "https://cursos.landscapefinancehub.org/curso-5/index.html",
+  m6: "https://cursos.landscapefinancehub.org/curso-6/index.html",
+};
 
 type Lesson = { t: Localized; s: Localized; d: Localized; done: boolean };
 
@@ -287,7 +301,21 @@ const UNITS: Unit[] = [
 
 export function LearningClient({ locale }: { locale: Locale }) {
   const [active, setActive] = useState<string>("m1");
+  const [previewOpen, setPreviewOpen] = useState(false);
   const unit = UNITS.find((u) => u.id === active)!;
+  const previewUrl = COURSE_PREVIEWS[unit.id];
+
+  // Cierre con Escape y bloqueo del scroll de fondo mientras el modal está abierto
+  useEffect(() => {
+    if (!previewOpen) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setPreviewOpen(false);
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [previewOpen]);
 
   return (
     <div className="page wrap sec-sm">
@@ -383,30 +411,68 @@ export function LearningClient({ locale }: { locale: Locale }) {
                   <div className="s">{L(locale, l.s)}</div>
                 </div>
                 <div className="dur">{L(locale, l.d)}</div>
-                <a
-                  href="https://wwf.myabsorb.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn sm ghost"
-                  style={{ padding: ".45rem .7rem" }}
-                >
-                  <Play /> {t(locale, "learning_preview")}
-                </a>
+                {previewUrl ? (
+                  <button
+                    className="btn sm ghost"
+                    style={{ padding: ".45rem .7rem" }}
+                    onClick={() => setPreviewOpen(true)}
+                  >
+                    <Play /> {t(locale, "learning_preview")}
+                  </button>
+                ) : (
+                  <a
+                    href={LMS_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn sm ghost"
+                    style={{ padding: ".45rem .7rem" }}
+                  >
+                    <Play /> {t(locale, "learning_preview")}
+                  </a>
+                )}
               </div>
             ))}
           </div>
           <div className="unit-cta">
-            <a
-              href="https://wwf.myabsorb.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn orange"
-            >
+            <a href={LMS_URL} target="_blank" rel="noopener noreferrer" className="btn orange">
               {t(locale, "learning_open_lms")} <Arrow width={14} height={14} />
             </a>
           </div>
         </div>
       </div>
+
+      {/* Modal de vista previa del curso (Rise embebido desde R2) */}
+      {previewOpen && previewUrl && (
+        <div
+          className="course-modal-backdrop"
+          onClick={(e) => e.target === e.currentTarget && setPreviewOpen(false)}
+        >
+          <div className="course-modal" role="dialog" aria-modal="true" aria-label={L(locale, unit.title)}>
+            <div className="course-modal-hd">
+              <div className="t">
+                <span className="chip" style={{ background: unit.phaseColor, color: "#fff", borderColor: unit.phaseColor }}>
+                  {t(locale, "learning_phase")} {unit.num}
+                </span>
+                <span>{L(locale, unit.title)}</span>
+              </div>
+              <button
+                className="course-modal-close"
+                onClick={() => setPreviewOpen(false)}
+                aria-label={t(locale, "learning_preview_close")}
+              >
+                ✕
+              </button>
+            </div>
+            <iframe src={previewUrl} title={L(locale, unit.title)} allow="fullscreen" />
+            <div className="course-modal-ft">
+              <p>{t(locale, "learning_preview_note")}</p>
+              <a href={LMS_URL} target="_blank" rel="noopener noreferrer" className="btn orange">
+                {t(locale, "learning_preview_cta")} <Arrow width={14} height={14} />
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
