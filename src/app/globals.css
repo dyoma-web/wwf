@@ -1728,6 +1728,198 @@ hr.rule {
 }
 
 /* ==========================================================
+ * FUNDING EXPLORER — tarjeta compacta + modal con pestañas,
+ * buscador y filtros sobre los mapeos de Climate Focus
+ * ========================================================== */
+.fx-card {
+  margin-top: 72px;
+  padding: 32px 36px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.fx-card h3 {
+  font-size: clamp(20px, 2.2vw, 28px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 8px 0 6px;
+}
+.fx-card p {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 13.5px;
+  line-height: 1.5;
+  max-width: 640px;
+}
+.fx-modal {
+  width: min(1200px, 100%);
+}
+.fx-toolbar {
+  padding: 14px 20px 12px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #fff;
+}
+.fx-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.fx-tabs button {
+  border: 1px solid var(--line);
+  background: #fff;
+  padding: 7px 14px;
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--ink-2);
+}
+.fx-tabs button.on {
+  background: #1d1d1b;
+  border-color: #1d1d1b;
+  color: #fff;
+}
+.fx-filters {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.fx-filters select {
+  padding: 8px 28px 8px 10px;
+  border: 1px solid var(--line);
+  background: #fff;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+.fx-count {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.fx-list {
+  flex: 1;
+  overflow-y: auto;
+  background: var(--paper);
+  padding: 12px 20px;
+}
+.fx-row {
+  background: #fff;
+  border: 1px solid var(--line);
+  margin-bottom: 8px;
+}
+.fx-row-hd {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 16px;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.fx-row-main .t {
+  font-weight: 700;
+  font-size: 14.5px;
+  line-height: 1.3;
+}
+.fx-row-main .t .prog {
+  font-weight: 600;
+  color: var(--orange);
+}
+.fx-row-main .s {
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.5;
+  margin-top: 4px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.fx-row.open .fx-row-main .s {
+  display: block;
+}
+.fx-row-side {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.fx-badge {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 3px 8px;
+  text-transform: uppercase;
+}
+.fx-badge.yes {
+  background: #e5efe0;
+  color: #2f5a34;
+}
+.fx-badge.no {
+  background: #f4e3e0;
+  color: #a03d2e;
+}
+.fx-badge.maybe {
+  background: #f2ecd9;
+  color: #8a6d1a;
+}
+.fx-chevron {
+  font-size: 16px;
+  color: var(--muted);
+}
+.fx-detail {
+  border-top: 1px solid var(--line);
+  padding: 14px 16px;
+  display: grid;
+  gap: 10px;
+}
+.fx-field .k {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+.fx-field .v {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  white-space: pre-line;
+}
+.fx-field .v a {
+  color: var(--orange);
+  margin-right: 12px;
+}
+.fx-empty {
+  padding: 36px;
+  text-align: center;
+  color: var(--muted);
+}
+.fx-modal .course-modal-ft a {
+  text-decoration: underline;
+}
+@media (max-width: 700px) {
+  .fx-card {
+    padding: 22px;
+  }
+}
+
+/* ==========================================================
  * NAVIGATOR â€” Q&A de 4 pasos + panel de resultados
  * ========================================================== */
 .nav-wrap {

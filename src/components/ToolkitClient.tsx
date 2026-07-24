@@ -19,6 +19,7 @@ import {
   type Region,
 } from "@/data/documents";
 import { filterDocs, type Facets } from "@/lib/document-filter";
+import { FundingExplorer } from "./FundingExplorer";
 import { Arrow, Search, Pdf, Doc as DocIc, Xlsx } from "./Icons";
 
 const LeafletMap = dynamic(() => import("./LeafletMap").then((m) => m.LeafletMap), {
@@ -360,6 +361,9 @@ function ToolkitInner({ locale }: { locale: Locale }) {
           ))}
         </div>
       </div>
+
+      {/* FUNDING EXPLORER — mapeos de financiación (Climate Focus) */}
+      <FundingExplorer locale={locale} />
 
       {/* LIBRARY with multi-facet filters */}
       <div className="sec-hd" style={{ marginTop: 72 }}>
