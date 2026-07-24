@@ -409,7 +409,6 @@ export function LearningClient({ locale }: { locale: Locale }) {
                   <div className="t">{L(locale, l.t)}</div>
                   <div className="s">{L(locale, l.s)}</div>
                 </div>
-                <div className="dur">{L(locale, l.d)}</div>
                 {previewUrl ? (
                   <button
                     className="btn sm ghost"
