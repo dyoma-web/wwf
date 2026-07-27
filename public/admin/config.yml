@@ -9,7 +9,7 @@ backend:
   repo: dyoma-web/wwf
   branch: main
   # URL del worker de autenticación (sveltia-cms-auth) — ver Fase 4 del runbook
-  base_url: https://PENDIENTE-COMPLETAR.workers.dev
+  base_url: https://sveltia-cms-auth.wwflandscapefinancehub.workers.dev
 
 media_folder: public/images
 public_folder: /images
