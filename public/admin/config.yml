@@ -1,0 +1,207 @@
+# Configuración de Sveltia CMS — administración de contenido del sitio
+# Discover Landscape Finance (landscapefinancehub.org/admin)
+#
+# Alcance deliberado: SOLO el catálogo de documentos y los textos editoriales
+# clave. Cursos, estructura y diseño se gestionan por código (ver RUNBOOK).
+
+backend:
+  name: github
+  repo: dyoma-web/wwf
+  branch: main
+  # URL del worker de autenticación (sveltia-cms-auth) — ver Fase 4 del runbook
+  base_url: https://PENDIENTE-COMPLETAR.workers.dev
+
+media_folder: public/images
+public_folder: /images
+
+site_url: https://landscapefinancehub.org
+
+collections:
+  - name: documents
+    label: Biblioteca de documentos
+    description: >-
+      Catálogo del Knowledge Hub: cada entrada aparece en la biblioteca, el
+      buscador y los resultados del Navigator. El contenido editorial
+      (título, descripción) va en inglés.
+    files:
+      - name: catalog
+        label: Catálogo de documentos
+        file: content/documents.json
+        fields:
+          - name: lastUpdated
+            label: Última actualización (AAAA-MM-DD)
+            widget: string
+            pattern: ['^\d{4}-\d{2}-\d{2}$', 'Formato requerido: AAAA-MM-DD, p. ej. 2026-07-27']
+            hint: Se muestra en el aviso al pie de la biblioteca.
+          - name: docs
+            label: Documentos
+            label_singular: documento
+            widget: list
+            summary: '{{fields.title}}'
+            fields:
+              - name: id
+                label: ID (único, sin espacios, no cambiar después de publicar)
+                widget: string
+                pattern: ['^[a-z0-9-]+$', 'Solo minúsculas, números y guiones']
+              - name: title
+                label: Título (en inglés)
+                widget: string
+              - name: fileName
+                label: Nombre del archivo (p. ej. mi-documento.pdf)
+                widget: string
+              - name: description
+                label: Descripción (2 a 4 frases)
+                widget: text
+              - name: url
+                label: Enlace al documento (URL pública, p. ej. Google Drive)
+                widget: string
+                pattern: ['^https://', 'Debe empezar con https://']
+              - name: type
+                label: Tipo
+                widget: select
+                options:
+                  - { label: Case study, value: case-study }
+                  - { label: Report, value: report }
+                  - { label: Guide, value: guide }
+                  - { label: Playbook, value: playbook }
+                  - { label: Brief, value: brief }
+                  - { label: Briefing paper, value: briefing-paper }
+                  - { label: Guidance note, value: guidance-note }
+                  - { label: Presentation, value: presentation }
+              - name: topic
+                label: Tema
+                widget: select
+                options:
+                  - { label: Landscape Finance Basics, value: basics }
+                  - { label: Financial Mechanisms & Pipeline, value: mechanisms }
+                  - { label: Implementation & Tools, value: implementation }
+                  - { label: Conservation Strategy & Mapping, value: strategy }
+                  - { label: Food & Agriculture, value: food-agriculture }
+              - name: audiences
+                label: Audiencias (una o varias)
+                widget: select
+                multiple: true
+                min: 1
+                options:
+                  - { label: Investors / fund managers, value: investor }
+                  - { label: Practitioners / project developers, value: practitioner }
+                  - { label: Corporates, value: corporate }
+                  - { label: Policymakers, value: policymaker }
+                  - { label: Communities, value: community }
+                  - { label: NGOs, value: ngo }
+                  - { label: Researchers, value: researcher }
+              - name: regions
+                label: Regiones (una o varias)
+                widget: select
+                multiple: true
+                min: 1
+                options:
+                  - { label: Global, value: global }
+                  - { label: África, value: africa }
+                  - { label: Asia, value: asia }
+                  - { label: América Latina, value: latam }
+                  - { label: Europa, value: europe }
+              - name: countries
+                label: Países (opcional)
+                widget: list
+                required: false
+                field: { name: country, label: País, widget: string }
+              - name: financeTypes
+                label: Instrumentos financieros (opcional)
+                widget: select
+                multiple: true
+                required: false
+                options:
+                  - { label: Debt / loans, value: debt }
+                  - { label: Equity, value: equity }
+                  - { label: Grants / philanthropy, value: grants }
+                  - { label: Blended finance, value: blended }
+                  - { label: Outcome-based, value: outcome-based }
+                  - { label: PES, value: pes }
+                  - { label: Carbon / biodiversity credits, value: carbon }
+                  - { label: Guarantees, value: guarantees }
+                  - { label: Microfinance, value: microfinance }
+                  - { label: Private investment, value: private-investment }
+              - name: tags
+                label: Etiquetas de búsqueda
+                widget: list
+                field: { name: tag, label: Etiqueta, widget: string }
+              - name: featured
+                label: ¿Destacado en "Global Case Studies"?
+                widget: boolean
+                required: false
+                default: false
+              - name: map
+                label: Pin en el mapa (solo para casos con ubicación)
+                widget: object
+                required: false
+                collapsed: true
+                fields:
+                  - name: position
+                    label: Coordenadas [latitud, longitud]
+                    widget: list
+                    field: { name: coord, label: Coordenada, widget: number, value_type: float }
+                    min: 2
+                    max: 2
+                  - name: label
+                    label: Nombre del pin en el mapa
+                    widget: string
+
+  - name: editorial
+    label: Textos del sitio
+    description: >-
+      Textos editoriales de las páginas, en los tres idiomas. Los cambios se
+      publican automáticamente unos 2 minutos después de guardar.
+    files:
+      - name: texts
+        label: Textos editoriales (EN · ES · FR)
+        file: content/editorial.json
+        fields:
+          - name: en
+            label: Inglés (EN)
+            widget: object
+            fields:
+              - { name: hero_title, label: 'Inicio — título del hero', widget: string }
+              - { name: hero_sub, label: 'Inicio — subtítulo del hero', widget: text }
+              - { name: aboutus_body1, label: 'Inicio — About Us, párrafo 1', widget: text }
+              - { name: aboutus_body2, label: 'Inicio — About Us, párrafo 2 (misión)', widget: text }
+              - { name: discover_body, label: 'Inicio — párrafo "Discover Landscape Finance"', widget: text }
+              - { name: about_body, label: 'Inicio — párrafo "Learning Path" (agricultura)', widget: text }
+              - { name: learning_intro_title, label: 'Learning — título de la introducción', widget: string }
+              - { name: learning_intro_body, label: 'Learning — párrafo de la introducción', widget: text }
+              - { name: contact_org, label: 'Contacto — línea institucional', widget: string }
+              - { name: contact_loc, label: 'Contacto — dirección', widget: string }
+              - { name: contact_phone, label: 'Contacto — teléfono', widget: string }
+              - { name: contact_mail, label: 'Contacto — correos', widget: string }
+          - name: es
+            label: Español (ES)
+            widget: object
+            fields:
+              - { name: hero_title, label: 'Inicio — título del hero', widget: string }
+              - { name: hero_sub, label: 'Inicio — subtítulo del hero', widget: text }
+              - { name: aboutus_body1, label: 'Inicio — About Us, párrafo 1', widget: text }
+              - { name: aboutus_body2, label: 'Inicio — About Us, párrafo 2 (misión)', widget: text }
+              - { name: discover_body, label: 'Inicio — párrafo "Discover Landscape Finance"', widget: text }
+              - { name: about_body, label: 'Inicio — párrafo "Learning Path" (agricultura)', widget: text }
+              - { name: learning_intro_title, label: 'Learning — título de la introducción', widget: string }
+              - { name: learning_intro_body, label: 'Learning — párrafo de la introducción', widget: text }
+              - { name: contact_org, label: 'Contacto — línea institucional', widget: string }
+              - { name: contact_loc, label: 'Contacto — dirección', widget: string }
+              - { name: contact_phone, label: 'Contacto — teléfono', widget: string }
+              - { name: contact_mail, label: 'Contacto — correos', widget: string }
+          - name: fr
+            label: Francés (FR)
+            widget: object
+            fields:
+              - { name: hero_title, label: 'Inicio — título del hero', widget: string }
+              - { name: hero_sub, label: 'Inicio — subtítulo del hero', widget: text }
+              - { name: aboutus_body1, label: 'Inicio — About Us, párrafo 1', widget: text }
+              - { name: aboutus_body2, label: 'Inicio — About Us, párrafo 2 (misión)', widget: text }
+              - { name: discover_body, label: 'Inicio — párrafo "Discover Landscape Finance"', widget: text }
+              - { name: about_body, label: 'Inicio — párrafo "Learning Path" (agricultura)', widget: text }
+              - { name: learning_intro_title, label: 'Learning — título de la introducción', widget: string }
+              - { name: learning_intro_body, label: 'Learning — párrafo de la introducción', widget: text }
+              - { name: contact_org, label: 'Contacto — línea institucional', widget: string }
+              - { name: contact_loc, label: 'Contacto — dirección', widget: string }
+              - { name: contact_phone, label: 'Contacto — teléfono', widget: string }
+              - { name: contact_mail, label: 'Contacto — correos', widget: string }

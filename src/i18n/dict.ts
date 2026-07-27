@@ -1,4 +1,5 @@
 import type { Locale } from "./config";
+import editorial from "../../content/editorial.json";
 
 type Dict = Record<string, string>;
 
@@ -1791,7 +1792,14 @@ const fr: Dict = {
 
 };
 
-const dicts: Record<Locale, Dict> = { en, es, fr };
+/* Overlay editorial: los textos administrables (content/editorial.json,
+   editables desde /admin) tienen prioridad sobre los valores base de este
+   archivo, que quedan como respaldo si falta una clave. */
+const dicts: Record<Locale, Dict> = {
+  en: { ...en, ...editorial.en },
+  es: { ...es, ...editorial.es },
+  fr: { ...fr, ...editorial.fr },
+};
 
 export function getDict(locale: Locale): Dict {
   return dicts[locale] ?? en;
