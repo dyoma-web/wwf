@@ -80,9 +80,9 @@ const UNITS: Unit[] = [
     num: "02",
     cover: "/images/case-mtb-madagascar-seascape.jpg",
     title: {
-      en: "Explore how different financing approaches can support conservation, restoration, and nature-positive food and agriculture systems.",
-      es: "Explora cómo distintos enfoques de financiación pueden apoyar la conservación, la restauración y sistemas alimentarios y agrícolas positivos para la naturaleza.",
-      fr: "Explorez comment différentes approches de financement peuvent soutenir la conservation, la restauration et des systèmes alimentaires et agricoles positifs pour la nature.",
+      en: "The Landscape Approach & Conservation Context",
+      es: "El enfoque de paisaje y el contexto de conservación",
+      fr: "L'approche paysagère et le contexte de conservation",
     },
     summary: {
       en: "How the Inclusive Conservation Programme provides the foundation for finance decisions.",
@@ -347,6 +347,19 @@ export function LearningClient({ locale }: { locale: Locale }) {
           </h3>
           <p style={{ color: "var(--ink-2)", lineHeight: 1.6, margin: 0 }}>
             {t(locale, "learning_intro_body")}
+          </p>
+          <p
+            style={{
+              margin: "14px 0 0",
+              padding: "12px 16px",
+              background: "var(--paper)",
+              borderLeft: "3px solid var(--orange)",
+              color: "var(--ink-2)",
+              fontSize: 13.5,
+              lineHeight: 1.55,
+            }}
+          >
+            {t(locale, "learning_access_note")}
           </p>
         </div>
       </div>

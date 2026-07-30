@@ -239,14 +239,16 @@ const en: Dict = {
   learning_format: "Format",
   learning_level: "Level",
   learning_narrator: "Narrator",
-  learning_preview: "Preview",
+  learning_preview: "Launch",
+  learning_access_note:
+    "You can access the courses either by selecting “Launch” (no login required) or by logging into the WWF learning platform selecting “Access to full course”.",
   learning_preview_note:
     "This is a free preview of the module content. To take the full course and earn your certificate, visit our learning platform.",
   learning_preview_cta: "Go to the learning platform",
   learning_preview_close: "Close",
   learning_continue: "Continue in the LMS",
   learning_continue_tail: "to track progress, take assessments and earn a certificate.",
-  learning_open_lms: "Start learning",
+  learning_open_lms: "Access to full course",
 
   // Lenses temáticas (compartido entre páginas)
   lens_greening: "Greening finance",
@@ -838,14 +840,16 @@ const es: Dict = {
   learning_format: "Formato",
   learning_level: "Nivel",
   learning_narrator: "Narrador/a",
-  learning_preview: "Vista previa",
+  learning_preview: "Iniciar",
+  learning_access_note:
+    "Puedes acceder a los cursos seleccionando “Iniciar” (sin necesidad de iniciar sesión) o ingresando a la plataforma de aprendizaje de WWF con “Accede al curso completo”.",
   learning_preview_note:
     "Esta es una vista previa del contenido del módulo (en inglés). Para tomar el curso completo y obtener tu certificado, ingresa a nuestra plataforma de aprendizaje.",
   learning_preview_cta: "Ir a la plataforma de aprendizaje",
   learning_preview_close: "Cerrar",
   learning_continue: "Continúa en el LMS",
   learning_continue_tail: "para seguir tu progreso, hacer evaluaciones y obtener un certificado.",
-  learning_open_lms: "Comenzar a aprender",
+  learning_open_lms: "Accede al curso completo",
 
   // Lentes temáticas
   lens_greening: "Finanzas verdes",
@@ -1434,14 +1438,16 @@ const fr: Dict = {
   learning_format: "Format",
   learning_level: "Niveau",
   learning_narrator: "Narratrice",
-  learning_preview: "Aperçu",
+  learning_preview: "Lancer",
+  learning_access_note:
+    "Vous pouvez accéder aux cours en sélectionnant « Lancer » (sans connexion requise) ou en vous connectant à la plateforme d'apprentissage du WWF via « Accéder au cours complet ».",
   learning_preview_note:
     "Ceci est un aperçu du contenu du module (en anglais). Pour suivre le cours complet et obtenir votre certificat, rendez-vous sur notre plateforme d'apprentissage.",
   learning_preview_cta: "Accéder à la plateforme d'apprentissage",
   learning_preview_close: "Fermer",
   learning_continue: "Continuez dans le LMS",
   learning_continue_tail: "pour suivre votre progression, passer les évaluations et obtenir un certificat.",
-  learning_open_lms: "Commencer à apprendre",
+  learning_open_lms: "Accéder au cours complet",
 
   // Axes thématiques
   lens_greening: "Finance verte",
